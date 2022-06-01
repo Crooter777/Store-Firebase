@@ -1,0 +1,162 @@
+.header {
+  display: flex;
+  flex-direction: column;
+
+  width: 100%;
+
+  background-color: #fff;
+
+  border-bottom: 1px solid #EEEEEE;
+}
+
+.topHeader {
+  background-color: #fff;
+  box-shadow: inset 0px -1px 0px rgba(0, 0, 0, 0.05);
+}
+
+.topHeaderInner {
+  display: flex;
+  justify-content: space-between;
+  padding: 22px 0;
+
+  width: 100%;
+  max-width: 1172px;
+
+  margin: 0 auto;
+}
+
+.bottomHeaderInner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 0;
+
+  gap: 30px;
+
+  width: 100%;
+  max-width: 1172px;
+
+  margin: 0 auto;
+}
+
+.bottomHeader {
+}
+
+.pages {
+  & span {
+    font-weight: 400;
+    font-size: 17px;
+    line-height: 21px;
+    margin-left: 24px;
+    color: #393939;
+
+    &:first-child {
+      margin: 0;
+    }
+  }
+}
+
+.contact {
+  & span {
+    font-weight: 400;
+    font-size: 17px;
+    line-height: 21px;
+    color: #393939;
+
+    &:first-child {
+      color: #979797;
+      font-weight: 400;
+      font-size: 17px;
+      line-height: 21px;
+    }
+  }
+}
+
+.search {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+
+  & input {
+    width: 100%;
+    background: #F8F8F8;
+    border: 1px solid #E0E0E0;
+    border-right: none;
+    height: 44px;
+    padding: 0 20px;
+
+    outline: none;
+
+    &::placeholder {
+    }
+  }
+
+  & span {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 20px;
+    color: #858F9B;
+
+  }
+}
+
+.iconWrapper {
+  display: flex;
+  align-items: center;
+  background: #F8F8F8;
+  border: 1px solid #E0E0E0;
+  border-left: none;
+  height: 44px;
+  padding: 0 20px 0 0;
+
+  cursor: pointer;
+}
+
+
+.favorite {
+  display: flex;
+  align-items: center;
+
+  & span {
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 20px;
+    color: #393939;
+    margin-left: 10px;
+  }
+}
+
+.productCart {
+  display: flex;
+  align-items: center;
+
+  & span {
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 20px;
+    color: #393939;
+    margin-left: 10px;
+  }
+}
+
+.separator {
+  width: 2px;
+  height: 24px;
+  background-color: #D3D3D3;;
+}
+
+@media only screen and (max-width: 1192px) {
+  .topHeaderInner {
+    padding: 22px 20px;
+  }
+  .bottomHeaderInner {
+    padding: 8px 20px;
+  }
+}
+
+@media only screen and (max-width: 800px) {
+  .header {
+    display: none;
+  }
+}

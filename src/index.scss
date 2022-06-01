@@ -1,0 +1,18 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+
+  font-family: 'Montserrat', sans-serif;
+}
+
+body {
+  background-color: #F8F8F8;
+  min-height: 100vh;
+}
+
+.pageWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}

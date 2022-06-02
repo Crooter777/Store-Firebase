@@ -40,6 +40,7 @@
 }
 
 .bottomHeader {
+  border-bottom: 1px solid #EEEEEE;
 }
 
 .pages {
@@ -49,6 +50,7 @@
     line-height: 21px;
     margin-left: 24px;
     color: #393939;
+    text-decoration: none;
 
     &:first-child {
       margin: 0;
@@ -145,6 +147,40 @@
   height: 24px;
   background-color: #D3D3D3;;
 }
+
+.pathWrapper {
+  height: 60px;
+  width: 100%;
+  background-color: #fff;
+  display: flex;
+  justify-content: center;
+}
+
+.paths {
+  width: 100%;
+  max-width: 1172px;
+  display: flex;
+  align-items: center;
+}
+
+.path {
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 17px;
+  color: #393939;
+  margin-right: 16px;
+
+  &.active {
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 17px;
+    color: #979797;
+  }
+}
+
+
+
+
 
 @media only screen and (max-width: 1192px) {
   .topHeaderInner {

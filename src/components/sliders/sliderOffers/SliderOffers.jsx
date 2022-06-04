@@ -8,12 +8,12 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 
-import "./SliderD.css";
+import "./SliderOffers.css";
 
 // import required modules
 import { Autoplay, Pagination, Navigation } from "swiper";
 
-export default function SliderD() {
+export default function SliderOffers() {
     return (
         <>
             <Swiper

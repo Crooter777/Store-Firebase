@@ -44,7 +44,15 @@
 }
 
 @media only screen and (max-width: 770px) {
+    .wrapper {
+        margin-bottom: 22px;
+    }
+
     .collection {
-        grid-template-columns: repeat(2, 1fr);
+        display: none;
+    }
+
+    .button {
+        display: none;
     }
 }

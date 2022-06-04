@@ -1,23 +1,22 @@
 import React from 'react';
-import cl from './Footer.module.scss'
-import LogoSVG from "../SVG/LogoSVG";
-import Logo2SVG from "../SVG/Logo2SVG";
-import PhoneSVG from "../SVG/PhoneSVG";
-import EmailSVG from "../SVG/EmailSVG";
-import InstagramSVG from "../SVG/InstagramSVG";
-import TelegramSVG from "../SVG/TelegramSVG";
-import WhatsappSVG from "../SVG/WhatsappSVG";
-import FooterM from "./FooterM";
+import cl from './FooterMobile.module.scss'
+import LogoSVG from "../../SVG/LogoSVG";
+import Logo2SVG from "../../SVG/Logo2SVG";
+import PhoneSVG from "../../SVG/PhoneSVG";
+import EmailSVG from "../../SVG/EmailSVG";
+import InstagramSVG from "../../SVG/InstagramSVG";
+import TelegramSVG from "../../SVG/TelegramSVG";
+import WhatsappSVG from "../../SVG/WhatsappSVG";
 
-const Footer = () => {
+const FooterMobile = () => {
     return (
-        <>
         <div className={cl.footer}>
             <div className={cl.wrapper}>
                 <div className={cl.inner}>
                     <div className={cl.logo}>
                         <Logo2SVG/>
                     </div>
+                    <div className={cl.infoWrapper}>
                         <div className={cl.info}>
                             <h3>Компания</h3>
                             <span>О нас</span>
@@ -54,13 +53,13 @@ const Footer = () => {
                                 <span>Whatsapp</span>
                             </div>
                         </div>
+                        <p className={cl.developed}>Developed by Zeon 2022</p>
+                    </div>
                 </div>
-                <p className={cl.developed2}>Developed by Zeon 2022</p>
             </div>
+            <div className={cl.separator}></div>
         </div>
-        <FooterM/>
-    </>
-);
+    );
 };
 
-export default Footer;
+export default FooterMobile;

@@ -15,9 +15,9 @@ import {FreeMode, Pagination} from "swiper";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/free-mode";
-import './sliderCollection.css'
+import './SliderProducts.css'
 
-const SliderCollection = () => {
+const SliderProducts = () => {
 
     let images = [img, img2, img3, img4, img5, img6, img7, img8]
 
@@ -39,4 +39,4 @@ const SliderCollection = () => {
     );
 };
 
-export default SliderCollection;
+export default SliderProducts;

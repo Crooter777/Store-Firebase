@@ -1,12 +1,12 @@
 import React from 'react';
-import cl from './mainCollectionV2.module.scss'
+import cl from './GridCollections.module.scss'
 import img from '../../../assets/img/Zeon Store/image 11.png'
 import img2 from '../../../assets/img/Zeon Store/image 11-1.png'
 import img3 from '../../../assets/img/Zeon Store/image 11-2.png'
 import img4 from '../../../assets/img/Zeon Store/image 11-3.png'
 import ArrowSVG from "../../SVG/ArrowSVG";
 
-const MainCollectionV2 = () => {
+const GridCollections = () => {
     return (
         <div className={cl.wrapper}>
             <h1 className={cl.h1}>Коллекция</h1>
@@ -49,4 +49,4 @@ const MainCollectionV2 = () => {
     );
 };
 
-export default MainCollectionV2;
+export default GridCollections;

@@ -1,6 +1,6 @@
 import React from 'react';
 import Header from "../components/Headers/header/Header";
-import Footer from "../components/footer/Footer";
+import Footer from "../components/footer/footer/Footer";
 
 const Offer = () => {
     return (

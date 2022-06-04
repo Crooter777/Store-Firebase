@@ -5,12 +5,16 @@ import MainCollection from "../components/Collections/mainCollection/mainCollect
 import MainCollectionV2 from "../components/Collections/mainCollectionV2/mainCollectionV2";
 import Benefits from "../components/benefits/Benefits";
 import Footer from "../components/footer/Footer";
+import SliderCollection from "../components/sliders/sliderCollection/SliderCollection";
 
 const Main = () => {
+
     return (
         <div className='pageWrapper'>
+            <SliderCollection/>
             <Header/>
             <SliderD/>
+            <SliderCollection/>
             <MainCollection/>
             <MainCollectionV2/>
             <Benefits/>

@@ -11,8 +11,20 @@ body {
   min-height: 100vh;
 }
 
-.pageWrapper {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+button {
+    border: none;
+    outline: none;
+}
+
+.container {
+    width: 100%;
+    max-width: 1212px;
+    padding: 0 20px;
+    margin: 0 auto;
+}
+
+.center {
+    width: 100%;
+    display: flex;
+    justify-content: center;
 }

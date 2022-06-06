@@ -14,8 +14,12 @@ const Header = () => {
                 <div className={cl.topHeader}>
                     <div className={cl.topHeaderInner}>
                         <div className={cl.pages}>
-                            <span>О нас</span>
-                            <span>Коллекции</span>
+                            <Link to='/about'><span>О нас</span></Link>
+                            <Link to='/collections'><span>Коллекции</span></Link>
+                            <Link to='/collections/1'><span>Страница коллекции</span></Link>
+                            <Link to='/products/1'><span>Страница продукта</span></Link>
+                            <Link to='/news'><span>Новости</span></Link>
+                            <Link to='/help'><span>Помощь</span></Link>
                             <span>Новости</span>
                         </div>
                         <div className={cl.contact}>
@@ -41,7 +45,7 @@ const Header = () => {
                         </div>
                         <div className={cl.separator}></div>
                         <div className={cl.productCart}>
-                            <ProductCartSVG/>
+                            <ProductCartSVG style={{fill: '#515151'}}/>
                             <span>Корзина</span>
                         </div>
                     </div>

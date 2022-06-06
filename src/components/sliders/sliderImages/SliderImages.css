@@ -1,4 +1,4 @@
-.mySwiper2 {
+.mySwiper3 {
     width: 100%;
     max-width: 1168px;
     margin-top: 11px;
@@ -7,11 +7,11 @@
 
 
 
-.mySwiper2 .swiper-slide {
+.mySwiper3 .swiper-slide {
     text-align: center;
     font-size: 18px;
     background: #fff;
-    max-width: 286px;
+    max-width: 262px;
 
     /* Center slide text vertically */
     display: -webkit-box;

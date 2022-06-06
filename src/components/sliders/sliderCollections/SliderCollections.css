@@ -1,13 +1,13 @@
-.mySwiper2 {
+.mySwiper3 {
     width: 100%;
     max-width: 1168px;
     margin-top: 11px;
-    display: block;
+    display: none;
 }
 
 
 
-.mySwiper2 .swiper-slide {
+.mySwiper3 .swiper-slide {
     text-align: center;
     font-size: 18px;
     background: #fff;
@@ -33,4 +33,10 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
+}
+
+@media only screen and (max-width: 770px) {
+    .mySwiper3 {
+        display: block;
+    }
 }

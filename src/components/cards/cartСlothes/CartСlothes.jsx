@@ -1,6 +1,6 @@
 import React from 'react';
-import cl from "./CardСlothes.module.scss";
-import img from "../../../assets/img/Zeon Store/Rectangle 491-2.png";
+import cl from "./CartСlothes.module.scss";
+import img from "../../../assets/img/Products/Rectangle 491-2.png";
 import LoveSVG from "../../SVG/LoveSVG";
 
 const CardClothes = ({url, ...props}) => {

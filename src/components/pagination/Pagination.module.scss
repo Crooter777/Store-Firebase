@@ -1,0 +1,42 @@
+.wrapper {
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+    max-width: 1172px;
+    margin-bottom: 49px;
+}
+
+.pagination {
+    display: flex;
+}
+
+.prev {
+    margin-left: 0;
+    margin-right: 2px;
+}
+.next {
+    margin-right: 0;
+    margin-left: 12px !important;
+}
+
+.button {
+    width: 44px;
+    height: 44px;
+    background-color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 19px;
+    color: #979797;
+
+    transition: all .1s ease-out;
+
+    margin-left: 10px;
+
+    &.active {
+        background-color: #1D1D1B;
+        color: #FFFFFF;
+    }
+}

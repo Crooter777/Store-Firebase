@@ -8,6 +8,9 @@ import CollectionPage from "./pages/CollectionPage";
 import Product from "./pages/Product";
 import News from "./pages/News";
 import Help from "./pages/Help";
+import SearchResult from "./pages/SearchResult";
+import Favorites from "./pages/Favorites";
+import Basket from "./pages/Basket";
 
 function App() {
   return (
@@ -21,6 +24,9 @@ function App() {
               <Route path='/products/1' element={<Product/>}/>
               <Route path='/news' element={<News/>}/>
               <Route path='/help' element={<Help/>}/>
+              <Route path='/search' element={<SearchResult/>}/>
+              <Route path='/favorites' element={<Favorites/>}/>
+              <Route path='/basket' element={<Basket/>}/>
           </Routes>
       </BrowserRouter>
   );

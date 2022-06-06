@@ -20,7 +20,10 @@ const Header = () => {
                             <Link to='/products/1'><span>Страница продукта</span></Link>
                             <Link to='/news'><span>Новости</span></Link>
                             <Link to='/help'><span>Помощь</span></Link>
-                            <span>Новости</span>
+                            <Link to='/search'><span>Поиск</span></Link>
+                            <Link to='/favorites'><span>Избранное</span></Link>
+                            <Link to='/basket'><span>Корзина</span></Link>
+                            {/*<span>Новости</span>*/}
                         </div>
                         <div className={cl.contact}>
                             <span>Тел: </span>

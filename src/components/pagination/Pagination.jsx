@@ -2,20 +2,39 @@ import React from 'react';
 import cl from './Pagination.module.scss'
 import Left from "../SVG/Left";
 import Right from "../SVG/Right";
+import {observer} from "mobx-react-lite";
+import {toJS} from "mobx";
 
-const Pagination = () => {
+const Pagination = ({store}) => {
+    
+    // console.log(toJS(store.pagesArray))
+    
     return (
         <div className={cl.wrapper}>
             <div className={cl.pagination}>
-                <div className={`${cl.button} ${cl.prev}`}>
+                <div
+                    onClick={() => store.getPrevious()}
+                    className={`${cl.button} ${cl.prev}`}
+                >
                     <Left/>
                 </div>
-                <div className={`${cl.button} ${cl.active}`}>1</div>
-                <div className={cl.button}>2</div>
-                <div className={cl.button}>3</div>
-                <div className={cl.button}>...</div>
-                <div className={cl.button}>N</div>
-                <div className={`${cl.button} ${cl.next}`}>
+                {store.pagesArray.map((page, index) =>
+                    store.current_page === page ?
+                        <div className={`${cl.button} ${cl.active}`}>{page}</div>
+                        :
+                        <div
+                            className={cl.button}
+                            onClick={() => store.setCurrentPage(page)}
+                        >
+                            {page}
+                        </div>
+                )}
+                {/*<div className={cl.button}>...</div>*/}
+                {/*<div className={cl.button}>{store.pages_quantity}</div>*/}
+                <div
+                    className={`${cl.button} ${cl.next}`}
+                    onClick={() => store.getNext()}
+                >
                     <Right/>
                 </div>
             </div>
@@ -23,4 +42,4 @@ const Pagination = () => {
     );
 };
 
-export default Pagination;
+export default observer(Pagination);

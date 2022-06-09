@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import cl from './GridCollections.module.scss'
 import ArrowSVG from "../../SVG/ArrowSVG";
 import CardClothes from "../../cards/cartСlothes/CartСlothes";
@@ -9,25 +9,37 @@ import img from "../../../assets/img/Collections/image 11(2).png";
 import img2 from "../../../assets/img/Collections/image 11-1.png";
 import img3 from "../../../assets/img/Collections/image 11-2.png";
 import img4 from "../../../assets/img/Collections/image 11.png";
+import {observer} from "mobx-react-lite";
 
-const GridCollections = ({title, images, ...props}) => {
+const GridCollections = ({title, store, ...props}) => {
+
+    useEffect(() => {
+        store.getProducts()
+    }, [])
 
     return (
-        <div className='container'>
-            <div className={cl.inner}>
-                {title ? <h1 className={cl.h1}>{title}</h1> : null}
-                <div className={cl.collection}>
-                    {images.map((image) =>
-                        <CartCollection url={image}/>
-                    )}
-                </div>
-                <SliderCollections/>
-                <div className='center'>
-                    <button className={cl.button}>Еще</button>
-                </div>
+        <div className={cl.inner}>
+            {title ? <h1 className={cl.h1}>{title}</h1> : null}
+            <div className={cl.collection}>
+                {store.collections.length ?
+                    store.collections.map((collection) =>
+                        <CartCollection collection={collection} key={collection.id}/>
+                    )
+                    :
+                    null
+                }
+            </div>
+            <SliderCollections store={store}/>
+            <div className='center'>
+                <button
+                    className={cl.button}
+                    onClick={() => store.getNext()}
+                >
+                    Еще
+                </button>
             </div>
         </div>
     );
 };
 
-export default GridCollections;
+export default observer(GridCollections);

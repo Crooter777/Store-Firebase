@@ -17,10 +17,7 @@ import "swiper/css/pagination";
 import "swiper/css/free-mode";
 import './SliderProducts.css'
 
-const SliderProducts = () => {
-
-    let images = [img, img2, img3, img4, img5, img6, img7, img8]
-
+const SliderProducts = ({store}) => {
     return (
         <Swiper
             slidesPerView={"auto"}
@@ -28,11 +25,15 @@ const SliderProducts = () => {
             className="mySwiper2"
             freeMode={true}
         >
-            {images.map((image) =>
-                <SwiperSlide>
-                    <CardClothes url={image}/>
-                </SwiperSlide>
-            )}
+            {store.products.length ?
+                store.products.map((product) =>
+                    <SwiperSlide key={product.id}>
+                        <CardClothes product={product}/>
+                    </SwiperSlide>
+                )
+                :
+                null
+            }
         </Swiper>
     );
 };

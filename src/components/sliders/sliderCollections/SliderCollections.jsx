@@ -13,11 +13,9 @@ import "swiper/css/pagination";
 import "swiper/css/free-mode";
 import './SliderCollections.css'
 import CartCollection from "../../cards/cartCollection/CartCollection";
+import {observer} from "mobx-react-lite";
 
-const SliderProducts = () => {
-
-    let images = [img, img2, img3, img4]
-
+const SliderCollections = ({store}) => {
     return (
         <Swiper
             slidesPerView={"auto"}
@@ -26,13 +24,17 @@ const SliderProducts = () => {
             freeMode={true}
             modules={[FreeMode]}
         >
-            {images.map((image) =>
-                <SwiperSlide>
-                    <CartCollection url={image}/>
-                </SwiperSlide>
-            )}
+            {store.collections.length ?
+                store.collections.map((collection) =>
+                    <SwiperSlide key={collection.id}>
+                        <CartCollection collection={collection}/>
+                    </SwiperSlide>
+                )
+                :
+                null
+            }
         </Swiper>
     );
 };
 
-export default SliderProducts;
+export default observer(SliderCollections);

@@ -2,9 +2,8 @@
     width: 100%;
     max-width: 1168px;
     margin-top: 11px;
-    display: none;
+    display: none !important;
 }
-
 
 
 .mySwiper3 .swiper-slide {
@@ -37,6 +36,6 @@
 
 @media only screen and (max-width: 770px) {
     .mySwiper3 {
-        display: block;
+        display: block !important;
     }
 }

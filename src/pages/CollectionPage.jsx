@@ -27,7 +27,7 @@ const CollectionPage = () => {
                     )}
                 </div>
                 <div className={cl.pagination}>
-                    <Pagination/>
+                    {/*<Pagination/>*/}
                 </div>
                 <h1 className={cl.title}>Новинки</h1>
                 <div className={cl.slider}>

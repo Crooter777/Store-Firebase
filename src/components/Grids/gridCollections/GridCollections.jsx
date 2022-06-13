@@ -1,9 +1,9 @@
 import React, {useEffect} from 'react';
 import cl from './GridCollections.module.scss'
 import ArrowSVG from "../../SVG/ArrowSVG";
-import CardClothes from "../../cards/cartСlothes/CartСlothes";
+import CardClothes from "../../carts/cartСlothes/CartСlothes";
 import SliderProducts from "../../sliders/sliderProducts/SliderProducts";
-import CartCollection from "../../cards/cartCollection/CartCollection";
+import CartCollection from "../../carts/cartCollection/CartCollection";
 import SliderCollections from "../../sliders/sliderCollections/SliderCollections";
 import img from "../../../assets/img/Collections/image 11(2).png";
 import img2 from "../../../assets/img/Collections/image 11-1.png";
@@ -14,7 +14,7 @@ import {observer} from "mobx-react-lite";
 const GridCollections = ({title, store, ...props}) => {
 
     useEffect(() => {
-        store.getProducts()
+       store.getProducts()
     }, [])
 
     return (

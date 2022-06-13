@@ -1,11 +1,11 @@
 import {makeAutoObservable, toJS} from "mobx";
-import Collections from "../services/Collections";
+import News from "../services/News";
 import pagination from "../utils/pagination";
 
-export default class StoreCollectionsPage {
+export default class StoreNews {
 
-    collections = []
-    limit= 4
+    news = []
+    limit= 8
     offset = 0
 
     count = null
@@ -19,11 +19,11 @@ export default class StoreCollectionsPage {
 
     async getProducts() {
         try {
-            const response = await Collections.getAll(this.limit)
+            const response = await News.getAll(this.limit)
             this.count = await response.data.count
             this.pages_quantity = Math.ceil(response.data.count / this.limit)
             this.pagesArray = pagination(this.pages_quantity, this.current_page)
-            this.collections = await response.data.results
+            this.news = await response.data.results
         } catch (e) {
             console.log(e)
         }
@@ -37,8 +37,8 @@ export default class StoreCollectionsPage {
             return
         }
         this.offset = this.offset + 4
-        const response = await Collections.getAll(this.limit, this.offset)
-        this.collections = response.data.results
+        const response = await News.getAll(this.limit, this.offset)
+        this.news = response.data.results
         this.pagesArray = pagination(this.pages_quantity, this.current_page, this.current_page - 1)
     }
     async getPrevious() {
@@ -48,8 +48,8 @@ export default class StoreCollectionsPage {
             return
         }
         this.offset = this.offset - 4
-        const response = await Collections.getAll(this.limit, this.offset)
-        this.collections = response.data.results
+        const response = await News.getAll(this.limit, this.offset)
+        this.news = response.data.results
         this.pagesArray = pagination(this.pages_quantity, this.current_page, this.current_page + 1)
     }
 
@@ -62,8 +62,8 @@ export default class StoreCollectionsPage {
     }
 
     async getPage() {
-        const response = await Collections.getAll(this.limit, this.offset)
+        const response = await News.getAll(this.limit, this.offset)
         this.pagesArray = pagination(this.pages_quantity, this.current_page)
-        this.collections = response.data.results
+        this.news = response.data.results
     }
 }

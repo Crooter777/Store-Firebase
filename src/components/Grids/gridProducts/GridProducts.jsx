@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react';
 import cl from './GridProducts.module.scss'
-import CardClothes from "../../cards/cartСlothes/CartСlothes";
+import CardClothes from "../../carts/cartСlothes/CartСlothes";
 import SliderProducts from "../../sliders/sliderProducts/SliderProducts";
 import {observer} from "mobx-react-lite";
 

@@ -24,7 +24,7 @@ const CardClothes = ({product, ...props}) => {
                 </div>
                 <div className={cl.colors}>
                     {product.product_colors.map((color) =>
-                        <div className={cl.color} style={{backgroundColor: color.rgb}}></div>
+                        <div className={cl.color} key={color.id} style={{backgroundColor: color.rgb}}></div>
                     )}
                 </div>
             </div>

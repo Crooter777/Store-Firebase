@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import Template from "./Template";
 import cl from '../styles/Product.module.scss'
 import SliderProducts from "../components/sliders/sliderProducts/SliderProducts";
@@ -6,42 +6,49 @@ import img4 from "../assets/img/Products/Rectangle 491-1.png";
 import ProductCartSVG from "../components/SVG/ProductCartSVG";
 import LoveSVG from "../components/SVG/LoveSVG";
 import SliderImages from "../components/sliders/sliderImages/SliderImages";
+import {useParams} from "react-router-dom";
+import {Context} from "../index";
+import {observer} from "mobx-react-lite";
+import {toJS} from "mobx";
 
 const Product = () => {
 
-    let image = img4
+    const {id} = useParams()
+
+    const [isLoading, setLoading] = useState(true)
+
+    const {ProductDetail} = useContext(Context)
+    const {Bestsellers} = useContext(Context)
+
+    useEffect(() => {
+        async function load () {
+            await ProductDetail.getProduct(id)
+            setLoading(false)
+            await Bestsellers.getProducts()
+        }
+        load()
+    }, [])
 
     return (
         <Template>
             <div className={cl.wrap}>
                 <div className={cl.sliderImages}>
-                    <SliderImages/>
+                    {!isLoading ?
+                        <SliderImages store={ProductDetail}/>
+                        :
+                        null
+                    }
                 </div>
                 <div className={cl.images}>
-                    <div className={cl.box1}>
-                        <img src={image} alt=""/>
-                    </div>
-                    <div className={cl.box2}>
-                        <img src={image} alt=""/>
-                    </div>
-                    <div className={cl.box3}>
-                        <img src={image} alt=""/>
-                    </div>
-                    <div className={cl.box4}>
-                        <img src={image} alt=""/>
-                    </div>
-                    <div className={cl.box5}>
-                        <img src={image} alt=""/>
-                    </div>
-                    <div className={cl.box6}>
-                        <img src={image} alt=""/>
-                    </div>
-                    <div className={cl.box7}>
-                        <img src={image} alt=""/>
-                    </div>
-                    <div className={cl.box8}>
-                        <img src={image} alt=""/>
-                    </div>
+                    {!isLoading ?
+                        ProductDetail.product.product_colors.map((color) =>
+                            <div key={color.id}>
+                                <img src={color.image} alt=""/>
+                            </div>
+                        )
+                        :
+                        null
+                    }
                 </div>
                 <div className={cl.info}>
                     <div className={cl.innerInfo}>
@@ -96,10 +103,10 @@ const Product = () => {
             </div>
             <h1 className={cl.title}>Похожие товары</h1>
             <div className={cl.slider}>
-                <SliderProducts/>
+                <SliderProducts store={Bestsellers}/>
             </div>
         </Template>
     );
 };
 
-export default Product;
+export default observer(Product)

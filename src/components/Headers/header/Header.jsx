@@ -17,7 +17,7 @@ const Header = () => {
                             <Link to='/about'><span>О нас</span></Link>
                             <Link to='/collections'><span>Коллекции</span></Link>
                             <Link to='/collections/1'><span>Страница коллекции</span></Link>
-                            <Link to='/products/1'><span>Страница продукта</span></Link>
+                            <Link to='/products/5'><span>Страница продукта</span></Link>
                             <Link to='/news'><span>Новости</span></Link>
                             <Link to='/help'><span>Помощь</span></Link>
                             <Link to='/search'><span>Поиск</span></Link>

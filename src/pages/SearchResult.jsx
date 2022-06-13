@@ -2,7 +2,7 @@ import React from 'react';
 import Template from "./Template";
 import cl from '../styles/SearchResult.module.scss'
 import Pagination from "../components/pagination/Pagination";
-import CardClothes from "../components/cards/cartСlothes/CartСlothes";
+import CardClothes from "../components/carts/cartСlothes/CartСlothes";
 import img from "../assets/img/Products/Rectangle 491-2.png";
 import img2 from "../assets/img/Products/Rectangle 491-11.png";
 import img3 from "../assets/img/Products/Rectangle 491.png";

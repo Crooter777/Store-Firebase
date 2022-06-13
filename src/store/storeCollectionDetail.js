@@ -1,11 +1,11 @@
 import {makeAutoObservable, toJS} from "mobx";
-import Collections from "../services/Collections";
+import Products from "../services/Products";
 import pagination from "../utils/pagination";
 
-export default class StoreCollectionsPage {
+export default class StoreCollectionDetail {
 
-    collections = []
-    limit= 4
+    products = []
+    limit= 8
     offset = 0
 
     count = null
@@ -19,11 +19,11 @@ export default class StoreCollectionsPage {
 
     async getProducts() {
         try {
-            const response = await Collections.getAll(this.limit)
+            const response = await Products.getAll(this.limit)
             this.count = await response.data.count
             this.pages_quantity = Math.ceil(response.data.count / this.limit)
             this.pagesArray = pagination(this.pages_quantity, this.current_page)
-            this.collections = await response.data.results
+            this.products = await response.data.results
         } catch (e) {
             console.log(e)
         }
@@ -31,25 +31,17 @@ export default class StoreCollectionsPage {
     }
 
     async getNext() {
-        if (this.current_page + 1 <= this.pages_quantity) {
-            this.current_page += 1
-        } else {
-            return
-        }
-        this.offset = this.offset + 4
-        const response = await Collections.getAll(this.limit, this.offset)
-        this.collections = response.data.results
+        this.offset = this.offset + 8
+        const response = await Products.getAll(this.limit, this.offset)
+        this.products = response.data.results
+        this.current_page += 1
         this.pagesArray = pagination(this.pages_quantity, this.current_page, this.current_page - 1)
     }
     async getPrevious() {
-        if (this.current_page - 1 >= 1) {
-            this.current_page -= 1
-        } else {
-            return
-        }
-        this.offset = this.offset - 4
-        const response = await Collections.getAll(this.limit, this.offset)
-        this.collections = response.data.results
+        this.offset = this.offset - 8
+        const response = await Products.getAll(this.limit, this.offset)
+        this.products = response.data.results
+        this.current_page -= 1
         this.pagesArray = pagination(this.pages_quantity, this.current_page, this.current_page + 1)
     }
 
@@ -62,8 +54,8 @@ export default class StoreCollectionsPage {
     }
 
     async getPage() {
-        const response = await Collections.getAll(this.limit, this.offset)
+        const response = await Products.getAll(this.limit, this.offset)
         this.pagesArray = pagination(this.pages_quantity, this.current_page)
-        this.collections = response.data.results
+        this.products = response.data.results
     }
 }

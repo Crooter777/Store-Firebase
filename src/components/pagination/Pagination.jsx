@@ -20,11 +20,19 @@ const Pagination = ({store}) => {
                 </div>
                 {store.pagesArray.map((page, index) =>
                     store.current_page === page ?
-                        <div className={`${cl.button} ${cl.active}`}>{page}</div>
+                        <div key={index} className={`${cl.button} ${cl.active}`}>{page}</div>
+                        :
+                    page === '...' ?
+                        <div key={index}
+                            className={cl.button}
+                        >
+                            {page}
+                        </div>
                         :
                         <div
+                            key={index}
                             className={cl.button}
-                            onClick={() => store.setCurrentPage(page)}
+                            onClick={() => store.setPage(page)}
                         >
                             {page}
                         </div>

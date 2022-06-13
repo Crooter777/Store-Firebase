@@ -1,6 +1,6 @@
 import React, {createRef, useRef} from 'react';
 import {Swiper, SwiperSlide} from "swiper/react";
-import CardClothes from "../../cards/cartСlothes/CartСlothes";
+import CardClothes from "../../carts/cartСlothes/CartСlothes";
 
 import img from "../../../assets/img/Products/Rectangle 491-2.png";
 import img2 from "../../../assets/img/Products/Rectangle 491-11.png";
@@ -16,8 +16,9 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/free-mode";
 import './SliderProducts.css'
+import {observer} from "mobx-react-lite";
 
-const SliderProducts = ({store}) => {
+    const SliderProducts = ({store}) => {
     return (
         <Swiper
             slidesPerView={"auto"}
@@ -38,4 +39,4 @@ const SliderProducts = ({store}) => {
     );
 };
 
-export default SliderProducts;
+export default observer(SliderProducts);

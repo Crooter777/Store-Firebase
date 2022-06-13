@@ -6,18 +6,30 @@ import BestsellersStore from "./store/BestsellersStore";
 import NoveltiesStore from "./store/NoveltiesStore";
 import CollectionsStore from "./store/CollectionsStore";
 import StoreCollectionsPage from "./store/StoreCollectionsPage";
+import StoreCollectionsDetail from "./store/storeCollectionDetail";
+import StoreProductDetail from "./store/storeProductDetail";
+import StoreNews from "./store/storeNews";
+import StoreQuestions from "./store/storeQuestions"
 
 
 const Bestsellers = new BestsellersStore()
 const Novelties = new NoveltiesStore()
 const CollectionsMain = new CollectionsStore()
 const CollectionsPage = new StoreCollectionsPage()
+const CollectionsDetail = new StoreCollectionsDetail()
+const ProductDetail = new StoreProductDetail()
+const News = new StoreNews()
+const Questions = new StoreQuestions()
 
 export const Context = createContext({
     Bestsellers,
     Novelties,
     CollectionsMain,
-    CollectionsPage
+    CollectionsPage,
+    CollectionsDetail,
+    ProductDetail,
+    News,
+    Questions,
 })
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -26,7 +38,11 @@ root.render(
         Bestsellers,
         Novelties,
         CollectionsMain,
-        CollectionsPage
+        CollectionsPage,
+        CollectionsDetail,
+        ProductDetail,
+        News,
+        Questions,
     }}>
     <App/>
     </Context.Provider>

@@ -6,7 +6,7 @@ import imgC from "../assets/img/Collections/image 11(2).png";
 import imgC2 from "../assets/img/Collections/image 11-1.png";
 import imgC3 from "../assets/img/Collections/image 11-2.png";
 import imgC4 from "../assets/img/Collections/image 11.png";
-import CartCollection from "../components/cards/cartCollection/CartCollection";
+import CartCollection from "../components/carts/cartCollection/CartCollection";
 import Pagination from "../components/pagination/Pagination";
 import {Context} from "../index";
 import {SwiperSlide} from "swiper/react";

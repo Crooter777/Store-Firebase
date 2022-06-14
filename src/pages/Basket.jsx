@@ -1,6 +1,7 @@
 import React from 'react';
 import Template from "./Template";
 import cl from '../styles/Basket.module.scss'
+import img from '../assets/img/Products/Rectangle 491-2.png'
 
 const Basket = () => {
     return (
@@ -8,8 +9,24 @@ const Basket = () => {
             <div className={cl.wrap}>
                 <div className={cl.carts}>
                     <div className={cl.cart}>
-                        <img src="" alt=""/>
-                        <div></div>
+                        <img src={img} alt=""/>
+                        <div className={cl.details}>
+                            <h4>Вечернее платье</h4>
+                            <div className={cl.size}>
+                                <span>Размер: </span>
+                                <span>42-50</span>
+                            </div>
+                            <div className={cl.colorWrapper}>
+                                <span>Цвет:</span>
+                                <div className={cl.color}>
+                                    <div className={cl.colorInner}></div>
+                                </div>
+                            </div>
+                            <div className={cl.price}>
+                                <span className={cl.newPrice}>1 365р</span>
+                                <span className={cl.oldPrice}>1 765р</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div className={cl.info}>

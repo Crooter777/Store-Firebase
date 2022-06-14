@@ -20,6 +20,7 @@ export default function pagination(pagesQuantity, currentPage, oldPage) {
         }
     }
     if (pagesQuantity -2 > currentPage) {
+        // pagesArray.splice(-2, 1)
         pagesArray.push('...')
     }
     pagesArray.push(pagesQuantity)

@@ -13,6 +13,27 @@
   margin-bottom: 16px;
 }
 
+.notFound {
+  width: 100%;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 20px;
+  color: #393939;
+  margin: -16px 0 48px;
+}
+
+.extra {
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 29px;
+  color: #393939;
+  margin-bottom: 16px;
+}
+
+.slider {
+  margin-bottom: 74px;
+}
+
 
 @media only screen and (max-width: 880px) {
   .grid {

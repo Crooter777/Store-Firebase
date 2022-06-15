@@ -6,11 +6,17 @@ export default class States {
 
     modalSearch = false
 
+    searchValue = ''
+
     constructor() {
         makeAutoObservable(this)
     }
 
     setModalSearch(bool) {
         this.modalSearch = bool
+    }
+
+    setSearchValue(value) {
+        this.searchValue = value
     }
 }

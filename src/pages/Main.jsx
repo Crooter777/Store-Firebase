@@ -7,14 +7,10 @@ import ModalCall from "../components/modals/modalCall/ModalCall";
 import ModalCallAccess from "../components/modals/modalCallAccess/ModalCallAccess";
 import Template from "./Template";
 import {Context} from "../index";
-import {toJS} from "mobx";
-import {useParams, useSearchParams} from "react-router-dom";
 
 const Main = () => {
 
-    const [searchParams] = useSearchParams()
 
-    console.log(searchParams.get('search'))
 
     const {Bestsellers} = useContext(Context)
     const {Novelties} = useContext(Context)

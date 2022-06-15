@@ -1,7 +1,7 @@
 import React from 'react';
 import cl from "./CartBasketInfo.module.scss";
 
-const CartBasketInfo = () => {
+const CartBasketInfo = ({setOpen}) => {
     return (
         <div className={cl.info}>
             <div className={cl.infoInner}>
@@ -27,7 +27,10 @@ const CartBasketInfo = () => {
                     <span className={cl.subtitle}>Итого к оплате:</span>
                     <span className={cl.count}>12 325 рублей</span>
                 </div>
-                <button className={cl.btn}>Оформить заказ</button>
+                <button
+                    className={cl.btn}
+                    onClick={() => setOpen(true)}
+                >Оформить заказ</button>
             </div>
         </div>
     );

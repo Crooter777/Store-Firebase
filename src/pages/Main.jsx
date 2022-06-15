@@ -1,10 +1,10 @@
 import React, {useContext, useEffect, useState} from 'react';
 import SliderOffers from "../components/sliders/sliderOffers/SliderOffers";
-import GridProducts from "../components/Grids/gridProducts/GridProducts";
-import GridCollections from "../components/Grids/gridCollections/GridCollections";
+import GridProducts from "../components/grids/gridProducts/GridProducts";
+import GridCollections from "../components/grids/gridCollections/GridCollections";
 import Benefits from "../components/benefits/Benefits";
-import ModalCall from "../components/Modals/modalCall/ModalCall";
-import ModalCallAccess from "../components/Modals/modalCallAccess/ModalCallAccess";
+import ModalCall from "../components/modals/modalCall/ModalCall";
+import ModalCallAccess from "../components/modals/modalCallAccess/ModalCallAccess";
 import Template from "./Template";
 import {Context} from "../index";
 import {toJS} from "mobx";

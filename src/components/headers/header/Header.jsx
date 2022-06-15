@@ -6,6 +6,7 @@ import FavoriteSVG from "../../SVG/FavoriteSVG";
 import ProductCartSVG from "../../SVG/ProductCartSVG";
 import HeaderMobile from "../headerMobile/HeaderMobile";
 import {Link} from "react-router-dom";
+import SearchDesktop from "../../search/desktop/searchDesktop";
 
 const Header = () => {
     return (
@@ -36,12 +37,7 @@ const Header = () => {
                         <div>
                             <Link to='/'><LogoSVG/></Link>
                         </div>
-                        <div className={cl.search}>
-                            <input type="text" placeholder='Поиск'/>
-                            <div className={cl.iconWrapper}>
-                                <SearchSVG/>
-                            </div>
-                        </div>
+                        <SearchDesktop/>
                         <div className={cl.favorite}>
                             <FavoriteSVG/>
                             <span>Избранное</span>

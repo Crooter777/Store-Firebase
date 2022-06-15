@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import cl from './CartBasketInfoMobile.module.scss'
 
-const CartBasketInfoMobile = () => {
+const CartBasketInfoMobile = ({setOpen}) => {
 
     const [isActive, setActive] = useState()
 
@@ -48,7 +48,10 @@ const CartBasketInfoMobile = () => {
             >
                 {isActive ? 'Скрыть' : 'Информация о заказе'}
             </button>
-            <button className={cl.btn}>Оформить заказ</button>
+            <button
+                className={cl.btn}
+                onClick={() => setOpen(true)}
+            >Оформить заказ</button>
         </div>
     );
 };

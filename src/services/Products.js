@@ -16,4 +16,13 @@ export default class Products {
         const response = await axios.get(`http://localhost:8000/products/${id}/`)
         return response;
     }
+
+    static async search(text) {
+        const response = await axios.get(`http://localhost:8000/products/`, {
+            params: {
+                search: text,
+            }
+        })
+        return response;
+    }
 }

@@ -1,5 +1,5 @@
 import React from 'react';
-import Header from "../components/Headers/header/Header";
+import Header from "../components/headers/header/Header";
 import Footer from "../components/footer/footer/Footer";
 
 const Template = ({children}) => {

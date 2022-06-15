@@ -74,46 +74,7 @@
   }
 }
 
-.search {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 100%;
 
-  & input {
-    width: 100%;
-    background: #F8F8F8;
-    border: 1px solid #E0E0E0;
-    border-right: none;
-    height: 44px;
-    padding: 0 20px;
-
-    outline: none;
-
-    &::placeholder {
-    }
-  }
-
-  & span {
-    font-weight: 400;
-    font-size: 16px;
-    line-height: 20px;
-    color: #858F9B;
-
-  }
-}
-
-.iconWrapper {
-  display: flex;
-  align-items: center;
-  background: #F8F8F8;
-  border: 1px solid #E0E0E0;
-  border-left: none;
-  height: 44px;
-  padding: 0 20px 0 0;
-
-  cursor: pointer;
-}
 
 
 .favorite {

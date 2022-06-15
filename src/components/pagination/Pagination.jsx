@@ -1,7 +1,7 @@
 import React from 'react';
 import cl from './Pagination.module.scss'
-import Left from "../SVG/Left";
-import Right from "../SVG/Right";
+import LeftSVG from "../SVG/LeftSVG";
+import RightSVG from "../SVG/RightSVG";
 import {observer} from "mobx-react-lite";
 import {toJS} from "mobx";
 
@@ -16,7 +16,7 @@ const Pagination = ({store}) => {
                     onClick={() => store.getPrevious()}
                     className={`${cl.button} ${cl.prev}`}
                 >
-                    <Left/>
+                    <LeftSVG/>
                 </div>
                 {store.pagesArray.map((page, index) =>
                     store.current_page === page ?
@@ -43,7 +43,7 @@ const Pagination = ({store}) => {
                     className={`${cl.button} ${cl.next}`}
                     onClick={() => store.getNext()}
                 >
-                    <Right/>
+                    <RightSVG/>
                 </div>
             </div>
         </div>

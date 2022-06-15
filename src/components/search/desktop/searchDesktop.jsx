@@ -4,11 +4,17 @@ import SearchSVG from "../../SVG/SearchSVG";
 import {Context} from "../../../index";
 import Product from "../../../pages/Product";
 import Products from "../../../services/Products";
-import {Link} from "react-router-dom";
+import {Link, useSearchParams} from "react-router-dom";
+import {observer} from "mobx-react-lite";
+import { useNavigate } from "react-router-dom";
 
 const SearchDesktop = () => {
 
-    const [isOpen, setOpen] = useState(false)
+    const {States} = useContext(Context)
+
+    const [setSearchParams] = useSearchParams();
+    const navigate = useNavigate()
+
     const [value, setValue] = useState('')
     const [products, setProducts] = useState([])
 
@@ -23,9 +29,16 @@ const SearchDesktop = () => {
         }
     }
 
+    function handlePress(e) {
+        if(e.key === 'Enter') {
+            navigate(`/?search=${ e.target.value}`)
+        }
+    }
+
     return (
         <div
             className={cl.searchWrap}
+            onClick={(e) => e.stopPropagation()}
         >
             <div
                 tabIndex={0}
@@ -36,19 +49,28 @@ const SearchDesktop = () => {
                     placeholder='Поиск'
                     value={value}
                     onChange={search}
-                    onClick={()=>setOpen(true)}
+                    onClick={()=>States.setModalSearch(true)}
+                    onKeyPress={handlePress}
                 />
-                <div className={cl.iconWrapper}>
+                <div
+                    className={cl.iconWrapper}
+                    onClick={() => {
+                        navigate(`/?search=${value}`)
+                    }}
+                >
                     <SearchSVG/>
                 </div>
             </div>
-            {isOpen ?
+            {States.modalSearch ?
                 products.length ?
                     <div className={cl.resultsWrap}>
                         <div className={cl.results}>
                             {products.map((product) =>
                                 <Link
-                                    onClick={() => setOpen(false)}
+                                    onClick={() => {
+                                        setValue('')
+                                        States.setModalSearch(false)
+                                    }}
                                     to={`/products/${product.id}`}
                                 >
                                     <div
@@ -69,4 +91,4 @@ const SearchDesktop = () => {
     );
 };
 
-export default SearchDesktop;
+export default observer(SearchDesktop);

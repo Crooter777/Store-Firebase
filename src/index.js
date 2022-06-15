@@ -10,6 +10,7 @@ import StoreCollectionsDetail from "./store/storeCollectionDetail";
 import StoreProductDetail from "./store/storeProductDetail";
 import StoreNews from "./store/storeNews";
 import StoreQuestions from "./store/storeQuestions"
+import StoreStates from "./store/States"
 
 
 const Bestsellers = new BestsellersStore()
@@ -20,6 +21,7 @@ const CollectionsDetail = new StoreCollectionsDetail()
 const ProductDetail = new StoreProductDetail()
 const News = new StoreNews()
 const Questions = new StoreQuestions()
+const States = new StoreStates()
 
 export const Context = createContext({
     Bestsellers,
@@ -30,6 +32,7 @@ export const Context = createContext({
     ProductDetail,
     News,
     Questions,
+    States,
 })
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -43,6 +46,7 @@ root.render(
         ProductDetail,
         News,
         Questions,
+        States
     }}>
     <App/>
     </Context.Provider>

@@ -49,13 +49,13 @@ const Header = () => {
                         </div>
                     </div>
                 </div>
-                <div className={cl.pathWrapper}>
-                    <div className={cl.paths}>
-                        <Link to='/'><span className={cl.path}>Главная</span></Link>
-                        <span className={cl.path}>/</span>
-                        <Link to='/offer'><span className={`${cl.path} ${cl.active}`}>Публичная оферта</span></Link>
-                    </div>
-                </div>
+                {/*<div className={cl.pathWrapper}>*/}
+                {/*    <div className={cl.paths}>*/}
+                {/*        <Link to='/'><span className={cl.path}>Главная</span></Link>*/}
+                {/*        <span className={cl.path}>/</span>*/}
+                {/*        <Link to='/offer'><span className={`${cl.path} ${cl.active}`}>Публичная оферта</span></Link>*/}
+                {/*    </div>*/}
+                {/*</div>*/}
             </div>
             <HeaderMobile/>
         </>

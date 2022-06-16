@@ -4,32 +4,33 @@ import SearchSVG from "../../SVG/SearchSVG";
 import {Context} from "../../../index";
 import Products from "../../../services/Products";
 import {observer} from "mobx-react-lite";
-import { useNavigate } from "react-router-dom";
+import {useLocation, useNavigate} from "react-router-dom";
 
 const SearchDesktop = () => {
 
     const {States} = useContext(Context)
 
-    const navigate = useNavigate()
+    const location = useLocation()
+    console.log(location)
 
-    const [products, setProducts] = useState([])
-
-    async function search(e) {
-        const value = e.target.value
-        States.setSearchValue(value)
-        if (value !== '') {
-            const result = await Products.search(value)
-            setProducts(result.data)
-        } else {
-            setProducts([])
-        }
+    if (location.pathname === '/search/') {
+        States.isSearchPage = true
     }
+
+    const navigate = useNavigate()
 
     function handlePress(e) {
         if(e.key === 'Enter') {
+            States.setModalSearch(false)
             navigate(`/search/?search=${ e.target.value}`)
         }
     }
+
+    useEffect(() => {
+        if (location.pathname !== '/search/') {
+            States.isSearchPage = false
+        }
+    }, [location])
 
     return (
         <div
@@ -44,7 +45,10 @@ const SearchDesktop = () => {
                     type="text"
                     placeholder='Поиск'
                     value={States.searchValue}
-                    onChange={search}
+                    onChange={(e) => {
+                        States.setSearchValue(e)
+                        States.searchProducts(e)
+                    }}
                     onClick={()=>States.setModalSearch(true)}
                     onKeyPress={handlePress}
                 />
@@ -58,15 +62,15 @@ const SearchDesktop = () => {
                 </div>
             </div>
             {States.modalSearch ?
-                products.length ?
+                States.searchedProducts.length ?
                     <div className={cl.resultsWrap}>
                         <div className={cl.results}>
-                            {products.map((product) =>
+                            {States.searchedProducts.map((product) =>
                                 <div
                                     key={product.id}
                                     onClick={() => {
-                                        States.setSearchValue('')
-                                        setProducts([])
+                                        States.clearSearchValue()
+                                        States.clearProducts()
                                         States.setModalSearch(false)
                                         navigate(`/products/${product.id}`)
                                     }}

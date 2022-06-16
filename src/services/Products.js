@@ -17,11 +17,12 @@ export default class Products {
         return response;
     }
 
-    static async search(text) {
+    static async search(text, cancelToken) {
         const response = await axios.get(`http://localhost:8000/products/`, {
             params: {
                 search: text,
-            }
+            },
+            cancelToken: cancelToken.token
         })
         return response;
     }

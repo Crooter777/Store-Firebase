@@ -8,6 +8,12 @@
 
   position: relative;
 
+  transition: all .1s ease-out;
+
+  &:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
+  }
+
   & img {
     width: 100%;
     object-fit: cover;

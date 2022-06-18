@@ -6,6 +6,7 @@ import axios from "axios";
 
 export default class States {
 
+    modalMobileBack = false
     modalSearch = false
     isSearchPage = null
 
@@ -16,6 +17,10 @@ export default class States {
 
     constructor() {
         makeAutoObservable(this)
+    }
+
+    setModalMobileBack(bool) {
+        this.modalMobileBack = bool
     }
 
     setModalSearch(bool) {

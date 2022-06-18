@@ -1,4 +1,13 @@
-.wrapper {
+.wrap {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 4;
+  height: 64px;
+  width: 100%;
+}
+
+.inner {
   background-color: #fff;
   height: 64px;
   width: 100%;
@@ -189,7 +198,7 @@
 
 
 @media only screen and (max-width: 800px) {
-  .wrapper {
+  .inner {
     display: flex;
   }
 }

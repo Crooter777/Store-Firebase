@@ -1,36 +1,12 @@
-import React, {useContext, useEffect, useState} from 'react';
+import React from 'react';
 import cl from './searchDesktop.module.scss'
 import SearchSVG from "../../SVG/SearchSVG";
-import {Context} from "../../../index";
-import Products from "../../../services/Products";
 import {observer} from "mobx-react-lite";
-import {useLocation, useNavigate} from "react-router-dom";
+import useSearch from "../../../hooks/search";
 
 const SearchDesktop = () => {
 
-    const {States} = useContext(Context)
-
-    const location = useLocation()
-    console.log(location)
-
-    if (location.pathname === '/search/') {
-        States.isSearchPage = true
-    }
-
-    const navigate = useNavigate()
-
-    function handlePress(e) {
-        if(e.key === 'Enter') {
-            States.setModalSearch(false)
-            navigate(`/search/?search=${ e.target.value}`)
-        }
-    }
-
-    useEffect(() => {
-        if (location.pathname !== '/search/') {
-            States.isSearchPage = false
-        }
-    }, [location])
+    const {States, navigate, handlePress } = useSearch()
 
     return (
         <div

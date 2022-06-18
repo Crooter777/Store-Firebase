@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import cl from './Header.module.scss'
 import LogoSVG from "../../SVG/LogoSVG";
 import SearchSVG from "../../SVG/SearchSVG";
@@ -57,7 +57,6 @@ const Header = () => {
                 {/*    </div>*/}
                 {/*</div>*/}
             </div>
-            <HeaderMobile/>
         </>
     );
 };

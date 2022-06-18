@@ -19,17 +19,17 @@ export default function pagination(pagesQuantity, currentPage, oldPage) {
             pagesArray.unshift(i)
         }
     }
-    if (pagesQuantity -2 > currentPage) {
+    if (pagesQuantity -2 > currentPage && pagesArray[pagesArray.length -1] +1 !== pagesQuantity) {
         // pagesArray.splice(-2, 1)
         pagesArray.push('...')
     }
-    pagesArray.push(pagesQuantity)
-    if (currentPage === pagesQuantity) {
-        pagesArray.pop()
+    if (currentPage !== pagesQuantity) {
+        pagesArray.push(pagesQuantity)
     }
     for (let i=pagesArray[0] - 1; pagesArray.length < 5 && i !== 0; i--) {
         pagesArray.unshift(i)
     }
+
     return pagesArray
 }
 

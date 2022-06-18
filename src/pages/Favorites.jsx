@@ -1,9 +1,13 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import Template from "./Template";
 import cl from "../styles/Favorites.module.scss";
 import CardClothes from "../components/carts/cartСlothes/CartСlothes";
+import {Context} from "../index";
+import {observer} from "mobx-react-lite";
 
 const Favorites = () => {
+
+    const {Favorites} = useContext(Context)
 
     return (
         <Template>
@@ -13,9 +17,12 @@ const Favorites = () => {
                 <span>16</span>
             </div>
             <div className={cl.grid}>
+                {Favorites.products.map((product) =>
+                    <CardClothes product={product} key={product.id}/>
+                )}
             </div>
         </Template>
     );
 };
 
-export default Favorites;
+export default observer(Favorites);

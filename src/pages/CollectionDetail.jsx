@@ -19,9 +19,11 @@ import {observer} from "mobx-react-lite";
 const CollectionDetail = () => {
 
     const {CollectionsDetail} = useContext(Context)
+    const {Bestsellers} = useContext(Context)
 
     useEffect(() => {
         CollectionsDetail.getProducts()
+        Bestsellers.getProducts()
     }, [])
 
     return (
@@ -46,7 +48,7 @@ const CollectionDetail = () => {
                 </div>
                 <h1 className={cl.title}>Новинки</h1>
                 <div className={cl.slider}>
-                    <SliderProducts store={CollectionsDetail}/>
+                    <SliderProducts store={Bestsellers}/>
                 </div>
             </div>
         </Template>

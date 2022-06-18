@@ -90,6 +90,23 @@
   }
 }
 
+.icon {
+  width: 23px;
+  height: 20px;
+
+  position: relative;
+}
+
+.indicatorFavorite {
+  width: 9.3px;
+  height: 9.3px;
+  position: absolute;
+  top: -3px;
+  right: -1px;
+  background-color: #E5271B;
+  border-radius: 50%;
+}
+
 .productCart {
   display: flex;
   align-items: center;

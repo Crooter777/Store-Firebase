@@ -6,6 +6,7 @@ import {Context} from "../index";
 import {observer} from "mobx-react-lite";
 import SliderProducts from "../components/sliders/sliderProducts/SliderProducts";
 import {useLocation} from 'react-router-dom'
+import Pagination from "../components/pagination/Pagination";
 
 const SearchResult = () => {
 
@@ -22,15 +23,20 @@ const SearchResult = () => {
         <Template>
             <h1 className={cl.title}>Результаты поиска по запросу: {States.searchValue}</h1>
             <div className={cl.grid}>
-                {States.searchedProducts.length !== 0 ?
-                    States.searchedProducts.map((product)=>
+                {States.products.length !== 0 ?
+                    States.products.map((product)=>
                         <CardClothes product={product} key={product.id}/>
                     )
                     :
                     null
                 }
             </div>
-            {States.searchedProducts.length === 0?
+            {States.products.length !== 0 ?
+                <Pagination store={States}/>
+                :
+                null
+            }
+            {States.products.length === 0?
                 <>
                 {States.searchValue.length !== 0 ?
                     <div className={cl.notFound}>По вашему запросу ничего не найдено</div>

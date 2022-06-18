@@ -31,31 +31,34 @@ export default class StoreCollectionDetail {
     }
 
     async getNext() {
-        this.offset = this.offset + 8
-        const response = await Products.getAll(this.limit, this.offset)
-        this.products = response.data.results
-        this.current_page += 1
-        this.pagesArray = pagination(this.pages_quantity, this.current_page, this.current_page - 1)
+        if (this.current_page + 1 <= this.pages_quantity) {
+            this.offset = this.offset + 8
+            const response = await Products.getAll(this.limit, this.offset)
+            this.products = response.data.results
+            this.pagesArray = pagination(this.pages_quantity, this.current_page + 1, this.current_page - 1)
+            this.current_page += 1
+        }
     }
     async getPrevious() {
-        this.offset = this.offset - 8
-        const response = await Products.getAll(this.limit, this.offset)
-        this.products = response.data.results
-        this.current_page -= 1
-        this.pagesArray = pagination(this.pages_quantity, this.current_page, this.current_page + 1)
+        if (this.current_page - 1 >= 1) {
+            this.offset = this.offset - 8
+            const response = await Products.getAll(this.limit, this.offset)
+            this.products = response.data.results
+            this.pagesArray = pagination(this.pages_quantity, this.current_page -1, this.current_page + 1)
+            this.current_page -= 1
+        }
     }
 
     async setPage(page) {
         let oldPage = this.current_page
-        this.current_page = page
         this.offset = this.limit * (page - 1)
-        this.pagesArray = pagination(this.pages_quantity, this.current_page, oldPage)
+        this.pagesArray = pagination(this.pages_quantity, page, oldPage)
         this.getPage()
+        this.current_page = page
     }
 
     async getPage() {
         const response = await Products.getAll(this.limit, this.offset)
-        this.pagesArray = pagination(this.pages_quantity, this.current_page)
         this.products = response.data.results
     }
 }

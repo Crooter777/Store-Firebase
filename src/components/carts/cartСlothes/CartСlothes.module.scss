@@ -101,15 +101,18 @@
   top: 7px;
 }
 
-.love {
+.icon {
   position: absolute;
   top: 12px;
   right: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.love {
   fill: #fff;
 }
 
 .loveFill {
-  position: absolute;
-  top: 12px;
-  right: 12px;
 }

@@ -12,12 +12,9 @@ const Template = ({children}) => {
 
     return (
         <div
+            className={cl.wrap}
             onClick={() => {
-            States.setModalSearch(false)
-            }}
-            style={{
-                paddingTop: 64,
-                position: 'relative'
+                States.setModalSearch(false)
             }}
         >
             {States.modalMobileBack ?

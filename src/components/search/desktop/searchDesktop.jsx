@@ -23,7 +23,7 @@ const SearchDesktop = () => {
                     value={States.searchValue}
                     onChange={(e) => {
                         States.setSearchValue(e)
-                        States.searchProducts(e)
+                        States.getProducts()
                     }}
                     onClick={()=>States.setModalSearch(true)}
                     onKeyPress={handlePress}
@@ -38,10 +38,10 @@ const SearchDesktop = () => {
                 </div>
             </div>
             {States.modalSearch ?
-                States.searchedProducts.length ?
+                States.products.length ?
                     <div className={cl.resultsWrap}>
                         <div className={cl.results}>
-                            {States.searchedProducts.map((product) =>
+                            {States.products.map((product) =>
                                 <div
                                     key={product.id}
                                     onClick={() => {

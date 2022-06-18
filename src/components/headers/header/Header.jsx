@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useContext, useState} from 'react';
 import cl from './Header.module.scss'
 import LogoSVG from "../../SVG/LogoSVG";
 import SearchSVG from "../../SVG/SearchSVG";
@@ -7,8 +7,14 @@ import ProductCartSVG from "../../SVG/ProductCartSVG";
 import HeaderMobile from "../headerMobile/HeaderMobile";
 import {Link} from "react-router-dom";
 import SearchDesktop from "../../search/desktop/searchDesktop";
+import {Context} from "../../../index";
+import {observer} from "mobx-react-lite";
+import FavoritesActiveSVG from "../../SVG/FavoritesActiveSVG";
 
 const Header = () => {
+
+    const {Favorites} = useContext(Context)
+
     return (
         <>
             <div className={cl.header}>
@@ -39,7 +45,14 @@ const Header = () => {
                         </div>
                         <SearchDesktop/>
                         <div className={cl.favorite}>
-                            <FavoriteSVG/>
+                            <div className={cl.icon}>
+                                <FavoriteSVG/>
+                                {Favorites.products.length ?
+                                    <div className={cl.indicatorFavorite}></div>
+                                    :
+                                    null
+                                }
+                            </div>
                             <span>Избранное</span>
                         </div>
                         <div className={cl.separator}></div>
@@ -61,4 +74,4 @@ const Header = () => {
     );
 };
 
-export default Header;
+export default observer(Header);

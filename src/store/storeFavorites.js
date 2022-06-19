@@ -10,13 +10,10 @@ export default class StoreFavorites {
 
     init() {
         this.products = this.parseFromLocalStorage()
-        console.log(this.products)
     }
 
     add(product) {
-        console.log(this.products)
         this.products = [...this.products, product]
-        console.log(this.products)
         this.setToLocalStorage()
     }
 
@@ -34,7 +31,6 @@ export default class StoreFavorites {
 
     setToLocalStorage() {
         localStorage.setItem('favorites', JSON.stringify(this.products))
-        console.log(this.products)
     }
 
 }

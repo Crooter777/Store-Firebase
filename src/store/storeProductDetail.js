@@ -13,9 +13,20 @@ export default class StoreProductDetail {
     async getProduct(id) {
         try {
             const response = await Products.getById(id)
+            response.data.product_color = response.data.product_colors[0]
             this.product = response.data
         } catch (e) {
             console.log(e)
         }
+    }
+
+    setColor(color) {
+        this.product.product_color = color
+    }
+
+    getProductForBasket() {
+        this.product.countForBuy = 1
+        console.log(toJS(this.product))
+        return JSON.parse(JSON.stringify(this.product))
     }
 }

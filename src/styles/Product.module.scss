@@ -127,42 +127,29 @@
     display: flex;
 }
 
+.colorWrap {
+  width: 18px;
+  height: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin-left: 8px;
+
+  &:first-child {
+    margin-left: 6px;
+  }
+
+  &.active {
+    border: 1px solid #D6D6D6;
+  }
+}
+
 .color {
     width: 10px;
     height: 10px;
     border-radius: 50%;
-    margin-left: 12px;
-
-    &:first-child {
-        margin-left: 6px;
-    }
 }
-
-.paleGreen {
-    background-color: #73A39D;
-}
-.green {
-    background-color: #84CC4C;
-}
-.beige {
-    background-color: #B5A8A1;
-}
-.brown {
-    background-color: #AB844A;
-}
-.lilac {
-    background-color: #6977F0;
-}
-.white {
-    background-color: #D1D1D1;
-}
-.gray {
-    background-color: #909091;
-}
-.red {
-    background-color: #FF0000;
-}
-
 
 .article {
     display: flex;
@@ -207,6 +194,7 @@
     font-size: 14px;
     line-height: 17px;
     color: #FFFFFF;
+    height: 44px;
 
     & svg {
         margin-right: 12px;

@@ -1,7 +1,10 @@
-import React, {useState} from 'react';
+import React, {useContext, useState} from 'react';
 import cl from './CartBasketInfoMobile.module.scss'
+import {Context} from "../../../../index";
 
 const CartBasketInfoMobile = ({setOpen}) => {
+
+    const {Basket} = useContext(Context)
 
     const [isActive, setActive] = useState()
 
@@ -14,8 +17,8 @@ const CartBasketInfoMobile = ({setOpen}) => {
                     <span className={cl.subtitle}>
                         Общее количество:
                     </span>
-                        <span className={cl.value}>
-                        7 линеек (35шт.)
+                    <span className={cl.value}>
+                        {Basket.totalLines} линеек ({Basket.totalProducts}шт.)
                     </span>
                     </div>
                     <div className={cl.row}>
@@ -23,7 +26,7 @@ const CartBasketInfoMobile = ({setOpen}) => {
                         Стоимость:
                     </span>
                         <span className={cl.value}>
-                        13 595 сом
+                        {Basket.totalSum} сом
                     </span>
                     </div>
                     <div className={cl.row}>
@@ -31,7 +34,7 @@ const CartBasketInfoMobile = ({setOpen}) => {
                         Скидка:
                     </span>
                         <span className={cl.value}>
-                        1 270 сом
+                        {Basket.totalDiscount} сом
                     </span>
                     </div>
                 </div>
@@ -40,7 +43,7 @@ const CartBasketInfoMobile = ({setOpen}) => {
             }
             <div className={cl.sumWrap}>
                 <span className={cl.sumTitle}>Итого к оплате:</span>
-                <span className={cl.sum}>1235 сом</span>
+                <span className={cl.sum}>{Basket.totalAmount} сом</span>
             </div>
             <button
                 className={cl.btnInfo}

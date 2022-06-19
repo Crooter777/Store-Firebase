@@ -41,6 +41,13 @@
 
 .colorWrapper {
   margin-bottom: 6px;
+
+  & span {
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 16px;
+    color: #7C7C7C;
+  }
 }
 
 .color {
@@ -85,7 +92,6 @@
 .colorInner {
   width: 8px;
   height: 8px;
-  background: #B5A8A1;
   border-radius: 4px;
 }
 
@@ -93,9 +99,9 @@
 .buttons {
   display: flex;
   align-items: center;
+  justify-content: space-between;
 
   & span {
-    display: inline-block;
     margin: 0 12px;
   }
 }

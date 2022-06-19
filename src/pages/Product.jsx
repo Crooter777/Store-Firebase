@@ -6,23 +6,35 @@ import img4 from "../assets/img/Products/Rectangle 491-1.png";
 import ProductCartSVG from "../components/SVG/ProductCartSVG";
 import LoveSVG from "../components/SVG/LoveSVG";
 import SliderImages from "../components/sliders/sliderImages/SliderImages";
-import {useParams} from "react-router-dom";
+import {useNavigate, useParams} from "react-router-dom";
 import {Context} from "../index";
 import {observer} from "mobx-react-lite";
 import {toJS} from "mobx";
+import LoveFillSVG from "../components/SVG/LoveFillSVG";
 
 const Product = () => {
+
+    const navigate = useNavigate()
+
+    const {ProductDetail} = useContext(Context)
+    const {Basket} = useContext(Context)
+    const {Favorites} = useContext(Context)
+    const {Bestsellers} = useContext(Context)
 
     const {id} = useParams()
 
     const [isLoading, setLoading] = useState(true)
+    const [isColorInBasket, setColor] = useState(Basket.products.find((item)=>item.id === ProductDetail.product.id && item.product_color.id === ProductDetail.product.product_color.id))
 
-    const {ProductDetail} = useContext(Context)
-    const {Bestsellers} = useContext(Context)
+    const [isFavorite, setFavorite] = useState(false)
+    const [newPrice, setPrice] = useState(0)
 
     useEffect(() => {
         async function load () {
             await ProductDetail.getProduct(id)
+            setPrice(ProductDetail.product.price - (ProductDetail.product.price * (ProductDetail.product.discount / 100)))
+            setColor(Basket.products.find((item)=>item.id === ProductDetail.product.id && item.product_color.id === ProductDetail.product.product_color.id))
+            setFavorite(Boolean(Favorites.products.find((item) => item.id === ProductDetail.product.id)))
             setLoading(false)
             await Bestsellers.getProducts()
         }
@@ -60,19 +72,32 @@ const Product = () => {
                         <div className={cl.colorWrapper}>
                             <span className={cl.subTitle}>Цвет: </span>
                             <div className={cl.colors}>
-                                <div className={`${cl.color} ${cl.paleGreen}`}></div>
-                                <div className={`${cl.color} ${cl.green}`}></div>
-                                <div className={`${cl.color} ${cl.beige}`}></div>
-                                <div className={`${cl.color} ${cl.brown}`}></div>
-                                <div className={`${cl.color} ${cl.lilac}`}></div>
-                                <div className={`${cl.color} ${cl.white}`}></div>
-                                <div className={`${cl.color} ${cl.gray}`}></div>
-                                <div className={`${cl.color} ${cl.red}`}></div>
+                                {!isLoading ?
+                                    ProductDetail.product.product_colors.map((color) =>
+                                        ProductDetail.product.product_color.id === color.id ?
+                                            <div className={`${cl.colorWrap} ${cl.active}`} key={color.id}>
+                                                <div className={cl.color} style={{backgroundColor: color.rgb}}></div>
+                                            </div>
+                                            :
+                                            <div
+                                                onClick={() => {
+                                                    ProductDetail.setColor(color)
+                                                    setColor(Basket.products.find((item)=>item.id === ProductDetail.product.id && item.product_color.id === ProductDetail.product.product_color.id))
+                                                }}
+                                                className={cl.colorWrap}
+                                                key={color.id}
+                                            >
+                                                <div className={cl.color} style={{backgroundColor: color.rgb}}></div>
+                                            </div>
+                                    )
+                                    :
+                                    null
+                                }
                             </div>
                         </div>
                         <div className={cl.sumWrapper}>
-                            <span className={cl.sum}>7229 с </span>
-                            <span className={cl.sumOld}>7229 с</span>
+                            <span className={cl.sum}>{newPrice} с </span>
+                            <span className={cl.sumOld}>{ProductDetail.product.price} с</span>
                         </div>
                         <h3 className={cl.subTitle}>О товаре</h3>
                         <span className={cl.content}>За последние 35 лет бренд Bonucci из обычного производителя одежды превратился в широко узнаваемую марку, а его продукция – в синоним высокого качества и актуального стиля.  </span>
@@ -95,8 +120,48 @@ const Product = () => {
                             </div>
                         </div>
                         <div className={cl.buttons}>
-                            <button className={cl.addCart}><ProductCartSVG style={{width: 20, height: 20, fill: '#fff'}}/>Добавить в корзину</button>
-                            <button className={cl.addFavorite}><LoveSVG style={{fill: '#fff'}}/></button>
+                            {isColorInBasket
+                                ?
+                                <button
+                                    className={cl.addCart}
+                                    onClick={() => {
+                                        navigate('/basket/')
+                                    }}
+                                >
+                                    Перейти в корзину
+                                </button>
+                                :
+                                <button
+                                    className={cl.addCart}
+                                    onClick={() => {
+                                        Basket.add(ProductDetail.getProductForBasket())
+                                        setColor(Basket.products.find((item)=>item.id === ProductDetail.product.id && item.product_color.id === ProductDetail.product.product_color.id))
+                                    }}
+                                >
+                                    <ProductCartSVG style={{width: 20, height: 20, fill: '#fff'}}/>
+                                    Добавить в корзину
+                                </button>
+                            }
+                            <button className={cl.addFavorite}>
+                                {isFavorite ?
+                                    <LoveFillSVG
+                                        onClick={() => {
+                                            Favorites.delete(ProductDetail.product)
+                                            setFavorite(false)
+                                        }}
+                                        style={{fill: '#fff'}}
+                                    />
+                                    :
+                                    <LoveSVG
+
+                                        onClick={() => {
+                                            Favorites.add(ProductDetail.product)
+                                            setFavorite(true)
+                                        }}
+                                        style={{fill: '#fff'}}
+                                    />
+                                }
+                            </button>
                         </div>
                     </div>
                 </div>

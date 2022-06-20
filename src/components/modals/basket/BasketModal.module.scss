@@ -47,6 +47,9 @@ h1 {
   color: #808080;
   margin-bottom: 4px;
 
+  &.active {
+    color: #E5271B;
+  }
 
 }
 
@@ -66,6 +69,10 @@ h1 {
   font-size: 14px;
   line-height: 17px;
   color: #1D1D1B;
+
+  &.active {
+    border: 1px solid #E5271B;
+  }
 
   &::placeholder {
     font-weight: 500;
@@ -111,6 +118,10 @@ h1 {
   font-size: 14px;
   line-height: 17px;
   color: #FFFFFF;
+
+  &.active {
+    background: #1D1D1B;
+  }
 }
 
 

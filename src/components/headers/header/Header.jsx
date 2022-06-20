@@ -14,6 +14,7 @@ import FavoritesActiveSVG from "../../SVG/FavoritesActiveSVG";
 const Header = () => {
 
     const {Favorites} = useContext(Context)
+    const {Basket} = useContext(Context)
 
     return (
         <>
@@ -57,7 +58,14 @@ const Header = () => {
                         </div>
                         <div className={cl.separator}></div>
                         <div className={cl.productCart}>
-                            <ProductCartSVG style={{fill: '#515151'}}/>
+                            <div className={cl.icon}>
+                                <ProductCartSVG style={{fill: '#515151'}}/>
+                                {Basket.products.length ?
+                                    <div className={cl.indicatorBasket}></div>
+                                    :
+                                    null
+                                }
+                            </div>
                             <span>Корзина</span>
                         </div>
                     </div>

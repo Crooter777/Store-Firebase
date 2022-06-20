@@ -11,12 +11,14 @@ import CartBasketInfoMobile from "../components/carts/Basket/infoMobile/CartBask
 import BasketModal from "../components/modals/basket/BasketModal";
 import {observer} from "mobx-react-lite";
 import {Context} from "../index";
+import ModalCallAccess from "../components/modals/modalCallAccess/ModalCallAccess";
 
 const Basket = () => {
 
     const {Basket} = useContext(Context)
 
     const [isOpen, setOpen] = useState(false)
+    const [accessModal, setAccessModal] = useState(false)
 
     return (
         <Template>
@@ -29,7 +31,12 @@ const Basket = () => {
                 <CartBasketInfo setOpen={setOpen}/>
                 <CartBasketInfoMobile setOpen={setOpen}/>
                 {isOpen ?
-                    <BasketModal isOpen={isOpen} setOpen={setOpen}/>
+                    <BasketModal isOpen={isOpen} setOpen={setOpen} accessModal={setAccessModal}/>
+                    :
+                    null
+                }
+                {accessModal ?
+                    <ModalCallAccess setModal={setAccessModal}/>
                     :
                     null
                 }

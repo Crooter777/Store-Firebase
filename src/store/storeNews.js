@@ -8,11 +8,6 @@ export default class StoreNews {
     limit= 8
     offset = 0
 
-    count = null
-    pagesArray = null
-    pages_quantity = null
-    current_page = 1
-
     constructor() {
         makeAutoObservable(this)
     }
@@ -20,9 +15,6 @@ export default class StoreNews {
     async getProducts() {
         try {
             const response = await News.getAll(this.limit)
-            this.count = await response.data.count
-            this.pages_quantity = Math.ceil(response.data.count / this.limit)
-            this.pagesArray = pagination(this.pages_quantity, this.current_page)
             this.news = await response.data.results
         } catch (e) {
             console.log(e)
@@ -31,39 +23,8 @@ export default class StoreNews {
     }
 
     async getNext() {
-        if (this.current_page + 1 <= this.pages_quantity) {
-            this.current_page += 1
-        } else {
-            return
-        }
-        this.offset = this.offset + 4
+        this.offset = this.offset + 8
         const response = await News.getAll(this.limit, this.offset)
-        this.news = response.data.results
-        this.pagesArray = pagination(this.pages_quantity, this.current_page, this.current_page - 1)
-    }
-    async getPrevious() {
-        if (this.current_page - 1 >= 1) {
-            this.current_page -= 1
-        } else {
-            return
-        }
-        this.offset = this.offset - 4
-        const response = await News.getAll(this.limit, this.offset)
-        this.news = response.data.results
-        this.pagesArray = pagination(this.pages_quantity, this.current_page, this.current_page + 1)
-    }
-
-    async setPage(page) {
-        let oldPage = this.current_page
-        this.current_page = page
-        this.offset = this.limit * (page - 1)
-        this.pagesArray = pagination(this.pages_quantity, this.current_page, oldPage)
-        this.getPage()
-    }
-
-    async getPage() {
-        const response = await News.getAll(this.limit, this.offset)
-        this.pagesArray = pagination(this.pages_quantity, this.current_page)
-        this.news = response.data.results
+        this.news = [...this.news, ...response.data.results]
     }
 }

@@ -107,6 +107,16 @@
   border-radius: 50%;
 }
 
+.indicatorBasket {
+  width: 9.3px;
+  height: 9.3px;
+  position: absolute;
+  top: -1px;
+  right: -1px;
+  background-color: #E5271B;
+  border-radius: 50%;
+}
+
 .productCart {
   display: flex;
   align-items: center;

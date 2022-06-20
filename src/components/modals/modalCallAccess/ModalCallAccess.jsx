@@ -5,9 +5,9 @@ import CloseSVG from "../../SVG/CloseSVG";
 import Phone3SVG from "../../SVG/Phone3SVG";
 import CallAccessSVG from "../../SVG/CallAccessSVG";
 
-const ModalCallAccess = () => {
+const ModalCallAccess = ({setModal}) => {
     return (
-        <div className={cl.modal}>
+        <div className={cl.modal} onClick={() => setModal(false)}>
             <div className={cl.inner}>
                 <CallAccessSVG/>
                 <h2>Спасибо!</h2>

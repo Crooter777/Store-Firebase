@@ -21,7 +21,10 @@ const Basket = () => {
     const [accessModal, setAccessModal] = useState(false)
 
     return (
-        <Template>
+        <Template path={[
+            {page: 'Главная', path: '/'},
+            {page: 'Корзина'},
+        ]}>
             <div className={cl.wrap}>
                 <div className={cl.carts}>
                     {Basket.products.map((product) =>

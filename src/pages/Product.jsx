@@ -14,8 +14,6 @@ import LoveFillSVG from "../components/SVG/LoveFillSVG";
 
 const Product = () => {
 
-    window.scrollTo(0, 0)
-
     const navigate = useNavigate()
 
     const {ProductDetail} = useContext(Context)
@@ -44,7 +42,12 @@ const Product = () => {
     }, [])
 
     return (
-        <Template>
+        <Template path={[
+            {page: 'Главная', path: '/'},
+            {page: 'Коллекции', path: '/collections/'},
+            {page: 'Лето 2022', path: '/collections/6/'},
+            {page: 'Вечернее платье'},
+        ]}>
             <div className={cl.wrap}>
                 <div className={cl.sliderImages}>
                     {!isLoading ?

@@ -18,12 +18,26 @@ const CardClothes = ({product, ...props}) => {
 
     const navigate = useNavigate()
 
+    const [images, setImages] = useState(product.product_colors)
+    const [currentImage, setCurrentImage] = useState(0)
+
     return (
         <div
             className={cl.cart}
             onClick={() => navigate(`/products/${product.id}`)}
+            onMouseOut={() => setCurrentImage(0)}
         >
-            <img src={product.product_colors[0].image} alt=""/>
+            <div className={cl.imagesWrap}>
+                <div className={cl.images} style={{gridTemplateColumns: `repeat(${product.product_colors.length}, 1fr)`}}>
+                    {product.product_colors.map((color, index) =>
+                        <div onMouseOver={() => setCurrentImage(index)} key={color.id} className={cl.imageWrap}>
+                            <div className={cl.indicator}></div>
+                        </div>
+                    )}
+                </div>
+                <img src={images[currentImage].image} className={cl.image}/>
+            </div>
+
             <div className={cl.triangle}></div>
             <span className={cl.sale}>{product.discount}%</span>
             {isFavorite ?

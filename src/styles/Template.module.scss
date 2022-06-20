@@ -12,6 +12,41 @@
   position: relative;
 }
 
+.pathWrap {
+  height: 60px;
+  width: 100%;
+  padding: 0 20px;
+  background-color: #fff;
+  border-bottom: 1px solid #EEEEEE;
+}
+
+.inner {
+  width: 100%;
+  height: 100%;
+  max-width: 1172px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+}
+
+.crosh {
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 17px;
+  color: #393939;
+  margin-right: 16px;
+}
+
+.croshCurrent {
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 17px;
+  color: #979797;
+  margin-right: 16px;
+}
+
+
+
 
 @media only screen and (max-width: 800px) {
   .wrap {

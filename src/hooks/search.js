@@ -17,7 +17,7 @@ export default function useSearch() {
     function handlePress(e) {
         if(e.key === 'Enter') {
             States.setModalSearch(false)
-            navigate(`/search/?search=${ e.target.value}`)
+            navigate(`/search/?search=${e.target.value}`)
         }
     }
 

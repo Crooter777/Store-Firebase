@@ -8,7 +8,10 @@ import img3 from '../assets/img/AboutUs/Bgz6WeuuAgs-2.jpg'
 
 const AboutUs = () => {
     return (
-        <Template>
+        <Template path={[
+            {page: 'Главная', path: '/'},
+            {page: 'О нас'},
+        ]}>
             <div className={cl.inner}>
                 <div className={cl.photos}>
                     <div className={cl.rowFirst}>

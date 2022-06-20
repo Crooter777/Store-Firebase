@@ -10,7 +10,10 @@ const Favorites = () => {
     const {Favorites} = useContext(Context)
 
     return (
-        <Template>
+        <Template path={[
+            {page: 'Главная', path: '/'},
+            {page: 'Избранное'},
+        ]}>
             <h1 className={cl.title}>Избранное</h1>
             <div className={cl.count}>
                 <h4 className={cl.title}>Товаров в избранном: </h4>

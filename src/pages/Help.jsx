@@ -21,7 +21,10 @@ const Help = () => {
     }, [])
 
     return (
-        <Template>
+        <Template path={[
+            {page: 'Главная', path: '/'},
+            {page: 'Помощь'},
+        ]}>
             <div className={cl.wrap}>
                 <div className={cl.photo}>
                     <img src={img} alt=""/>

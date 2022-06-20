@@ -5,7 +5,7 @@ import CardClothes from "../components/carts/cartСlothes/CartСlothes";
 import {Context} from "../index";
 import {observer} from "mobx-react-lite";
 import SliderProducts from "../components/sliders/sliderProducts/SliderProducts";
-import {useLocation} from 'react-router-dom'
+import { useSearchParams } from "react-router-dom";
 import Pagination from "../components/pagination/Pagination";
 
 const SearchResult = () => {
@@ -13,6 +13,8 @@ const SearchResult = () => {
     const {States} = useContext(Context)
     const {Bestsellers} = useContext(Context)
 
+    let [searchParams, setSearchParams] = useSearchParams();
+    console.log(searchParams.get("search"))
 
     useEffect(() => {
         Bestsellers.getProducts()
@@ -20,7 +22,10 @@ const SearchResult = () => {
 
 
     return (
-        <Template>
+        <Template path={[
+            {page: 'Главная', path: '/'},
+            {page: 'Результаты поиска'},
+        ]}>
             <h1 className={cl.title}>Результаты поиска по запросу: {States.searchValue}</h1>
             <div className={cl.grid}>
                 {States.products.length !== 0 ?

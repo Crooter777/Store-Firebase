@@ -16,6 +16,8 @@ export default class States {
 
     products = []
 
+    collection_name = ''
+
     cancelToken
 
     limit= 8

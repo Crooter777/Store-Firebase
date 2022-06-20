@@ -5,10 +5,12 @@ import {Context} from "../index";
 import cl from '../styles/Template.module.scss'
 import {observer} from "mobx-react-lite";
 import HeaderMobile from "../components/headers/headerMobile/HeaderMobile";
+import {useNavigate} from "react-router-dom";
 
-const Template = ({children}) => {
+const Template = ({children, path}) => {
 
     const {States} = useContext(Context)
+    const navigate = useNavigate()
 
     return (
         <div
@@ -24,6 +26,24 @@ const Template = ({children}) => {
             }
         <Header/>
         <HeaderMobile/>
+            {path ?
+                <div className={cl.pathWrap}>
+                    <div className={cl.inner}>
+                        {path.map((p, index, array) =>
+                                index !== array.length -1 ?
+                                    <>
+                                        <span className={cl.crosh} onClick={() => navigate(p.path)}>{p.page}</span>
+                                        <span className={cl.crosh}>/</span>
+                                    </>
+                                    :
+                                    <span className={cl.croshCurrent} onClick={() => navigate(p.path)}>{p.page}</span>
+
+                        )}
+                    </div>
+                </div>
+                :
+                null
+            }
             <div className='container'>
             {children}
         </div>

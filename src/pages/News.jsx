@@ -28,7 +28,10 @@ const News = () => {
     }, [])
 
     return (
-        <Template>
+        <Template path={[
+            {page: 'Главная', path: '/'},
+            {page: 'Новости'},
+        ]}>
             <h1 className={cl.pagetitle}>Новости</h1>
             <div className={cl.wrap}>
                 {News.news.length ?

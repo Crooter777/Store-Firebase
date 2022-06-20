@@ -23,7 +23,10 @@ const Collections = () => {
     }, [])
 
     return (
-        <Template>
+        <Template path={[
+            {page: 'Главная', path: '/'},
+            {page: 'Коллекции'},
+        ]}>
             <div className={cl.inner}>
                 <h1>Коллекции</h1>
             </div>

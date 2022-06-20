@@ -14,6 +14,8 @@ import LoveFillSVG from "../components/SVG/LoveFillSVG";
 
 const Product = () => {
 
+    window.scrollTo(0, 0)
+
     const navigate = useNavigate()
 
     const {ProductDetail} = useContext(Context)

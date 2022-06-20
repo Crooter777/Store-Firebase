@@ -6,6 +6,7 @@ import {observer} from "mobx-react-lite";
 import {toJS} from "mobx";
 import {Context} from "../../../index";
 import LoveFillSVG from "../../SVG/LoveFillSVG";
+import {useNavigate} from "react-router-dom";
 
 const CardClothes = ({product, ...props}) => {
 
@@ -15,14 +16,20 @@ const CardClothes = ({product, ...props}) => {
 
     const [isFavorite, setFavorite] = useState(initValue)
 
+    const navigate = useNavigate()
+
     return (
-        <div className={cl.cart}>
+        <div
+            className={cl.cart}
+            onClick={() => navigate(`/products/${product.id}`)}
+        >
             <img src={product.product_colors[0].image} alt=""/>
             <div className={cl.triangle}></div>
             <span className={cl.sale}>{product.discount}%</span>
             {isFavorite ?
                 <div
-                    onClick={() => {
+                    onClick={(e) => {
+                        e.stopPropagation()
                         Favorites.delete(product)
                         setFavorite(false)
                     }}
@@ -32,7 +39,8 @@ const CardClothes = ({product, ...props}) => {
                 </div>
                 :
                 <div
-                    onClick={() => {
+                    onClick={(e) => {
+                        e.stopPropagation()
                         Favorites.add(product)
                         setFavorite(true)
                     }}

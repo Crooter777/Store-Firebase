@@ -5,7 +5,7 @@ import SearchSVG from "../../SVG/SearchSVG";
 import FavoriteSVG from "../../SVG/FavoriteSVG";
 import ProductCartSVG from "../../SVG/ProductCartSVG";
 import HeaderMobile from "../headerMobile/HeaderMobile";
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import SearchDesktop from "../../search/desktop/searchDesktop";
 import {Context} from "../../../index";
 import {observer} from "mobx-react-lite";
@@ -15,6 +15,8 @@ const Header = () => {
 
     const {Favorites} = useContext(Context)
     const {Basket} = useContext(Context)
+
+    const navigate = useNavigate()
 
     return (
         <>
@@ -45,7 +47,10 @@ const Header = () => {
                             <Link to='/'><LogoSVG/></Link>
                         </div>
                         <SearchDesktop/>
-                        <div className={cl.favorite}>
+                        <div
+                            onClick={() => navigate('/favorites/')}
+                            className={cl.favorite}
+                        >
                             <div className={cl.icon}>
                                 <FavoriteSVG/>
                                 {Favorites.products.length ?
@@ -57,7 +62,10 @@ const Header = () => {
                             <span>Избранное</span>
                         </div>
                         <div className={cl.separator}></div>
-                        <div className={cl.productCart}>
+                        <div
+                            onClick={() => navigate('/basket/')}
+                            className={cl.productCart}
+                        >
                             <div className={cl.icon}>
                                 <ProductCartSVG style={{fill: '#515151'}}/>
                                 {Basket.products.length ?

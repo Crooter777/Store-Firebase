@@ -80,6 +80,7 @@
 .favorite {
   display: flex;
   align-items: center;
+  cursor: pointer;
 
   & span {
     font-weight: 500;
@@ -120,6 +121,7 @@
 .productCart {
   display: flex;
   align-items: center;
+  cursor: pointer;
 
   & span {
     font-weight: 500;

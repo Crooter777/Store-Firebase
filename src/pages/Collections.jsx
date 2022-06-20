@@ -14,10 +14,12 @@ import {observer} from "mobx-react-lite";
 
 const Collections = () => {
 
+
     const {CollectionsPage} = useContext(Context)
 
     useEffect(() => {
         CollectionsPage.getProducts()
+        window.scrollTo(0, 0)
     }, [])
 
     return (

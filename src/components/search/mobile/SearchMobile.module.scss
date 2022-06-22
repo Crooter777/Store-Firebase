@@ -4,12 +4,13 @@
   left: 50%;
   transform: translateX(-50%);
   width: clamp(288px, 90vw, 662px);
-  height: 44px;
-  background-color: #fff;
+  //height: 100vh;
   z-index: 2;
 }
 
 .search {
+  position: sticky;
+  top: 30px;
   display: flex;
   align-items: center;
   justify-content: space-between;

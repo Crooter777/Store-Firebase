@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import cl from './SearchMobile.module.scss'
 import useSearch from "../../../hooks/search";
 import SearchSVG from "../../SVG/SearchSVG";
@@ -17,8 +17,18 @@ const SearchMobile = () => {
         }
     }
 
+    const [height, setHeight] = useState(0)
+    function resize() {
+        setHeight(document.documentElement.scrollHeight)
+    }
+    window.addEventListener("resize", resize);
+
+    useEffect(() => {
+        resize()
+    },[])
+
     return (
-        <div className={cl.wrap}>
+        <div className={cl.wrap} style={{height: height - 100 + 'px'}}>
             <div
                 tabIndex={0}
                 className={cl.search}

@@ -32,12 +32,12 @@ const Template = ({children, path}) => {
                     <div className={cl.inner}>
                         {path.map((p, index, array) =>
                             index !== array.length -1 ?
-                                <>
+                                <div key={index}>
                                     <span className={cl.crosh} onClick={() => navigate(p.path)}>{p.page}</span>
                                     <span className={cl.crosh}>/</span>
-                                </>
+                                </div>
                                 :
-                                <span className={cl.croshCurrent} onClick={() => navigate(p.path)}>{p.page}</span>
+                                <span key={index} className={cl.croshCurrent} onClick={() => navigate(p.path)}>{p.page}</span>
 
                         )}
                     </div>

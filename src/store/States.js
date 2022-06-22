@@ -15,6 +15,8 @@ export default class States {
     searchValue = ''
 
     products = []
+    search_page_products = []
+    search_page_value = ''
 
     collection_name = ''
 
@@ -28,24 +30,21 @@ export default class States {
     pages_quantity = null
     current_page = 1
 
+
     constructor() {
         makeAutoObservable(this)
     }
 
     setModalMobile(bool) {
         this.modalMobile = bool
-    }
+        }
 
     setModalMobileBack(bool) {
         this.modalMobileBack = bool
     }
 
     setModalSearch(bool) {
-        if (this.isSearchPage) {
-            this.modalSearch = false
-        } else {
-            this.modalSearch = bool
-        }
+        this.modalSearch = bool
     }
 
     setSearchValue(e) {
@@ -96,6 +95,10 @@ export default class States {
             this.pages_quantity = Math.ceil(response.data.count / this.limit)
             this.pagesArray = pagination(this.pages_quantity, this.current_page)
             this.products = await response.data.results
+            if (this.isSearchPage) {
+                this.search_page_products = response.data.results
+                this.search_page_value = this.searchValue
+            }
         } catch (e) {
             console.log(e)
         }
@@ -107,6 +110,10 @@ export default class States {
             this.offset = this.offset + 8
             const response = await this.searchProducts()
             this.products = response.data.results
+            if (this.isSearchPage) {
+                this.search_page_products = response.data.results
+                this.search_page_value = this.searchValue
+            }
             this.pagesArray = pagination(this.pages_quantity, this.current_page + 1, this.current_page - 1)
             this.current_page += 1
         }
@@ -116,6 +123,10 @@ export default class States {
             this.offset = this.offset - 8
             const response = await this.searchProducts()
             this.products = response.data.results
+            if (this.isSearchPage) {
+                this.search_page_products = response.data.results
+                this.search_page_value = this.searchValue
+            }
             this.pagesArray = pagination(this.pages_quantity, this.current_page -1, this.current_page + 1)
             this.current_page -= 1
         }
@@ -132,5 +143,9 @@ export default class States {
     async getPage() {
         const response = await this.searchProducts()
         this.products = response.data.results
+        if (this.isSearchPage) {
+            this.search_page_products = response.data.results
+            this.search_page_value = this.searchValue
+        }
     }
 }

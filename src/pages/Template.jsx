@@ -24,19 +24,20 @@ const Template = ({children, path}) => {
                 :
                 null
             }
-        <Header/>
-        <HeaderMobile/>
+        <div>
+            <Header/>
+            <HeaderMobile/>
             {path ?
                 <div className={cl.pathWrap}>
                     <div className={cl.inner}>
                         {path.map((p, index, array) =>
-                                index !== array.length -1 ?
-                                    <>
-                                        <span className={cl.crosh} onClick={() => navigate(p.path)}>{p.page}</span>
-                                        <span className={cl.crosh}>/</span>
-                                    </>
-                                    :
-                                    <span className={cl.croshCurrent} onClick={() => navigate(p.path)}>{p.page}</span>
+                            index !== array.length -1 ?
+                                <>
+                                    <span className={cl.crosh} onClick={() => navigate(p.path)}>{p.page}</span>
+                                    <span className={cl.crosh}>/</span>
+                                </>
+                                :
+                                <span className={cl.croshCurrent} onClick={() => navigate(p.path)}>{p.page}</span>
 
                         )}
                     </div>
@@ -45,7 +46,8 @@ const Template = ({children, path}) => {
                 null
             }
             <div className='container'>
-            {children}
+                {children}
+            </div>
         </div>
         <Footer/>
         </div>

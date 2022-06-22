@@ -37,7 +37,7 @@ const Header = () => {
                         </div>
                         <div className={cl.contact}>
                             <span>Тел: </span>
-                            <span>+996 000 00 00 00</span>
+                            <a href='tel:+996000000000'>+996 000 00 00 00</a>
                         </div>
                     </div>
                 </div>

@@ -45,7 +45,8 @@ const Product = () => {
         <Template path={[
             {page: 'Главная', path: '/'},
             {page: 'Коллекции', path: '/collections/'},
-            {page: 'Лето 2022', path: '/collections/6/'},
+            {page: isLoading ? null : ProductDetail.product.collection_name,
+                path: `/collections/${isLoading ? null : ProductDetail.product.collection}/`},
             {page: 'Вечернее платье'},
         ]}>
             <div className={cl.wrap}>

@@ -5,6 +5,9 @@ import {ErrorMessage, Field, Form, Formik} from "formik";
 import * as Yup from 'yup'
 import {Context} from "../../../index";
 import {toJS} from "mobx";
+import Kyrgyzstan from "../../SVG/countrys/Kyrgyzstan";
+import Japan from "../../SVG/countrys/Japan";
+import Belgium from "../../SVG/countrys/Belgium";
 
 const BasketModal = ({isOpen, accessModal, setOpen}) => {
 
@@ -12,13 +15,25 @@ const BasketModal = ({isOpen, accessModal, setOpen}) => {
 
     const [status, setStatus] = useState(false)
 
+    const [numbers, setNumbers] = useState([
+        {flag: <Kyrgyzstan/>, code: '+996'},
+        {flag: <Japan/>, code: '+81'},
+        {flag: <Belgium/>, code: '+32'},
+    ])
+    const [currentNumber, setCurNumber] = useState(0)
+    const [isNumberOpen, setNumberOpen] = useState(false)
+
+
     return (
         <div className={cl.modal} onClick={(e) => {
             setOpen(false)
         }}>
             <div className={cl.wrap}>
                 <div
-                    onClick={(e) => e.stopPropagation()}
+                    onClick={(e) => {
+                        e.stopPropagation()
+                        // setNumberOpen(true)
+                    }}
                     className={cl.inner}
                 >
                     <h1>Оформление заказа</h1>
@@ -93,14 +108,43 @@ const BasketModal = ({isOpen, accessModal, setOpen}) => {
                                 >
                                     Ваш номер телефона
                                 </span>
-                                <input
-                                    id="phone"
-                                    type="text"
-                                    placeholder='Введите номер телефона'
-                                    className={formik.touched.phone && formik.errors.phone ? `${cl.input} ${cl.active}` : cl.input}
-                                    {...formik.getFieldProps('phone')}
-                                />
+                                <div className={formik.touched.phone && formik.errors.phone ? `${cl.numberWrap} ${cl.active}` : cl.numberWrap}>
+                                    <div className={cl.number}>
+                                        <div
+                                            onClick={() => setNumberOpen(bool => !bool)}
+                                            className={cl.numberSelected}
+                                        >
+                                            {numbers[currentNumber].flag}
+                                            {numbers[currentNumber].code}
+                                            <div className={cl.triangle}></div>
+                                        </div>
+                                        {isNumberOpen ?
+                                            <div className={cl.numbers}>
+                                                {numbers.map((number, index) =>
+                                                    <div onClick={() => {
+                                                        setNumberOpen(false)
+                                                        setCurNumber(index)
+                                                    }}
+                                                        key={index}
+                                                        className={cl.numberItem}
+                                                    >
+                                                        {number.flag} {number.code}
+                                                    </div>
+                                                )}
+                                            </div>
+                                            :
+                                            null
+                                        }
 
+                                    </div>
+                                    <input
+                                        id="phone"
+                                        type="text"
+                                        placeholder='Введите номер телефона'
+                                        className={cl.input}
+                                        {...formik.getFieldProps('phone')}
+                                    />
+                                </div>
                                 <span
                                     className={formik.touched.country && formik.errors.country ? `${cl.subtitle} ${cl.active}` : cl.subtitle}
                                 >

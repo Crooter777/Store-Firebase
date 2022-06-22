@@ -55,7 +55,7 @@ export default class StoreBasket {
     get totalProducts() {
         let count = 0
         for (let i of this.products) {
-            count += i.countForBuy
+            count += i.countForBuy * 5
         }
         return count
     }
@@ -63,7 +63,7 @@ export default class StoreBasket {
     get totalSum() {
         let count = 0
         for (let i of this.products) {
-            count += i.price * i.countForBuy
+            count += i.price * i.countForBuy * 5
         }
         return count
     }
@@ -71,7 +71,7 @@ export default class StoreBasket {
     get totalDiscount() {
         let count = 0
         for (let i of this.products) {
-            count += (i.price * (i.discount / 100)) * i.countForBuy
+            count += (i.price * (i.discount / 100)) * (i.countForBuy * i.countForBuy * 5)
         }
         return count
     }
@@ -79,11 +79,11 @@ export default class StoreBasket {
     get totalAmount() {
         let totalPrice = 0
         for (let i of this.products) {
-            totalPrice += i.price * i.countForBuy
+            totalPrice += i.price * i.countForBuy * 5
         }
         let totalDiscount = 0
         for (let i of this.products) {
-            totalDiscount += (i.price * (i.discount / 100)) * i.countForBuy
+            totalDiscount += (i.price * (i.discount / 100)) * (i.countForBuy * i.countForBuy * 5)
         }
         return totalPrice - totalDiscount
     }

@@ -1,10 +1,9 @@
-import {makeAutoObservable, toJS} from "mobx";
-import News from "../services/News";
+import {makeAutoObservable} from "mobx";
 import pagination from "../utils/pagination";
 import Products from "../services/Products";
 import axios from "axios";
 
-export default class States {
+export default class Search {
 
     modalMobileBack = false
     modalMobile = false
@@ -39,7 +38,7 @@ export default class States {
 
     setModalMobile(bool) {
         this.modalMobile = bool
-        }
+    }
 
     setModalMobileBack(bool) {
         this.modalMobileBack = bool

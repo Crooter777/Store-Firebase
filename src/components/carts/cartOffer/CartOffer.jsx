@@ -1,12 +1,12 @@
 import React, {useContext, useState} from 'react';
-import cl from "./CartСlothes.module.scss";
+import cl from "./CartOffer.module.scss";
 import img from "../../../assets/img/Products/Rectangle 491-2.png";
 import LoveSVG from "../../SVG/LoveSVG";
 import {Context} from "../../../index";
 import LoveFillSVG from "../../SVG/LoveFillSVG";
 import {useNavigate} from "react-router-dom";
 
-const CardClothes = ({product, ...props}) => {
+const CartOffer = ({product, ...props}) => {
 
     const {Favorites} = useContext(Context)
 
@@ -71,8 +71,11 @@ const CardClothes = ({product, ...props}) => {
                 </div>
             }
             <div className={cl.info}>
+                <div className={cl.sum}>
+                    <span className={cl.old}>{product.price}</span>
+                    <span className={cl.new}>{product.price - (product.price * (product.discount / 100))}</span>
+                </div>
                 <h4 className={cl.title}>{product.name}</h4>
-                <span className={cl.sum}>{product.price} сом</span>
                 <div className={cl.sizes}>
                     <span className={cl.size}>Размер:</span>
                     <span className={cl.sizeNumber}>{product.size}</span>
@@ -87,4 +90,4 @@ const CardClothes = ({product, ...props}) => {
     );
 };
 
-export default CardClothes;
+export default CartOffer;

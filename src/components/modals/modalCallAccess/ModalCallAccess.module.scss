@@ -58,4 +58,14 @@
   font-size: 14px;
   line-height: 17px;
   color: #FFFFFF;
+
+  transition: all 50ms ease-out;
+
+  cursor: pointer;
+
+  &:hover {
+    outline: 1px solid #393939;
+    background-color: #fff;
+    color: #393939;
+  }
 }

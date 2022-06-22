@@ -8,16 +8,17 @@ import SliderProducts from "../components/sliders/sliderProducts/SliderProducts"
 import { useSearchParams } from "react-router-dom";
 import Pagination from "../components/pagination/Pagination";
 
-const SearchResult = () => {
+const Search = () => {
 
     const {States} = useContext(Context)
     const {Bestsellers} = useContext(Context)
 
-    let [searchParams, setSearchParams] = useSearchParams();
+    let [searchParams] = useSearchParams();
     console.log(searchParams.get("search"))
 
     useEffect(() => {
         Bestsellers.getProducts()
+        window.scrollTo(0, 0)
     }, [])
 
     return (
@@ -61,4 +62,4 @@ const SearchResult = () => {
     );
 };
 
-export default observer(SearchResult);
+export default observer(Search);

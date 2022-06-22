@@ -40,3 +40,15 @@
         color: #FFFFFF;
     }
 }
+
+@media only screen and (max-width: 482px) {
+  .button {
+    width: 32px;
+    height: 32px;
+    margin-left: 5px;
+    font-size: 12px;
+  }
+  .next {
+    margin-left: 10px !important;
+  }
+}

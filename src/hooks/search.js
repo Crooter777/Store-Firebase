@@ -8,8 +8,6 @@ export default function useSearch() {
 
     const location = useLocation()
 
-
-
     const navigate = useNavigate()
 
     function handlePress(e) {

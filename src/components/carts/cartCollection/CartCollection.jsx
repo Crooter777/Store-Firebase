@@ -16,6 +16,7 @@ const CartCollection = ({collection, ...props}) => {
         <div
             className={cl.cart}
             onClick={() => navigate(`/collections/${collection.id}`)}
+            onMouseOut={() => setCurrentImage(0)}
         >
             <div className={cl.imagesWrap}>
                 <div className={cl.images} style={{gridTemplateColumns: `repeat(${collection.collection_images.length}, 1fr)`}}>

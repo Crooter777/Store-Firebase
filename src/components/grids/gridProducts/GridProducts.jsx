@@ -26,12 +26,16 @@ const GridProducts = ({title, store, ...props}) => {
                 <SliderProducts store={store}/>
             </div>
             <div className='center'>
-                <button
-                    className={cl.button}
-                    onClick={() => store.getNext()}
-                >
-                    Еще
-                </button>
+                {!store.isLast ?
+                    <button
+                        className={cl.button}
+                        onClick={() => store.getNext()}
+                    >
+                        Еще
+                    </button>
+                    :
+                    null
+                }
             </div>
         </div>
     );

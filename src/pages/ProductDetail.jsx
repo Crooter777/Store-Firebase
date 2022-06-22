@@ -1,18 +1,26 @@
-import React, {useContext, useEffect, useState} from 'react';
+import React, {useCallback, useContext, useEffect, useState} from 'react';
 import Template from "./Template";
 import cl from '../styles/Product.module.scss'
-import SliderProducts from "../components/sliders/sliderProducts/SliderProducts";
-import img4 from "../assets/img/Products/Rectangle 491-1.png";
 import ProductCartSVG from "../components/SVG/ProductCartSVG";
 import LoveSVG from "../components/SVG/LoveSVG";
 import SliderImages from "../components/sliders/sliderImages/SliderImages";
 import {useNavigate, useParams} from "react-router-dom";
 import {Context} from "../index";
 import {observer} from "mobx-react-lite";
-import {toJS} from "mobx";
 import LoveFillSVG from "../components/SVG/LoveFillSVG";
+import * as PropTypes from "prop-types";
+import ImageViewer from "react-simple-image-viewer";
+import SliderMaybe from "../components/sliders/sliderMaybe/SliderMaybe";
 
-const Product = () => {
+ImageViewer.propTypes = {
+    closeOnClickOutside: PropTypes.bool,
+    onClose: PropTypes.func,
+    src: PropTypes.any,
+    disableScroll: PropTypes.bool,
+    backgroundStyle: PropTypes.shape({backgroundColor: PropTypes.string}),
+    currentIndex: PropTypes.number
+};
+const ProductDetail = () => {
 
     const navigate = useNavigate()
 
@@ -29,13 +37,32 @@ const Product = () => {
     const [isFavorite, setFavorite] = useState(false)
     const [newPrice, setPrice] = useState(0)
 
+    const [currentImage, setCurrentImage] = useState(0);
+    const [isViewerOpen, setIsViewerOpen] = useState(false);
+
+    const openImageViewer = useCallback((index) => {
+        setCurrentImage(index);
+        setIsViewerOpen(true);
+    }, []);
+
+    const closeImageViewer = () => {
+        setCurrentImage(0);
+        setIsViewerOpen(false);
+    };
+
+    const [images, setImages] = useState([])
+
     useEffect(() => {
+        window.scrollTo(0, 0)
         async function load () {
             await ProductDetail.getProduct(id)
             setPrice(ProductDetail.product.price - (ProductDetail.product.price * (ProductDetail.product.discount / 100)))
             setColor(Basket.products.find((item)=>item.id === ProductDetail.product.id && item.product_color.id === ProductDetail.product.product_color.id))
             setFavorite(Boolean(Favorites.products.find((item) => item.id === ProductDetail.product.id)))
             setLoading(false)
+            for (let color of ProductDetail.product.product_colors) {
+                setImages(images => [...images, color.image])
+            }
             await Bestsellers.getProducts()
         }
         load()
@@ -59,9 +86,9 @@ const Product = () => {
                 </div>
                 <div className={cl.images}>
                     {!isLoading ?
-                        ProductDetail.product.product_colors.map((color) =>
+                        ProductDetail.product.product_colors.map((color, index) =>
                             <div key={color.id}>
-                                <img src={color.image} alt=""/>
+                                <img onClick={() => openImageViewer(index)} src={color.image} alt=""/>
                             </div>
                         )
                         :
@@ -174,10 +201,22 @@ const Product = () => {
             </div>
             <h1 className={cl.title}>Похожие товары</h1>
             <div className={cl.slider}>
-                <SliderProducts store={Bestsellers}/>
+                <SliderMaybe store={Bestsellers}/>
             </div>
+            {isViewerOpen && (
+                <ImageViewer
+                    src={images}
+                    currentIndex={currentImage}
+                    onClose={closeImageViewer}
+                    disableScroll={false}
+                    backgroundStyle={{
+                        backgroundColor: "rgba(0,0,0,0.9)"
+                    }}
+                    closeOnClickOutside={true}
+                />
+            )}
         </Template>
     );
 };
 
-export default observer(Product)
+export default observer(ProductDetail)

@@ -1,7 +1,10 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import Template from "./Template";
 
 const Offer = () => {
+    useEffect(() => {
+        window.scrollTo(0, 0)
+    }, [])
     return (
         <Template path={[
             {page: 'Главная', path: '/'},

@@ -1,7 +1,6 @@
-import React, {useContext, useEffect, useRef, useState} from 'react';
+import React, {useContext, useEffect, useRef} from 'react';
 import Template from "./Template";
 import cl from '../styles/News.module.scss'
-import img from '../assets/img/News/Rectangle 507.jpg'
 import NewsItem from "../components/newsItem/NewsItem";
 import {Context} from "../index";
 import {observer} from "mobx-react-lite";
@@ -13,13 +12,17 @@ const News = () => {
     const observer = useRef()
 
     async function load() {
+        window.scrollTo(0, 0)
+        let options = {
+            rootMargin: '100px',
+        }
         await News.getProducts()
         let callback = function(entries, observer) {
             if (entries[0].isIntersecting) {
                 News.getNext()
             }
         };
-        observer.current = new IntersectionObserver(callback);
+        observer.current = new IntersectionObserver(callback, options);
         observer.current.observe(lastElement.current)
     }
 

@@ -34,7 +34,7 @@ const Template = ({children, path}) => {
                             index !== array.length -1 ?
                                 <div key={index}>
                                     <span className={cl.crosh} onClick={() => navigate(p.path)}>{p.page}</span>
-                                    <span className={cl.crosh}>/</span>
+                                    <span className={cl.croshLine}>/</span>
                                 </div>
                                 :
                                 <span key={index} className={cl.croshCurrent} onClick={() => navigate(p.path)}>{p.page}</span>

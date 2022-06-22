@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import Template from "./Template";
 import cl from '../styles/AboutUs.module.scss'
 
@@ -7,6 +7,9 @@ import img2 from '../assets/img/AboutUs/Bgz6WeuuAgs-1.jpg'
 import img3 from '../assets/img/AboutUs/Bgz6WeuuAgs-2.jpg'
 
 const AboutUs = () => {
+    useEffect(() => {
+        window.scrollTo(0, 0)
+    }, [])
     return (
         <Template path={[
             {page: 'Главная', path: '/'},

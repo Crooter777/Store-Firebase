@@ -1,5 +1,4 @@
-import {makeAutoObservable, toJS} from "mobx";
-import Products from "../services/Products";
+import {makeAutoObservable} from "mobx";
 import Questions from "../services/Questions";
 
 export default class StoreQuestions {

@@ -27,7 +27,6 @@ export default class StoreCollectionDetail {
         } catch (e) {
             console.log(e)
         }
-
     }
 
     async getNext() {

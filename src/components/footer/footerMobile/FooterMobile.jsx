@@ -1,6 +1,5 @@
 import React, {useEffect, useState} from 'react';
 import cl from './FooterMobile.module.scss'
-import LogoSVG from "../../SVG/LogoSVG";
 import Logo2SVG from "../../SVG/Logo2SVG";
 import PhoneSVG from "../../SVG/PhoneSVG";
 import EmailSVG from "../../SVG/EmailSVG";

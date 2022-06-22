@@ -5,6 +5,7 @@ import CardClothes from "../components/carts/cartСlothes/CartСlothes";
 import {Context} from "../index";
 import {observer} from "mobx-react-lite";
 import SliderProducts from "../components/sliders/sliderProducts/SliderProducts";
+import SliderMaybe from "../components/sliders/sliderMaybe/SliderMaybe";
 
 const Favorites = () => {
 
@@ -12,6 +13,7 @@ const Favorites = () => {
     const {Bestsellers} = useContext(Context)
 
     useEffect(() => {
+        window.scrollTo(0, 0)
         Bestsellers.getProducts()
     }, [])
 
@@ -25,9 +27,9 @@ const Favorites = () => {
             <div className={cl.count}>
                 <h4 className={cl.title}>
                     {!Favorites.products.length ?
-                        null
-                        :
                         'У Вас пока нет избранных товаров'
+                        :
+                        'Товаров в избранном:'
                     }
                 </h4>
                 <span>
@@ -37,21 +39,27 @@ const Favorites = () => {
                         null
                     }
                 </span>
-            </div>У Вас пока нет избранных товаров
-            <div className={cl.grid}>
-                {Favorites.products.map((product) =>
-                    <CardClothes product={product} key={product.id}/>
-                )}
             </div>
-            <h1 className={cl.extra}>Возможно вас заинтересует</h1>
-            {!Favorites.products.length ?
-                <div className={cl.slider}>
-                    {Bestsellers.products.length ?
-                        <SliderProducts store={Bestsellers}/>
-                        :
-                        null
-                    }
+            {Favorites.products.length ?
+                <div className={cl.grid}>
+                    {Favorites.products.map((product) =>
+                        <CardClothes product={product} key={product.id}/>
+                    )}
                 </div>
+                :
+                null
+            }
+            {!Favorites.products.length ?
+                <>
+                    <h1 className={cl.extra}>Возможно вас заинтересует</h1>
+                    <div className={cl.slider}>
+                        {Bestsellers.products.length ?
+                            <SliderMaybe store={Bestsellers}/>
+                            :
+                            null
+                        }
+                    </div>
+                </>
                 :
                 null
             }

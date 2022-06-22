@@ -13,6 +13,7 @@ const Help = () => {
     const [isLoading, setLoading] = useState(true)
 
     useEffect(() => {
+        window.scrollTo(0, 0)
         async function load() {
             await Questions.getQuestions()
             setLoading(false)

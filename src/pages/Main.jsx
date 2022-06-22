@@ -8,14 +8,13 @@ import ModalCallAccess from "../components/modals/modalCallAccess/ModalCallAcces
 import Template from "./Template";
 import {Context} from "../index";
 import cl from '../styles/Main.module.scss'
-import VectorChat from "../components/SVG/VectorChat";
-import Chat from "../components/SVG/Chat";
-import ChatCloseVector from "../components/SVG/ChatCloseVector";
-import InstagramSVG from "../components/SVG/InstagramSVG";
-import TelegramSVG from "../components/SVG/TelegramSVG";
+import VectorChatSVG from "../components/SVG/VectorChatSVG";
+import ChatSVG from "../components/SVG/ChatSVG";
+import ChatCloseVectorSVG from "../components/SVG/ChatCloseVectorSVG";
 import Telegram2SVG from "../components/SVG/Telegram2SVG";
 import Whatsapp2SVG from "../components/SVG/Whatsapp2SVG";
 import Phone2SVG from "../components/SVG/Phone2SVG";
+import axios from "axios";
 
 const Main = () => {
 
@@ -24,25 +23,50 @@ const Main = () => {
     const {CollectionsMain} = useContext(Context)
 
     const [isActive, setActive] = useState(false)
+    const [data, setData] = useState()
+    const [isLoading, setLoading] = useState(true)
+    const [modal, setModal] = useState(false)
+    const [access, setAccess] = useState(false)
+
+    async function load() {
+        window.scrollTo(0, 0)
+        const response = await axios.get('http://localhost:8000/contacts/')
+        setData(response.data[0])
+        setLoading(false)
+    }
+
+    useEffect(() => {
+        load()
+    }, [])
 
     return (
         <Template>
             <div className={cl.contactsWrap}>
                 <div className={cl.contact}>
-                    <VectorChat onClick={() => window.scrollTo(0, 0)}/>
+                    <VectorChatSVG onClick={() => window.scrollTo(0, 0)}/>
                     {isActive ?
                         <>
-                        <ChatCloseVector onClick={() => setActive(false)}/>
+                        <ChatCloseVectorSVG onClick={() => setActive(false)}/>
                         <div className={cl.socialWrap}>
                             <div className={cl.socials}>
-                                <Telegram2SVG/>
-                                <Whatsapp2SVG/>
-                                <Phone2SVG/>
+                                {!isLoading ?
+                                    <>
+                                        <a href={data.telegram} target="_blank"><Telegram2SVG/></a>
+                                        <a href={data.whatsapp} target="_blank"><Whatsapp2SVG/></a>
+                                        <Phone2SVG onClick={() => {
+                                            setModal(true)
+                                            setActive(false)
+                                        }}/>
+                                    </>
+                                    :
+                                    null
+                                }
+
                             </div>
                         </div>
                         </>
                         :
-                        <Chat onClick={() => setActive(true)}/>
+                        <ChatSVG onClick={() => setActive(true)}/>
                     }
 
                 </div>
@@ -61,8 +85,16 @@ const Main = () => {
                 title={'Коллекции'}
             />
             <Benefits/>
-            {/*<ModalCall/>*/}
-            {/*<ModalCallAccess/>*/}
+            {modal ?
+                <ModalCall isActive={modal} setActive={setModal} setAccess={setAccess}/>
+                :
+                null
+            }
+            {access ?
+                <ModalCallAccess setModal={setAccess}/>
+                :
+                null
+            }
         </Template>
     );
 };

@@ -1,8 +1,8 @@
-import {makeAutoObservable, toJS} from "mobx";
+import {makeAutoObservable} from "mobx";
 import Collections from "../services/Collections";
 import pagination from "../utils/pagination";
 
-export default class StoreCollectionsPage {
+export default class StoreCollections {
 
     collections = []
     limit= 4

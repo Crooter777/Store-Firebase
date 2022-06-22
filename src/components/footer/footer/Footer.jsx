@@ -1,6 +1,5 @@
 import React, {useEffect, useState} from 'react';
 import cl from './Footer.module.scss'
-import LogoSVG from "../../SVG/LogoSVG";
 import Logo2SVG from "../../SVG/Logo2SVG";
 import PhoneSVG from "../../SVG/PhoneSVG";
 import EmailSVG from "../../SVG/EmailSVG";
@@ -9,7 +8,7 @@ import TelegramSVG from "../../SVG/TelegramSVG";
 import WhatsappSVG from "../../SVG/WhatsappSVG";
 import FooterMobile from "../footerMobile/FooterMobile";
 import axios from "axios";
-import {Link, useNavigate} from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 
 const Footer = () => {
 

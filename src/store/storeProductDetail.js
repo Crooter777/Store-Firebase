@@ -1,6 +1,5 @@
 import {makeAutoObservable, toJS} from "mobx";
 import Products from "../services/Products";
-import pagination from "../utils/pagination";
 
 export default class StoreProductDetail {
 

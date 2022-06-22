@@ -14,6 +14,7 @@ import {Context} from "../index";
 import ModalCallAccess from "../components/modals/modalCallAccess/ModalCallAccess";
 import CardClothes from "../components/carts/cartСlothes/CartСlothes";
 import SliderProducts from "../components/sliders/sliderProducts/SliderProducts";
+import SliderMaybe from "../components/sliders/sliderMaybe/SliderMaybe";
 
 const Basket = () => {
 
@@ -25,6 +26,7 @@ const Basket = () => {
 
 
     useEffect(() => {
+        window.scrollTo(0, 0)
         Bestsellers.getProducts()
     }, [])
 
@@ -59,7 +61,7 @@ const Basket = () => {
                     <div className={cl.count}>
                         <h4 className={cl.title}>
                             {!Basket.products.length ?
-                                <span>У Вас пока нет товаров в корзине</span>
+                                'У Вас пока нет товаров в корзине'
                                 :
                                 null
                             }
@@ -69,7 +71,7 @@ const Basket = () => {
                     {!Basket.products.length ?
                         <div className={cl.slider}>
                             {Bestsellers.products.length ?
-                                <SliderProducts store={Bestsellers}/>
+                                <SliderMaybe store={Bestsellers}/>
                                 :
                                 null
                             }

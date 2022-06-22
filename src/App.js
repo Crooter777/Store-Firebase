@@ -5,10 +5,10 @@ import Offer from "./pages/Offer";
 import AboutUs from "./pages/AboutUs";
 import Collections from "./pages/Collections";
 import CollectionDetail from "./pages/CollectionDetail";
-import Product from "./pages/Product";
+import Product from "./pages/ProductDetail";
 import News from "./pages/News";
 import Help from "./pages/Help";
-import SearchResult from "./pages/SearchResult";
+import SearchResult from "./pages/Search";
 import Favorites from "./pages/Favorites";
 import Basket from "./pages/Basket";
 

@@ -6,13 +6,22 @@ import {observer} from "mobx-react-lite";
 
 const SearchMobile = () => {
 
-    const {States, navigate } = useSearch()
+    const {States, navigate, location } = useSearch()
 
     function handlePress(e) {
         if(e.key === 'Enter') {
             States.setModalMobile(false)
             States.setModalMobileBack(false)
             States.setModalSearch(false)
+            if (location.pathname === '/search/') {
+                States.products_page = States.products_page_input
+                States.searchValue_page = States.searchValue_page_input
+            } else {
+                States.products_page = States.products
+                States.searchValue_page = States.searchValue
+                States.products_page_input = States.products
+                States.searchValue_page_input = States.searchValue
+            }
             navigate(`/search/?search=${ e.target.value}`)
         }
     }
@@ -49,6 +58,15 @@ const SearchMobile = () => {
                     onClick={() => {
                         States.setModalMobile(false)
                         States.setModalMobileBack(false)
+                        if (location.pathname === '/search/') {
+                            States.products_page = States.products_page_input
+                            States.searchValue_page = States.searchValue_page_input
+                        } else {
+                            States.products_page = States.products
+                            States.searchValue_page = States.searchValue
+                            States.products_page_input = States.products
+                            States.searchValue_page_input = States.searchValue
+                        }
                         navigate(`/search/?search=${States.searchValue}`)
                     }}
                 >

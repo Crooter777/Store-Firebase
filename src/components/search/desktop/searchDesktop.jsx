@@ -6,7 +6,7 @@ import useSearch from "../../../hooks/search";
 
 const SearchDesktop = () => {
 
-    const {States, navigate, handlePress } = useSearch()
+    const {States, navigate, handlePress, location } = useSearch()
 
     return (
         <div
@@ -31,6 +31,18 @@ const SearchDesktop = () => {
                 <div
                     className={cl.iconWrapper}
                     onClick={() => {
+                        if (location.pathname === '/search/') {
+                            States.products_page = States.products_page_input
+                            States.searchValue_page = States.searchValue_page_input
+                            if (States.searchValue_page_input === '') {
+                                States.products_page = []
+                            }
+                        } else {
+                            States.products_page = States.products
+                            States.searchValue_page = States.searchValue
+                            States.products_page_input = States.products
+                            States.searchValue_page_input = States.searchValue
+                        }
                         navigate(`/search/?search=${States.searchValue}`)
                     }}
                 >

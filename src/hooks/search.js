@@ -8,15 +8,25 @@ export default function useSearch() {
 
     const location = useLocation()
 
-    if (location.pathname === '/search/') {
-        States.isSearchPage = true
-    }
+
 
     const navigate = useNavigate()
 
     function handlePress(e) {
         if(e.key === 'Enter') {
             States.setModalSearch(false)
+            if (location.pathname === '/search/') {
+                States.products_page = States.products_page_input
+                States.searchValue_page = States.searchValue_page_input
+                if (States.searchValue_page_input === '') {
+                    States.products_page = []
+                }
+            } else {
+                States.products_page = States.products
+                States.searchValue_page = States.searchValue
+                States.products_page_input = States.products
+                States.searchValue_page_input = States.searchValue
+            }
             navigate(`/search/?search=${e.target.value}`)
         }
     }
@@ -25,6 +35,9 @@ export default function useSearch() {
         if (location.pathname !== '/search/') {
             States.isSearchPage = false
         }
+        if (location.pathname === '/search/') {
+            States.isSearchPage = true
+        }
     }, [location])
 
 
@@ -32,6 +45,7 @@ export default function useSearch() {
         States,
         navigate,
         handlePress,
+        location
     }
 }
 

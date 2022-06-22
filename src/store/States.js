@@ -13,10 +13,12 @@ export default class States {
     isSearchPage = null
 
     searchValue = ''
+    searchValue_page = ''
+    searchValue_page_input = ''
 
     products = []
-    search_page_products = []
-    search_page_value = ''
+    products_page = []
+    products_page_input = []
 
     collection_name = ''
 
@@ -63,7 +65,7 @@ export default class States {
         let response
         try {
             const value = this.searchValue
-            if (value) {
+            if (value.replace(/\s/g, '')) {
 
                 if (typeof this.cancelToken !== typeof undefined) {
                     this.cancelToken.cancel()
@@ -79,6 +81,9 @@ export default class States {
             } else {
                 this.cancelToken.cancel()
                 this.clearProducts()
+            }
+            if (this.isSearchPage) {
+                this.searchValue_page_input = this.searchValue
             }
 
         } catch (e) {
@@ -96,8 +101,7 @@ export default class States {
             this.pagesArray = pagination(this.pages_quantity, this.current_page)
             this.products = await response.data.results
             if (this.isSearchPage) {
-                this.search_page_products = response.data.results
-                this.search_page_value = this.searchValue
+                this.products_page_input = response.data.results
             }
         } catch (e) {
             console.log(e)
@@ -111,8 +115,7 @@ export default class States {
             const response = await this.searchProducts()
             this.products = response.data.results
             if (this.isSearchPage) {
-                this.search_page_products = response.data.results
-                this.search_page_value = this.searchValue
+                this.products_page = response.data.results
             }
             this.pagesArray = pagination(this.pages_quantity, this.current_page + 1, this.current_page - 1)
             this.current_page += 1
@@ -124,8 +127,7 @@ export default class States {
             const response = await this.searchProducts()
             this.products = response.data.results
             if (this.isSearchPage) {
-                this.search_page_products = response.data.results
-                this.search_page_value = this.searchValue
+                this.products_page = response.data.results
             }
             this.pagesArray = pagination(this.pages_quantity, this.current_page -1, this.current_page + 1)
             this.current_page -= 1
@@ -144,8 +146,7 @@ export default class States {
         const response = await this.searchProducts()
         this.products = response.data.results
         if (this.isSearchPage) {
-            this.search_page_products = response.data.results
-            this.search_page_value = this.searchValue
+            this.products_page = response.data.results
         }
     }
 }

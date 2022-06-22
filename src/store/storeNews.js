@@ -19,7 +19,6 @@ export default class StoreNews {
         } catch (e) {
             console.log(e)
         }
-
     }
 
     async getNext() {

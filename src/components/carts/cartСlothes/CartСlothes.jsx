@@ -38,8 +38,15 @@ const CardClothes = ({product, ...props}) => {
                 <img src={images[currentImage].image} className={cl.image}/>
             </div>
 
-            <div className={cl.triangle}></div>
-            <span className={cl.sale}>{product.discount}%</span>
+            {product.discount ?
+                <>
+                    <div className={cl.triangle}></div>
+                    <span className={cl.sale}>{product.discount}%</span>
+                </>
+                :
+                null
+            }
+
             {isFavorite ?
                 <div
                     onClick={(e) => {

@@ -8,11 +8,14 @@ import InstagramSVG from "../../SVG/InstagramSVG";
 import TelegramSVG from "../../SVG/TelegramSVG";
 import WhatsappSVG from "../../SVG/WhatsappSVG";
 import axios from "axios";
+import {useNavigate} from "react-router-dom";
 
 const FooterMobile = () => {
 
     const [data, setData] = useState()
     const [isLoading, setLoading] = useState(true)
+
+    const navigate = useNavigate()
 
     async function load() {
         const response = await axios.get('http://localhost:8000/contacts/')
@@ -34,9 +37,9 @@ const FooterMobile = () => {
                     <div className={cl.infoWrapper}>
                         <div className={cl.info}>
                             <h3>Компания</h3>
-                            <span>О нас</span>
-                            <span>Новости</span>
-                            <span>Помощь</span>
+                            <a onClick={() => navigate('/about')}>О нас</a>
+                            <a onClick={() => navigate('/news')}>Новости</a>
+                            <a onClick={() => navigate('/help')}>Помощь</a>
                         </div>
                         {!isLoading && data ?
                             <>

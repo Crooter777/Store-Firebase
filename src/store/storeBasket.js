@@ -14,7 +14,6 @@ export default class StoreBasket {
 
     add(product) {
         this.products = [...this.products, product]
-        console.log(toJS(this.products))
         this.setToLocalStorage()
     }
 

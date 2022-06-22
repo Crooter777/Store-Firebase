@@ -1,6 +1,4 @@
 import React from 'react';
-import Header from "../components/headers/header/Header";
-import Footer from "../components/footer/footer/Footer";
 import Template from "./Template";
 
 const Offer = () => {

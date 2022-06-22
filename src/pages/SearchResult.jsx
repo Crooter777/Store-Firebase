@@ -20,34 +20,30 @@ const SearchResult = () => {
         Bestsellers.getProducts()
     }, [])
 
-
     return (
         <Template path={[
             {page: 'Главная', path: '/'},
             {page: 'Результаты поиска'},
         ]}>
-            <h1 className={cl.title}>Результаты поиска по запросу: {States.search_page_value}</h1>
+            <h1 className={cl.title}>Результаты поиска по запросу: {States.searchValue_page}</h1>
             <div className={cl.grid}>
-                {States.search_page_products.length !== 0 ?
-                    States.search_page_products.map((product)=>
+                {States.products_page.length !== 0 ?
+                    States.products_page.map((product)=>
                         <CardClothes product={product} key={product.id}/>
                     )
                     :
                     null
                 }
             </div>
-            {States.search_page_products.length !== 0 ?
+            {States.products_page.length !== 0 ?
                 <Pagination store={States}/>
                 :
                 null
             }
-            {States.search_page_products.length === 0?
+            {States.products_page.length === 0?
                 <>
-                {States.search_page_value.length !== 0 ?
                     <div className={cl.notFound}>По вашему запросу ничего не найдено</div>
-                    :
-                    <h1 className={cl.notFound}>Введите запрос</h1>
-                }
+                    {/*<h1 className={cl.notFound}>Введите запрос</h1>*/}
                     <h1 className={cl.extra}>Возможно вас заинтересует</h1>
                     <div className={cl.slider}>
                         {Bestsellers.products.length ?

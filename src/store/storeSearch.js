@@ -3,7 +3,7 @@ import pagination from "../utils/pagination";
 import Products from "../services/Products";
 import axios from "axios";
 
-export default class Search {
+export default class StoreSearch {
 
     modalMobileBack = false
     modalMobile = false

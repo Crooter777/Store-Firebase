@@ -1,6 +1,6 @@
 import React, {useContext, useEffect, useRef} from 'react';
 import Template from "./Template";
-import cl from '../styles/News.module.scss'
+import cl from './styles/News.module.scss'
 import NewsItem from "../components/newsItem/NewsItem";
 import {Context} from "../index";
 import {observer} from "mobx-react-lite";

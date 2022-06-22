@@ -22,6 +22,10 @@
   & svg:first-child {
     margin-bottom: 30px;
   }
+
+  & svg {
+    cursor: pointer;
+  }
 }
 
 .socialWrap {

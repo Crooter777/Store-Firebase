@@ -1,6 +1,6 @@
 import React, {useContext, useEffect, useState} from 'react';
 import Template from "./Template";
-import cl from '../styles/Basket.module.scss'
+import cl from './styles/Basket.module.scss'
 import img from '../assets/img/Products/Rectangle 491-2.png'
 import MinusSVG from "../components/SVG/MinusSVG";
 import PlusSVG from "../components/SVG/PlusSVG";

@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import cl from "./QuestionsItem.module.scss"
-import ArrowBottomSVG from "../SVG/ArrowBottomSVG";
+import ArrowBottomSVG from "../../SVG/ArrowBottomSVG";
 
 const QuestionsItem = ({question}) => {
 

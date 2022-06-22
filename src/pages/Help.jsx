@@ -1,10 +1,10 @@
 import React, {useContext, useEffect, useState} from 'react';
 import Template from "./Template";
-import cl from '../styles/Help.module.scss'
+import cl from './styles/Help.module.scss'
 import img from '../assets/img/help/Rectangle 684.jpg'
 import ArrowBottomSVG from "../components/SVG/ArrowBottomSVG";
 import {Context} from "../index";
-import QuestionsItem from "../components/questions/QuestionsItem";
+import QuestionsItem from "../components/questions/quectionItem/QuestionsItem";
 
 const Help = () => {
 

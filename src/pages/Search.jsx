@@ -1,12 +1,13 @@
 import React, {useContext, useEffect} from 'react';
 import Template from "./Template";
-import cl from '../styles/SearchResult.module.scss'
+import cl from './styles/SearchResult.module.scss'
 import CardClothes from "../components/carts/cartСlothes/CartСlothes";
 import {Context} from "../index";
 import {observer} from "mobx-react-lite";
 import SliderProducts from "../components/sliders/sliderProducts/SliderProducts";
 import { useSearchParams } from "react-router-dom";
 import Pagination from "../components/pagination/Pagination";
+import SliderMaybe from "../components/sliders/sliderMaybe/SliderMaybe";
 
 const Search = () => {
 
@@ -48,7 +49,7 @@ const Search = () => {
                     <h1 className={cl.extra}>Возможно вас заинтересует</h1>
                     <div className={cl.slider}>
                         {Bestsellers.products.length ?
-                            <SliderProducts store={Bestsellers}/>
+                            <SliderMaybe store={Bestsellers}/>
                             :
                             null
                         }

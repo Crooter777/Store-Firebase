@@ -7,7 +7,7 @@ import ModalCall from "../components/modals/modalCall/ModalCall";
 import ModalCallAccess from "../components/modals/modalCallAccess/ModalCallAccess";
 import Template from "./Template";
 import {Context} from "../index";
-import cl from '../styles/Main.module.scss'
+import cl from './styles/Main.module.scss'
 import VectorChatSVG from "../components/SVG/VectorChatSVG";
 import ChatSVG from "../components/SVG/ChatSVG";
 import ChatCloseVectorSVG from "../components/SVG/ChatCloseVectorSVG";
@@ -68,7 +68,6 @@ const Main = () => {
                         :
                         <ChatSVG onClick={() => setActive(true)}/>
                     }
-
                 </div>
             </div>
             <SliderOffers/>

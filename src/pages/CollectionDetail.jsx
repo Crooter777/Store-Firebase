@@ -1,6 +1,6 @@
 import React, {useContext, useEffect, useState} from 'react';
 import Template from "./Template";
-import cl from '../styles/CollectionDetail.module.scss'
+import cl from './styles/CollectionDetail.module.scss'
 import SliderProducts from "../components/sliders/sliderProducts/SliderProducts";
 import CardClothes from "../components/carts/cartСlothes/CartСlothes";
 import Pagination from "../components/pagination/Pagination";

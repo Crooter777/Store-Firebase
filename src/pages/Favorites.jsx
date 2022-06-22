@@ -1,6 +1,6 @@
 import React, {useContext, useEffect} from 'react';
 import Template from "./Template";
-import cl from "../styles/Favorites.module.scss";
+import cl from "./styles/Favorites.module.scss";
 import CardClothes from "../components/carts/cartСlothes/CartСlothes";
 import {Context} from "../index";
 import {observer} from "mobx-react-lite";

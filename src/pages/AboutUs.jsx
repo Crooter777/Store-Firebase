@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react';
 import Template from "./Template";
-import cl from '../styles/AboutUs.module.scss'
+import cl from './styles/AboutUs.module.scss'
 
 import img from '../assets/img/AboutUs/Bgz6WeuuAgs.jpg'
 import img2 from '../assets/img/AboutUs/Bgz6WeuuAgs-1.jpg'

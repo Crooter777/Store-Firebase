@@ -10,7 +10,7 @@ import StoreCollectionsDetail from "./store/storeCollectionDetail";
 import StoreProductDetail from "./store/storeProductDetail";
 import StoreNews from "./store/storeNews";
 import StoreQuestions from "./store/storeQuestions"
-import StoreStates from "./store/search"
+import StoreStates from "./store/storeSearch"
 import StoreFavorites from "./store/storeFavorites"
 import StoreBasket from "./store/storeBasket"
 

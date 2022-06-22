@@ -1,6 +1,6 @@
 import React, {useCallback, useContext, useEffect, useState} from 'react';
 import Template from "./Template";
-import cl from '../styles/Product.module.scss'
+import cl from './styles/Product.module.scss'
 import ProductCartSVG from "../components/SVG/ProductCartSVG";
 import LoveSVG from "../components/SVG/LoveSVG";
 import SliderImages from "../components/sliders/sliderImages/SliderImages";

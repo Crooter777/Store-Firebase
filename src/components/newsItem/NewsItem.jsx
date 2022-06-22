@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import cl from "../../styles/News.module.scss";
+import cl from "../../pages/styles/News.module.scss";
 import img from "../../assets/img/News/Rectangle 507.jpg";
 import {observer} from "mobx-react-lite";
 

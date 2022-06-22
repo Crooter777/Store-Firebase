@@ -1,6 +1,6 @@
 import React, {useContext, useEffect} from 'react';
 import Template from "./Template";
-import cl from '../styles/Collections.module.scss'
+import cl from './styles/Collections.module.scss'
 import CartCollection from "../components/carts/cartCollection/CartCollection";
 import Pagination from "../components/pagination/Pagination";
 import {Context} from "../index";

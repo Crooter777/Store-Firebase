@@ -98,3 +98,10 @@
   color: #FFFFFF;
   margin-right: 15px;
 }
+
+
+@media only screen and (max-width: 770px) {
+  .cart {
+    width: 284px !important;
+  }
+}

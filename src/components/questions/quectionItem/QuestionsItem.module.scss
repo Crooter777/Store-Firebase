@@ -19,6 +19,7 @@
 }
 
 .arrow {
+  min-width: 17px;
   &.active {
     transform: rotate(180deg);
   }

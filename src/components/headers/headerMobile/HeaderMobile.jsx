@@ -1,4 +1,4 @@
-import React, {useContext, useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import cl from './HeaderMobile.module.scss'
 import LogoSVG from "../../SVG/LogoSVG";
 import SearchSVG from "../../SVG/SearchSVG";
@@ -10,19 +10,36 @@ import Whatsapp2SVG from "../../SVG/Whatsapp2SVG";
 import Phone2SVG from "../../SVG/Phone2SVG";
 import SearchMobile from "../../search/mobile/SearchMobile";
 import {Context} from "../../../index";
+import {useNavigate} from "react-router-dom";
+import axios from "axios";
 
-const HeaderMobile = () => {
+const HeaderMobile = ({setModal}) => {
 
     const {States} = useContext(Context)
+
+    const navigate = useNavigate()
 
     const [isActive, setActive] = useState(false)
 
     const [mobSearch, setMobSearch] = useState(false)
 
+    const [data, setData] = useState()
+    const [isLoading, setLoading] = useState(true)
+
     function handlerSearch(bool) {
         States.setModalMobile(bool)
         States.setModalMobileBack(bool)
     }
+
+    async function load() {
+        const response = await axios.get('http://localhost:8000/contacts/')
+        setData(response.data[0])
+        setLoading(false)
+    }
+
+    useEffect(() => {
+        load()
+    }, [])
 
     return (
         <div className={cl.wrap}>
@@ -42,15 +59,19 @@ const HeaderMobile = () => {
                     <div className={cl.line}></div>
                     <div className={cl.line}></div>
                 </div>
-                <LogoSVG style={{width: '99px'}}/>
+                <LogoSVG onClick={() => navigate('/')} style={{width: '99px', cursor: 'pointer'}}/>
                 <div>
                     {States.modalMobile ?
                         <CloseSVG
-                            style={{width: 18, height: 18}}
+                            style={{width: 18, height: 18, cursor: 'pointer'}}
                             onClick={() => handlerSearch(false)}
+
                         />
                         :
-                        <SearchSVG onClick={() => handlerSearch(true)}/>
+                        <SearchSVG
+                            style={{cursor: 'pointer'}}
+                            onClick={() => handlerSearch(true)}
+                        />
                     }
                 </div>
                 <div
@@ -69,24 +90,25 @@ const HeaderMobile = () => {
                             <div className={cl.title}>
                                 <h3>Меню</h3>
                                 <CloseSVG
+                                    style={{cursor: 'pointer'}}
                                     onClick={() => {
                                         setActive(false)
                                     }}
                                 />
                             </div>
                             <div className={cl.section}>
-                                <span>О нас</span>
-                                <span>Новости</span>
-                                <span>Коллекция</span>
+                                <span onClick={() => navigate('/about')}>О нас</span>
+                                <span onClick={() => navigate('/collections')}>Коллекции</span>
+                                <span onClick={() => navigate('/news')}>Новости</span>
                             </div>
                             <div className={cl.separator}></div>
                             <div className={cl.favorite}>
                                 <FavoriteSVG style={{width: 16, height: 16}}/>
-                                <span>Избранное</span>
+                                <span onClick={() => navigate('/favorites')}>Избранное</span>
                             </div>
                             <div className={cl.productCart}>
                                 <ProductCartSVG style={{width: 16, height: 16}}/>
-                                <span>Корзина</span>
+                                <span onClick={() => navigate('/basket')}>Корзина</span>
                             </div>
                         </div>
                         <div className={cl.bottomNav}>
@@ -95,12 +117,20 @@ const HeaderMobile = () => {
                             </div>
                             <div className={cl.contact}>
                                 <span>Тел:</span>
-                                <span> +996 000 00 00 00</span>
+                                <a href='tel:+996000000000'>+996 000 00 00 00</a>
                             </div>
                             <div className={cl.social}>
-                                <Telegram2SVG/>
-                                <Whatsapp2SVG/>
-                                <Phone2SVG/>
+                                {!isLoading ?
+                                    <>
+                                        <a href={data.telegram} target="_blank"><Telegram2SVG/></a>
+                                        <a href={data.whatsapp} target="_blank"><Whatsapp2SVG/></a>
+                                        <Phone2SVG onClick={() => {
+                                            setModal(true)
+                                        }}/>
+                                    </>
+                                    :
+                                    null
+                                }
                             </div>
                         </div>
                     </div>

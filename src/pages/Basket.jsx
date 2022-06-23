@@ -1,10 +1,6 @@
 import React, {useContext, useEffect, useState} from 'react';
 import Template from "./Template";
 import cl from './styles/Basket.module.scss'
-import img from '../assets/img/Products/Rectangle 491-2.png'
-import MinusSVG from "../components/SVG/MinusSVG";
-import PlusSVG from "../components/SVG/PlusSVG";
-import CloseSVG from "../components/SVG/CloseSVG";
 import CartBusket from "../components/carts/Basket/cart/CartBusket";
 import CartBasketInfo from "../components/carts/Basket/info/CartBasketInfo";
 import CartBasketInfoMobile from "../components/carts/Basket/infoMobile/CartBasketInfoMobile";
@@ -12,8 +8,6 @@ import BasketModal from "../components/modals/basket/BasketModal";
 import {observer} from "mobx-react-lite";
 import {Context} from "../index";
 import ModalCallAccess from "../components/modals/modalCallAccess/ModalCallAccess";
-import CardClothes from "../components/carts/cartСlothes/CartСlothes";
-import SliderProducts from "../components/sliders/sliderProducts/SliderProducts";
 import SliderMaybe from "../components/sliders/sliderMaybe/SliderMaybe";
 
 const Basket = () => {
@@ -59,7 +53,7 @@ const Basket = () => {
                 <>
                     <h1 className={cl.title}>Корзина</h1>
                     <div className={cl.count}>
-                        <h4 className={cl.title}>
+                        <h4 className={cl.notFound}>
                             {!Basket.products.length ?
                                 'У Вас пока нет товаров в корзине'
                                 :

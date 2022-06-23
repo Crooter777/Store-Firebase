@@ -25,7 +25,7 @@
 
   & h2 {
     font-weight: 600;
-    font-size: 20px;
+    font-size: clamp(14px, 5.625vw, 20px);
     line-height: 125%;
     color: #393939;
     margin-bottom: 6px;
@@ -33,7 +33,7 @@
 
   & span {
     font-weight: 400;
-    font-size: 18px;
+    font-size: clamp(12px, 5.625vw, 18px);
     line-height: 150%;
     color: #393939;
     margin-bottom: 12px;

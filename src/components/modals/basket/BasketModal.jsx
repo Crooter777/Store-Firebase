@@ -179,7 +179,7 @@ const BasketModal = ({isOpen, accessModal, setOpen}) => {
                                         onClick={() => setStatus(true)}
                                         {...formik.getFieldProps('offer')}
                                     />
-                                    <span>Согласен с условиями <a href="">публичной оферты</a></span>
+                                    <span>Согласен с условиями <a href="http://localhost:3000/offer" target="_blank">публичной оферты</a></span>
                                 </div>
                                 <button
                                     type='button'

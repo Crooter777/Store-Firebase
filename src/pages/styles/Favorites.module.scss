@@ -1,6 +1,6 @@
 .title {
   font-weight: 500;
-  font-size: 24px;
+  font-size: clamp(18px, 5.625vw, 24px);
   line-height: 29px;
   color: #393939;
   margin: 11px 0 12px;
@@ -36,7 +36,7 @@
 
 .extra {
   font-weight: 500;
-  font-size: 24px;
+  font-size: clamp(18px, 5.625vw, 24px);
   line-height: 29px;
   color: #393939;
   margin-bottom: 16px;
@@ -57,5 +57,15 @@
 @media only screen and (max-width: 500px) {
   .grid {
     grid-template-columns: 1fr;
+  }
+  .title {
+    margin-top: 24px;
+    margin-bottom: 18px;
+    & span {
+      display: none;
+    }
+  }
+  .count span {
+    display: none;
   }
 }

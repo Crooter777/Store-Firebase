@@ -8,6 +8,7 @@ import {Context} from "../index";
 import {observer} from "mobx-react-lite";
 import {useParams} from "react-router-dom";
 import axios from "axios";
+import SliderMaybe from "../components/sliders/sliderMaybe/SliderMaybe";
 
 const CollectionDetail = () => {
 
@@ -59,7 +60,7 @@ const CollectionDetail = () => {
                 </div>
                 <h1 className={cl.title}>Новинки</h1>
                 <div className={cl.slider}>
-                    <SliderProducts store={Bestsellers}/>
+                    <SliderMaybe store={Bestsellers}/>
                 </div>
             </div>
         </Template>

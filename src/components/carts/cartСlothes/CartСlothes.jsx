@@ -23,12 +23,18 @@ const CardClothes = ({product, ...props}) => {
         <div
             className={cl.cart}
             onClick={() => navigate(`/products/${product.id}`)}
-            onMouseOut={() => setCurrentImage(0)}
+            onMouseOut={() => {
+                console.log('BBB')
+                setCurrentImage(0)
+            }}
         >
             <div className={cl.imagesWrap}>
                 <div className={cl.images} style={{gridTemplateColumns: `repeat(${product.product_colors.length}, 1fr)`}}>
                     {product.product_colors.map((color, index) =>
-                        <div onMouseOver={() => setCurrentImage(index)} key={color.id} className={cl.imageWrap}>
+                        <div onMouseOver={() => {
+                            console.log('Ee')
+                            setCurrentImage(index)
+                        }} key={color.id} className={cl.imageWrap}>
                             <div className={cl.indicator}></div>
                         </div>
                     )}

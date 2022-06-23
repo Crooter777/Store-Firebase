@@ -17,6 +17,7 @@ import "swiper/css/pagination";
 import "swiper/css/free-mode";
 import './SliderProducts.css'
 import {observer} from "mobx-react-lite";
+import CartOffer from "../../carts/cartOffer/CartOffer";
 
     const SliderProducts = ({store}) => {
     return (

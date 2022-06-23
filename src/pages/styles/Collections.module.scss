@@ -4,7 +4,7 @@
 
     & h1 {
         font-weight: 500;
-        font-size: 24px;
+        font-size: clamp(18px, 5.625vw, 24px);
         line-height: 29px;
         color: #393939;
     }
@@ -29,5 +29,9 @@
 @media only screen and (max-width: 500px) {
     .grid {
         grid-template-columns: 1fr;
+    }
+    .inner {
+        margin-top: 24px;
+        margin-bottom: 16px;
     }
 }

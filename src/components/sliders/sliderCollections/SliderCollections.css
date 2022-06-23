@@ -38,4 +38,7 @@
     .mySwiper3 {
         display: block !important;
     }
+    .mySwiper3 .swiper-slide {
+        width: 284px;
+    }
 }

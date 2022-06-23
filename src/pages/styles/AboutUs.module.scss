@@ -48,7 +48,7 @@
 
     & h1 {
         font-weight: 500;
-        font-size: 24px;
+        font-size: clamp(18px, 5.625vw, 24px);
         line-height: 29px;
         color: #393939;
         margin-bottom: 8px;
@@ -56,7 +56,7 @@
 
     & span {
       font-weight: 500;
-      font-size: 15px;
+      font-size: clamp(12px, 5.625vw, 15px);
       line-height: 160%;
       color: #979797;
     }

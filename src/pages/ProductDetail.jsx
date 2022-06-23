@@ -87,7 +87,7 @@ const ProductDetail = () => {
                 <div className={cl.images}>
                     {!isLoading ?
                         ProductDetail.product.product_colors.map((color, index) =>
-                            <div key={color.id}>
+                            <div key={color.id} style={{cursor: 'pointer'}}>
                                 <img onClick={() => openImageViewer(index)} src={color.image} alt=""/>
                             </div>
                         )
@@ -136,19 +136,19 @@ const ProductDetail = () => {
                         <span className={cl.content}>За последние 35 лет бренд Bonucci из обычного производителя одежды превратился в широко узнаваемую марку, а его продукция – в синоним высокого качества и актуального стиля.  </span>
                         <div className={cl.extra}>
                             <div>
-                                <span className={cl.subTitle}>Размерный ряд: </span>
+                                <span className={cl.subTitle2}>Размерный ряд: </span>
                                 <span>42-50</span>
                             </div>
                             <div>
-                                <span className={cl.subTitle}>Состав ткани: </span>
+                                <span className={cl.subTitle2}>Состав ткани: </span>
                                 <span>Полиэстер</span>
                             </div>
                             <div>
-                                <span className={cl.subTitle}>Количество в линейке: </span>
+                                <span className={cl.subTitle2}>Количество в линейке: </span>
                                 <span>5</span>
                             </div>
                             <div>
-                                <span className={cl.subTitle}>Материал: </span>
+                                <span className={cl.subTitle2}>Материал: </span>
                                 <span>Полиэстер</span>
                             </div>
                         </div>
@@ -177,22 +177,25 @@ const ProductDetail = () => {
                             }
                             <button className={cl.addFavorite}>
                                 {isFavorite ?
-                                    <LoveFillSVG
-                                        onClick={() => {
-                                            Favorites.delete(ProductDetail.product)
-                                            setFavorite(false)
-                                        }}
-                                        style={{fill: '#fff'}}
-                                    />
+                                    <div className={cl.iconWrap} onClick={() => {
+                                        Favorites.delete(ProductDetail.product)
+                                        setFavorite(false)
+                                    }}>
+                                        <LoveFillSVG
+                                            style={{fill: '#fff'}}
+                                        />
+                                    </div>
                                     :
-                                    <LoveSVG
+                                    <div className={cl.iconWrap}
+                                         onClick={() => {
+                                             Favorites.add(ProductDetail.product)
+                                             setFavorite(true)
+                                         }}>
+                                        <LoveSVG
+                                            style={{fill: '#fff'}}
+                                        />
+                                    </div>
 
-                                        onClick={() => {
-                                            Favorites.add(ProductDetail.product)
-                                            setFavorite(true)
-                                        }}
-                                        style={{fill: '#fff'}}
-                                    />
                                 }
                             </button>
                         </div>

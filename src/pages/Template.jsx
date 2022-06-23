@@ -1,16 +1,32 @@
-import React, {useContext} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import Header from "../components/headers/header/Header";
 import Footer from "../components/footer/footer/Footer";
 import {Context} from "../index";
 import cl from './styles/Template.module.scss'
 import {observer} from "mobx-react-lite";
 import HeaderMobile from "../components/headers/headerMobile/HeaderMobile";
-import {useNavigate} from "react-router-dom";
+import {useLocation, useNavigate} from "react-router-dom";
+import ModalCall from "../components/modals/modalCall/ModalCall";
+import SliderOffers from "../components/sliders/sliderOffers/SliderOffers";
 
 const Template = ({children, path}) => {
 
+    const [modal, setModal] = useState(false)
+    const [access, setAccess] = useState(false)
+
     const {States} = useContext(Context)
     const navigate = useNavigate()
+
+    const [isMain, setMain] = useState(false)
+    const location = useLocation()
+
+    useEffect(() => {
+        if (location.pathname === '/') {
+            setMain(true)
+        } else {
+            setMain(false)
+        }
+    }, [location])
 
     return (
         <div
@@ -26,7 +42,7 @@ const Template = ({children, path}) => {
             }
         <div>
             <Header/>
-            <HeaderMobile/>
+            <HeaderMobile setModal={setModal}/>
             {path ?
                 <div className={cl.pathWrap}>
                     <div className={cl.inner}>
@@ -45,11 +61,21 @@ const Template = ({children, path}) => {
                 :
                 null
             }
+            {isMain ?
+                <SliderOffers/>
+                :
+                null
+            }
             <div className='container'>
                 {children}
             </div>
         </div>
         <Footer/>
+        {modal ?
+            <ModalCall isActive={modal} setActive={setModal} setAccess={setAccess}/>
+            :
+            null
+        }
         </div>
     );
 };

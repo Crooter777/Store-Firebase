@@ -1,6 +1,6 @@
 .mySwiper {
     width: 100%;
-    max-width: 1168px;
+    max-width: 1172px;
     /*height: 488px;*/
     height: 508px;
     margin-top: 11px;
@@ -52,4 +52,11 @@
 .swiper-pagination {
     bottom: -3px !important;
     z-index: 20;
+}
+
+
+@media only screen and (max-width: 500px) {
+    .mySwiper {
+        height: 320px;
+    }
 }

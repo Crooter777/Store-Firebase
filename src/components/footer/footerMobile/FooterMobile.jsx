@@ -46,11 +46,11 @@ const FooterMobile = () => {
                                     <h3>Контакты</h3>
                                     <div>
                                         <PhoneSVG/>
-                                        <span>{data.phone1}</span>
+                                        <span><a href={`tel:${data.phone1}`}>{data.phone1}</a></span>
                                     </div>
                                     <div>
                                         <PhoneSVG/>
-                                        <span>{data.phone2}</span>
+                                        <span><a href={`tel:${data.phone2}`}>{data.phone2}</a></span>
                                     </div>
                                     <div>
                                         <EmailSVG/>

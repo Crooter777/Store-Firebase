@@ -1,6 +1,6 @@
 .title {
   font-weight: 500;
-  font-size: 24px;
+  font-size: clamp(18px, 5.625vw, 24px);
   line-height: 29px;
   color: #393939;
   margin: 11px 0 16px;
@@ -16,7 +16,7 @@
 .notFound {
   width: 100%;
   font-weight: 400;
-  font-size: 16px;
+  font-size: clamp(13px, 5.625vw, 16px);
   line-height: 20px;
   color: #393939;
   margin: -16px 0 48px;
@@ -24,7 +24,7 @@
 
 .extra {
   font-weight: 500;
-  font-size: 24px;
+  font-size: clamp(18px, 5.625vw, 24px);
   line-height: 29px;
   color: #393939;
   margin-bottom: 16px;
@@ -44,5 +44,11 @@
 @media only screen and (max-width: 500px) {
   .grid {
     grid-template-columns: 1fr;
+  }
+  .title {
+    margin-top: 24px;
+  }
+  .notFound {
+    margin-bottom: 32px;
   }
 }

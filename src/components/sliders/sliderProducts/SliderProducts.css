@@ -34,3 +34,10 @@
     height: 100%;
     object-fit: cover;
 }
+
+
+@media only screen and (max-width: 500px) {
+    .mySwiper2 .swiper-slide {
+        width: 262px;
+    }
+}

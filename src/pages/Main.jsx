@@ -70,7 +70,7 @@ const Main = () => {
                     }
                 </div>
             </div>
-            <SliderOffers/>
+            {/*<SliderOffers/>*/}
             <GridProducts
                 store={Bestsellers}
                 title={'Хит продаж'}

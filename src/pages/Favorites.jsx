@@ -29,7 +29,7 @@ const Favorites = () => {
                     {!Favorites.products.length ?
                         'У Вас пока нет избранных товаров'
                         :
-                        'Товаров в избранном:'
+                        <span>Товаров в избранном:</span>
                     }
                 </h4>
                 <span>

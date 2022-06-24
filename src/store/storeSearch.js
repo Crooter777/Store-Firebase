@@ -105,7 +105,6 @@ export default class StoreSearch {
         } catch (e) {
             console.log(e)
         }
-
     }
 
     async getNext() {

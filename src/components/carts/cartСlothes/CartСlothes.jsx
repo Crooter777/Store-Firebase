@@ -55,32 +55,36 @@ const CardClothes = ({product, ...props}) => {
                 :
                 null
             }
-
-            {isFavorite ?
-                <div
-                    onClick={(e) => {
-                        e.stopPropagation()
-                        Favorites.delete(Auth.db, product)
-                        setFavorite(false)
-                    }}
-                    className={cl.icon}
-                >
-                    <LoveFillSVG/>
-                </div>
+            {Auth.isAuth ?
+                isFavorite ?
+                    <div
+                        onClick={(e) => {
+                            e.stopPropagation()
+                            Favorites.delete(Auth.db, product)
+                            setFavorite(false)
+                        }}
+                        className={cl.icon}
+                    >
+                        <LoveFillSVG/>
+                    </div>
+                    :
+                    <div
+                        onClick={(e) => {
+                            e.stopPropagation()
+                            Favorites.add(Auth.db, product, Auth.user.uid)
+                            setFavorite(true)
+                        }}
+                        className={cl.icon}
+                    >
+                        <LoveSVG
+                            className={cl.love}
+                        />
+                    </div>
                 :
-                <div
-                    onClick={(e) => {
-                        e.stopPropagation()
-                        Favorites.add(Auth.db, product, Auth.user.uid)
-                        setFavorite(true)
-                    }}
-                    className={cl.icon}
-                >
-                    <LoveSVG
-                        className={cl.love}
-                    />
-                </div>
+                null
             }
+
+
             <div className={cl.info}>
                 <h4 className={cl.title}>{product.name}</h4>
                 <span className={cl.sum}>{product.price} сом</span>

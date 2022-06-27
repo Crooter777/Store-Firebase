@@ -47,7 +47,7 @@ const Header = () => {
 
                         </div>
                         <div className={cl.rightSide}>
-                            <div className={cl.contact} onClick={() => Auth.logout()}>
+                            <div className={cl.contact}>
                                 <span>Тел: </span>
                                 <a href='tel:+996000000000'>+996 000 00 00 00</a>
                             </div>

@@ -11,6 +11,7 @@ const Favorites = () => {
 
     const {Favorites} = useContext(Context)
     const {Bestsellers} = useContext(Context)
+    const {Auth} = useContext(Context)
 
     useEffect(() => {
         window.scrollTo(0, 0)
@@ -25,11 +26,16 @@ const Favorites = () => {
             <h1 className={cl.title}>Избранное</h1>
             <div className={cl.count}>
                 <h4 className={cl.title}>
-                    {!Favorites.products.length ?
-                        'У Вас пока нет избранных товаров'
-                        :
-                        <span>Товаров в избранном:</span>
+                    {Auth.isAuth ?
+                        !Favorites.products.length ?
+                            'У Вас пока нет избранных товаров'
+                            :
+                            <span>Товаров в избранном:</span>
+
+                    :
+                        'Авторизуйтесь'
                     }
+
                 </h4>
                 <span>
                     {Favorites.products.length ?

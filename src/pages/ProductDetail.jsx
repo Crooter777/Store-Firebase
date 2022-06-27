@@ -168,8 +168,12 @@ const ProductDetail = () => {
                                 <button
                                     className={cl.addCart}
                                     onClick={async () => {
-                                        await Basket.add(Auth.db, ProductDetail.getProductForBasket(), Auth.user.uid)
-                                        setColor(Basket.products.find((item)=>item.id === ProductDetail.product.id && item.product_color.id === ProductDetail.product.product_color.id))
+                                        if (Auth.isAuth) {
+                                            await Basket.add(Auth.db, ProductDetail.getProductForBasket(), Auth.user.uid)
+                                            setColor(Basket.products.find((item)=>item.id === ProductDetail.product.id && item.product_color.id === ProductDetail.product.product_color.id))
+                                        } else {
+                                            Auth.login()
+                                        }
                                     }}
                                 >
                                     <ProductCartSVG style={{width: 20, height: 20, fill: '#fff'}}/>
@@ -189,8 +193,12 @@ const ProductDetail = () => {
                                     :
                                     <div className={cl.iconWrap}
                                          onClick={() => {
-                                             Favorites.add(ProductDetail.product)
-                                             setFavorite(true)
+                                             if (Auth.isAuth) {
+                                                 Favorites.add(ProductDetail.product)
+                                                 setFavorite(true)
+                                             } else {
+                                                 Auth.login()
+                                             }
                                          }}>
                                         <LoveSVG
                                             style={{fill: '#fff'}}

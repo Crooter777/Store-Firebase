@@ -12,10 +12,14 @@ import SearchMobile from "../../search/mobile/SearchMobile";
 import {Context} from "../../../index";
 import {useNavigate} from "react-router-dom";
 import axios from "axios";
+import {observer} from "mobx-react-lite";
 
 const HeaderMobile = ({setModal}) => {
 
     const {States} = useContext(Context)
+    const {Auth} = useContext(Context)
+    const {Favorites} = useContext(Context)
+    const {Basket} = useContext(Context)
 
     const navigate = useNavigate()
 
@@ -97,6 +101,33 @@ const HeaderMobile = ({setModal}) => {
                                 />
                             </div>
                             <div className={cl.section}>
+                                {Auth.isAuth ?
+                                    <>
+                                    <span onClick={async () => {
+                                        Auth.logout()
+                                        Favorites.products = []
+                                        Basket.products = []
+                                    }}
+                                    >
+                                        Выйти
+                                    </span>
+                                    <span onClick={() => {
+                                    navigate('/history')
+                                }}
+                                    >
+                                    История покупок
+                                    </span>
+                                    </>
+                                    :
+                                    <span onClick={async () => {
+                                        await Auth.login()
+                                        Favorites.init(Auth.db)
+                                    }}
+                                    >
+                                        Войти
+                                    </span>
+                                }
+
                                 <span onClick={() => navigate('/about')}>О нас</span>
                                 <span onClick={() => navigate('/collections')}>Коллекции</span>
                                 <span onClick={() => navigate('/news')}>Новости</span>
@@ -140,4 +171,4 @@ const HeaderMobile = ({setModal}) => {
     );
 };
 
-export default HeaderMobile;
+export default observer(HeaderMobile);

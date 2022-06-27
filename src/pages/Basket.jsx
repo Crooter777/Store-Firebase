@@ -15,6 +15,7 @@ const Basket = () => {
 
     const {Basket} = useContext(Context)
     const {Bestsellers} = useContext(Context)
+    const {Auth} = useContext(Context)
 
     const [isOpen, setOpen] = useState(false)
     const [accessModal, setAccessModal] = useState(false)
@@ -56,11 +57,15 @@ const Basket = () => {
                     <h1 className={cl.title}>Корзина</h1>
                     <div className={cl.count}>
                         <h4 className={cl.notFound}>
-                            {!Basket.products.length ?
-                                'У Вас пока нет товаров в корзине'
-                                :
-                                null
+                            {Auth.isAuth ?
+                                !Basket.products.length ?
+                                    'У Вас пока нет товаров в корзине'
+                                    :
+                                    null
+                            :
+                                'Авторизуйтесь'
                             }
+
                         </h4>
                     </div>
                     <h1 className={cl.extra}>Возможно вас заинтересует</h1>

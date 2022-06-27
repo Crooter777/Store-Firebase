@@ -50,8 +50,6 @@ export default class StoreFavorites {
         // this.setToLocalStorage()
     }
 
-
-
     parseFromLocalStorage() {
         let favorites = JSON.parse(localStorage.getItem('favorites'))
         if (favorites) {return favorites} else {return []}

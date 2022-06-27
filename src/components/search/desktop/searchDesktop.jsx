@@ -2,7 +2,7 @@ import React, {useContext} from 'react';
 import cl from './searchDesktop.module.scss'
 import SearchSVG from "../../SVG/SearchSVG";
 import {observer} from "mobx-react-lite";
-import useSearch from "../../../hooks/search";
+import useSearch from "../../../hooks/useSearch";
 import {Context} from "../../../index";
 
 const SearchDesktop = () => {

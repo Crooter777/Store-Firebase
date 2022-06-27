@@ -16,6 +16,7 @@ import StoreStates from "./store/storeSearch"
 import StoreFavorites from "./store/storeFavorites"
 import StoreBasket from "./store/storeBasket"
 import StoreAuth from "./store/storeAuth"
+import StoreHistory from "./store/storeHistory"
 
 const Bestsellers = new StoreBestsellers()
 const Novelties = new StoreNovelties()
@@ -30,6 +31,7 @@ const Search = new StoreStates()
 const Favorites = new StoreFavorites()
 const Basket = new StoreBasket()
 const Auth = new StoreAuth()
+const History = new StoreHistory()
 
 export const Context = createContext({
     Bestsellers,
@@ -41,30 +43,31 @@ export const Context = createContext({
     News,
     Questions,
     States,
+    Search,
     Favorites,
     Basket,
-    Search,
     Auth,
+    History,
 })
-
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-        <Context.Provider value={{
-            Bestsellers,
-            Novelties,
-            CollectionsMain,
-            CollectionsPage,
-            CollectionsDetail,
-            ProductDetail,
-            News,
-            Questions,
-            States,
-            Favorites,
-            Basket,
-            Search,
-            Auth,
-        }}>
-        <App/>
-        </Context.Provider>
+    <Context.Provider value={{
+        Bestsellers,
+        Novelties,
+        CollectionsMain,
+        CollectionsPage,
+        CollectionsDetail,
+        ProductDetail,
+        News,
+        Questions,
+        States,
+        Search,
+        Favorites,
+        Basket,
+        Auth,
+        History,
+    }}>
+    <App/>
+    </Context.Provider>
 );

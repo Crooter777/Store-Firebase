@@ -52,11 +52,9 @@ export default class SoreAuth {
                     name: user.displayName,
                     uid: user.uid
                 }
-                console.log('Имеется')
             } else {
                 this.isAuth = false
                 this.user = {}
-                console.log('Нету')
             }
         })
     }

@@ -30,10 +30,14 @@ const Template = ({children, path}) => {
 
 
     const {Favorites} = useContext(Context)
+    const {Basket} = useContext(Context)
     const {Auth} = useContext(Context)
+    const {History} = useContext(Context)
 
     useEffect(() => {
-        Favorites.init(Auth.db)
+        Favorites.init(Auth.db, Auth.user.uid)
+        Basket.init(Auth.db, Auth.user.uid)
+        History.init(Auth.db, Auth.user.uid)
     }, [Auth.isAuth])
 
     return (

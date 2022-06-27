@@ -1,6 +1,6 @@
 import React, {useContext, useEffect, useState} from 'react';
 import cl from './SearchMobile.module.scss'
-import useSearch from "../../../hooks/search";
+import useSearch from "../../../hooks/useSearch";
 import SearchSVG from "../../SVG/SearchSVG";
 import {observer} from "mobx-react-lite";
 import {Context} from "../../../index";

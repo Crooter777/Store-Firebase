@@ -9,6 +9,7 @@ import {useNavigate} from "react-router-dom";
 const CartOffer = ({product, ...props}) => {
 
     const {Favorites} = useContext(Context)
+    const {Auth} = useContext(Context)
 
     const initValue = Boolean(Favorites.products.find((item) => item.id === product.id))
 
@@ -49,7 +50,7 @@ const CartOffer = ({product, ...props}) => {
                 <div
                     onClick={(e) => {
                         e.stopPropagation()
-                        Favorites.delete(product)
+                        Favorites.delete(Auth.db, product)
                         setFavorite(false)
                     }}
                     className={cl.icon}
@@ -60,7 +61,7 @@ const CartOffer = ({product, ...props}) => {
                 <div
                     onClick={(e) => {
                         e.stopPropagation()
-                        Favorites.add(product)
+                        Favorites.add(Auth.db, product, Auth.user.uid)
                         setFavorite(true)
                     }}
                     className={cl.icon}

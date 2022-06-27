@@ -1,5 +1,5 @@
 import {makeAutoObservable, toJS} from "mobx";
-import { doc, addDoc  , collection, getDocs, getDoc, deleteDoc } from "firebase/firestore"
+import { doc, addDoc  , collection, getDocs, getDoc, deleteDoc, where, query } from "firebase/firestore"
 export default class StoreFavorites {
 
     products = []
@@ -8,11 +8,11 @@ export default class StoreFavorites {
         makeAutoObservable(this)
     }
 
-    async init(db) {
+    async init(db, uid) {
         try {
             let products = []
-
-            const result = await getDocs(collection(db, "favorites"))
+            const q = query(collection(db, "favorites"), where('uid', '==', uid))
+            const result = await getDocs(q)
 
             result.forEach((doc) => {
                 let product = doc.data()
@@ -20,7 +20,6 @@ export default class StoreFavorites {
                 products.push(product)
             });
             this.products = products
-            console.log(toJS(this.products))
         } catch (e) {
             console.log(e)
         }
@@ -29,8 +28,9 @@ export default class StoreFavorites {
 
     async add(db, product, uid) {
         product.uid = uid
+        const q = query(collection(db, "favorites"), where('uid', '==', uid))
         await addDoc(collection(db, "favorites"), {...product});
-        const result = await getDocs(collection(db, "favorites"))
+        const result = await getDocs(q)
         let products = []
         result.forEach((doc) => {
             let product = doc.data()
@@ -43,9 +43,8 @@ export default class StoreFavorites {
     }
 
     async delete(db, product) {
-        console.log(toJS(product))
         let prod = this.products.find((prod) => prod.id === product.id)
-        await deleteDoc(doc(db, "favorites", prod.document_id))
+        deleteDoc(doc(db, "favorites", prod.document_id))
         this.products = this.products.filter((p) => p.id !== product.id)
         // this.setToLocalStorage()
     }
@@ -58,5 +57,6 @@ export default class StoreFavorites {
     setToLocalStorage() {
         localStorage.setItem('favorites', JSON.stringify(this.products))
     }
+
 
 }

@@ -14,6 +14,7 @@ import Basket from "./pages/Basket";
 import {observer} from "mobx-react-lite";
 import {useContext, useEffect} from "react";
 import {Context} from "./index";
+import History from "./pages/History";
 
 function App() {
 
@@ -32,9 +33,10 @@ function App() {
               <Route path='/search' element={<SearchResult/>}/>
               <Route path='/favorites' element={<Favorites/>}/>
               <Route path='/basket' element={<Basket/>}/>
+              <Route path='/history' element={<History/>}/>
           </Routes>
       </BrowserRouter>
   );
 }
 
-export default observer(App);
+export default App;

@@ -10,13 +10,14 @@ import {Context} from "../../../../index";
 const CartBusket = ({product}) => {
 
     const {Basket} = useContext(Context)
+    const {Auth} = useContext(Context)
 
     const newPrice = product.price - (product.price * (product.discount / 100))
 
     return (
         <div className={cl.cart}>
             <div
-                onClick={() => Basket.delete(product)}
+                onClick={() => Basket.delete(Auth.db, product)}
                 className={cl.closeSVG}
             >
                 <CloseSVG/>

@@ -28,6 +28,7 @@ const ProductDetail = () => {
     const {Basket} = useContext(Context)
     const {Favorites} = useContext(Context)
     const {Bestsellers} = useContext(Context)
+    const {Auth} = useContext(Context)
 
     const {id} = useParams()
 
@@ -166,8 +167,8 @@ const ProductDetail = () => {
                                 :
                                 <button
                                     className={cl.addCart}
-                                    onClick={() => {
-                                        Basket.add(ProductDetail.getProductForBasket())
+                                    onClick={async () => {
+                                        await Basket.add(Auth.db, ProductDetail.getProductForBasket(), Auth.user.uid)
                                         setColor(Basket.products.find((item)=>item.id === ProductDetail.product.id && item.product_color.id === ProductDetail.product.product_color.id))
                                     }}
                                 >
@@ -178,7 +179,7 @@ const ProductDetail = () => {
                             <button className={cl.addFavorite}>
                                 {isFavorite ?
                                     <div className={cl.iconWrap} onClick={() => {
-                                        Favorites.delete(ProductDetail.product)
+                                        Favorites.delete(Auth.db, ProductDetail.product)
                                         setFavorite(false)
                                     }}>
                                         <LoveFillSVG

@@ -9,6 +9,7 @@ import {observer} from "mobx-react-lite";
 import {Context} from "../index";
 import ModalCallAccess from "../components/modals/modalCallAccess/ModalCallAccess";
 import SliderMaybe from "../components/sliders/sliderMaybe/SliderMaybe";
+import {toJS} from "mobx";
 
 const Basket = () => {
 
@@ -22,6 +23,7 @@ const Basket = () => {
     useEffect(() => {
         window.scrollTo(0, 0)
         Bestsellers.getProducts()
+        console.log(toJS(Basket.products))
     }, [])
 
     return (
@@ -33,7 +35,7 @@ const Basket = () => {
                 <div className={cl.wrap}>
                     <div className={cl.carts}>
                         {Basket.products.map((product) =>
-                            <CartBusket product={product} key={product.product_color.id}/>
+                        <CartBusket product={product} key={product.product_color.id}/>
                         )}
                     </div>
                     <CartBasketInfo setOpen={setOpen}/>

@@ -12,6 +12,8 @@ import Belgium from "../../SVG/countrys/Belgium";
 const BasketModal = ({isOpen, accessModal, setOpen}) => {
 
     const {Basket} = useContext(Context)
+    const {History} = useContext(Context)
+    const {Auth} = useContext(Context)
 
     const [status, setStatus] = useState(false)
 
@@ -60,6 +62,7 @@ const BasketModal = ({isOpen, accessModal, setOpen}) => {
                             setOpen(false)
                             accessModal(true)
                             console.log(values)
+                            History.add(Auth.db, values, Auth.user.uid)
                         }}
                     >
                         {formik => (

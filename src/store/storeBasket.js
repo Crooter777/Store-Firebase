@@ -1,4 +1,5 @@
-import {makeAutoObservable} from "mobx";
+import {makeAutoObservable, toJS} from "mobx";
+import {addDoc, collection, deleteDoc, doc, getDocs, query, where} from "firebase/firestore";
 
 export default class StoreBasket {
 
@@ -8,18 +9,45 @@ export default class StoreBasket {
         makeAutoObservable(this)
     }
 
-    init() {
-        this.products = this.parseFromLocalStorage()
+    async init(db, uid) {
+        try {
+            let products = []
+            const q = query(collection(db, "basket"), where('uid', '==', uid))
+            const result = await getDocs(q)
+
+            result.forEach((doc) => {
+                let product = doc.data()
+                product.document_id = doc.id
+                products.push(product)
+            });
+            this.products = products
+        } catch (e) {
+            console.log(e)
+        }
+        // this.products = this.parseFromLocalStorage()
     }
 
-    add(product) {
-        this.products = [...this.products, product]
-        this.setToLocalStorage()
+    async add(db, product, uid) {
+        product.uid = uid
+        const q = query(collection(db, "basket"), where('uid', '==', uid))
+        await addDoc(collection(db, "basket"), {...product});
+        const result = await getDocs(q)
+        let products = []
+        result.forEach((doc) => {
+            let product = doc.data()
+            product.document_id = doc.id
+            products.push(product)
+        });
+        this.products = products
+        // this.products = [...this.products, product]
+        // this.setToLocalStorage()
     }
 
-    delete(product) {
+    async delete(db, product) {
+        let prod = this.products.find((item) => item.product_color.id === product.product_color.id)
+        deleteDoc(doc(db, "basket", prod.document_id))
         this.products = this.products.filter((item) => item.product_color.id !== product.product_color.id)
-        this.setToLocalStorage()
+        // this.setToLocalStorage()
     }
 
     parseFromLocalStorage() {
@@ -62,7 +90,7 @@ export default class StoreBasket {
     get totalSum() {
         let count = 0
         for (let i of this.products) {
-            count += i.price * i.countForBuy * 5
+            count += i.price * i.countForBuy
         }
         return count
     }
@@ -70,7 +98,7 @@ export default class StoreBasket {
     get totalDiscount() {
         let count = 0
         for (let i of this.products) {
-            count += (i.price * (i.discount / 100)) * (i.countForBuy * 5)
+            count += (i.price * (i.discount / 100)) * (i.countForBuy)
         }
         return count
     }
@@ -78,11 +106,11 @@ export default class StoreBasket {
     get totalAmount() {
         let totalPrice = 0
         for (let i of this.products) {
-            totalPrice += i.price * i.countForBuy * 5
+            totalPrice += i.price * i.countForBuy
         }
         let totalDiscount = 0
         for (let i of this.products) {
-            totalDiscount += (i.price * (i.discount / 100)) * (i.countForBuy * 5)
+            totalDiscount += (i.price * (i.discount / 100)) * (i.countForBuy)
         }
         return totalPrice - totalDiscount
     }

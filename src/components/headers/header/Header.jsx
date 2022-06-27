@@ -62,7 +62,10 @@ const Header = () => {
                                         </div>
                                             {isOpen ?
                                                 <div className={cl.popup}>
-                                                    <div className={cl.item}>
+                                                    <div
+                                                        onClick={() => navigate('/history')}
+                                                        className={cl.item}
+                                                    >
                                                         <HistorySvg/>
                                                         История покупок
                                                     </div>
@@ -72,6 +75,8 @@ const Header = () => {
                                                             setOpen(false)
                                                             Auth.logout()
                                                             Favorites.init(Auth.db)
+                                                            Favorites.products = []
+                                                            Basket.products = []
                                                         }}
                                                         className={cl.item}
                                                     >

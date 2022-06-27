@@ -15,6 +15,7 @@ import Telegram2SVG from "../components/SVG/Telegram2SVG";
 import Whatsapp2SVG from "../components/SVG/Whatsapp2SVG";
 import Phone2SVG from "../components/SVG/Phone2SVG";
 import axios from "axios";
+import {useLocation} from "react-router-dom";
 
 const Main = () => {
 
@@ -27,6 +28,17 @@ const Main = () => {
     const [isLoading, setLoading] = useState(true)
     const [modal, setModal] = useState(false)
     const [access, setAccess] = useState(false)
+
+    const [isMain, setMain] = useState(false)
+    const location = useLocation()
+
+    useEffect(() => {
+        if (location.pathname === '/') {
+            setMain(true)
+        } else {
+            setMain(false)
+        }
+    }, [location])
 
     async function load() {
         window.scrollTo(0, 0)
@@ -41,6 +53,7 @@ const Main = () => {
 
     return (
         <Template>
+            <SliderOffers/>
             <div className={cl.contactsWrap}>
                 <div className={cl.contact}>
                     <VectorChatSVG onClick={() => window.scrollTo(0, 0)}/>

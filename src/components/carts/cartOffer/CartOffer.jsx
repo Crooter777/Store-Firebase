@@ -47,7 +47,8 @@ const CartOffer = ({product, ...props}) => {
                 null
             }
 
-            {isFavorite ?
+            {Auth.isAuth ?
+                isFavorite ?
                 <div
                     onClick={(e) => {
                         e.stopPropagation()
@@ -56,22 +57,25 @@ const CartOffer = ({product, ...props}) => {
                     }}
                     className={cl.icon}
                 >
-                    <LoveFillSVG/>
+                        <LoveFillSVG/>
+                    </div>
+                    :
+                    <div
+                        onClick={(e) => {
+                            e.stopPropagation()
+                            Favorites.add(Auth.db, product, Auth.user.uid)
+                            setFavorite(true)
+                        }}
+                        className={cl.icon}
+                    >
+                        <LoveSVG
+                            className={cl.love}
+                        />
                 </div>
                 :
-                <div
-                    onClick={(e) => {
-                        e.stopPropagation()
-                        Favorites.add(Auth.db, product, Auth.user.uid)
-                        setFavorite(true)
-                    }}
-                    className={cl.icon}
-                >
-                    <LoveSVG
-                        className={cl.love}
-                    />
-                </div>
+                null
             }
+
             <div className={cl.info}>
                 <div className={cl.sum}>
                     <span className={cl.old}>{product.price}</span>

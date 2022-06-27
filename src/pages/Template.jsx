@@ -17,18 +17,6 @@ const Template = ({children, path}) => {
 
     const {States} = useContext(Context)
 
-    const [isMain, setMain] = useState(false)
-    const location = useLocation()
-
-    useEffect(() => {
-        if (location.pathname === '/') {
-            setMain(true)
-        } else {
-            setMain(false)
-        }
-    }, [location])
-
-
     const {Favorites} = useContext(Context)
     const {Basket} = useContext(Context)
     const {Auth} = useContext(Context)
@@ -57,11 +45,6 @@ const Template = ({children, path}) => {
             <HeaderMobile setModal={setModal}/>
             {path ?
                 <Path path={path}/>
-                :
-                null
-            }
-            {isMain ?
-                <SliderOffers/>
                 :
                 null
             }

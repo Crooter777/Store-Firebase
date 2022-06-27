@@ -20,6 +20,7 @@ const Header = () => {
     const {Auth} = useContext(Context)
     const {Favorites} = useContext(Context)
     const {Basket} = useContext(Context)
+    const {History} = useContext(Context)
 
     const navigate = useNavigate()
 
@@ -77,6 +78,7 @@ const Header = () => {
                                                             Favorites.init(Auth.db)
                                                             Favorites.products = []
                                                             Basket.products = []
+                                                            History.products = []
                                                         }}
                                                         className={cl.item}
                                                     >

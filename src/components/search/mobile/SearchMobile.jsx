@@ -1,38 +1,24 @@
-import React, {useEffect, useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import cl from './SearchMobile.module.scss'
 import useSearch from "../../../hooks/search";
 import SearchSVG from "../../SVG/SearchSVG";
 import {observer} from "mobx-react-lite";
+import {Context} from "../../../index";
 
 const SearchMobile = () => {
 
-    const {States, navigate, location } = useSearch()
+    const {Search} = useContext(Context)
 
-    function handlePress(e) {
-        if(e.key === 'Enter') {
-            States.setModalMobile(false)
-            States.setModalMobileBack(false)
-            States.setModalSearch(false)
-            if (location.pathname === '/search/') {
-                States.products_page = States.products_page_input
-                States.searchValue_page = States.searchValue_page_input
-            } else {
-                States.products_page = States.products
-                States.searchValue_page = States.searchValue
-                States.products_page_input = States.products
-                States.searchValue_page_input = States.searchValue
-            }
-            navigate(`/search/?search=${ e.target.value}`)
-        }
-    }
+    const {States, navigate, handlePressMobile } = useSearch()
 
     const [height, setHeight] = useState(0)
+
     function resize() {
         setHeight(document.documentElement.scrollHeight)
     }
-    window.addEventListener("resize", resize);
 
     useEffect(() => {
+        window.addEventListener("resize", resize);
         resize()
     },[])
 
@@ -51,22 +37,14 @@ const SearchMobile = () => {
                         States.getProducts(e)
                     }}
                     onClick={()=>States.setModalSearch(true)}
-                    onKeyPress={handlePress}
+                    onKeyPress={handlePressMobile}
                 />
                 <div
                     className={cl.iconWrapper}
                     onClick={() => {
                         States.setModalMobile(false)
                         States.setModalMobileBack(false)
-                        if (location.pathname === '/search/') {
-                            States.products_page = States.products_page_input
-                            States.searchValue_page = States.searchValue_page_input
-                        } else {
-                            States.products_page = States.products
-                            States.searchValue_page = States.searchValue
-                            States.products_page_input = States.products
-                            States.searchValue_page_input = States.searchValue
-                        }
+                        Search.initSearch(States.searchValue)
                         navigate(`/search/?search=${States.searchValue}`)
                     }}
                 >
@@ -82,7 +60,6 @@ const SearchMobile = () => {
                                     onClick={() => {
                                         States.clearSearchValue()
                                         States.clearProducts()
-                                        States.setModalSearch(false)
                                         States.setModalMobileBack(false)
                                         States.setModalMobile(false)
                                         navigate(`/products/${product.id}`)

@@ -8,6 +8,7 @@ import HeaderMobile from "../components/headers/headerMobile/HeaderMobile";
 import {useLocation, useNavigate} from "react-router-dom";
 import ModalCall from "../components/modals/modalCall/ModalCall";
 import SliderOffers from "../components/sliders/sliderOffers/SliderOffers";
+import Path from "../components/path/Path";
 
 const Template = ({children, path}) => {
 
@@ -15,7 +16,6 @@ const Template = ({children, path}) => {
     const [access, setAccess] = useState(false)
 
     const {States} = useContext(Context)
-    const navigate = useNavigate()
 
     const [isMain, setMain] = useState(false)
     const location = useLocation()
@@ -28,6 +28,14 @@ const Template = ({children, path}) => {
         }
     }, [location])
 
+
+    const {Favorites} = useContext(Context)
+    const {Auth} = useContext(Context)
+
+    useEffect(() => {
+        Favorites.init(Auth.db)
+    }, [Auth.isAuth])
+
     return (
         <div
             className={cl.wrap}
@@ -35,7 +43,7 @@ const Template = ({children, path}) => {
                 States.setModalSearch(false)
             }}
         >
-            {States.modalMobileBack ?
+            {States.modalSearchMobileBack ?
                 <div className={cl.modalBack}></div>
                 :
                 null
@@ -44,20 +52,7 @@ const Template = ({children, path}) => {
             <Header/>
             <HeaderMobile setModal={setModal}/>
             {path ?
-                <div className={cl.pathWrap}>
-                    <div className={cl.inner}>
-                        {path.map((p, index, array) =>
-                            index !== array.length -1 ?
-                                <div key={index}>
-                                    <span className={cl.crosh} onClick={() => navigate(p.path)}>{p.page}</span>
-                                    <span className={cl.croshLine}>/</span>
-                                </div>
-                                :
-                                <span key={index} className={cl.croshCurrent} onClick={() => navigate(p.path)}>{p.page}</span>
-
-                        )}
-                    </div>
-                </div>
+                <Path path={path}/>
                 :
                 null
             }

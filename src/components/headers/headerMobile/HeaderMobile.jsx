@@ -44,7 +44,7 @@ const HeaderMobile = ({setModal}) => {
     return (
         <div className={cl.wrap}>
             <div className={cl.inner}>
-                {States.modalMobile ?
+                {States.modalSearchMobile ?
                     <SearchMobile/>
                     :
                     null
@@ -61,7 +61,7 @@ const HeaderMobile = ({setModal}) => {
                 </div>
                 <LogoSVG onClick={() => navigate('/')} style={{width: '99px', cursor: 'pointer'}}/>
                 <div>
-                    {States.modalMobile ?
+                    {States.modalSearchMobile ?
                         <CloseSVG
                             style={{width: 18, height: 18, cursor: 'pointer'}}
                             onClick={() => handlerSearch(false)}

@@ -10,13 +10,21 @@ import SearchDesktop from "../../search/desktop/searchDesktop";
 import {Context} from "../../../index";
 import {observer} from "mobx-react-lite";
 import FavoritesActiveSVG from "../../SVG/FavoritesActiveSVG";
+import LoginSVG from "../../SVG/LoginSVG";
+import ArrowDown from "../../SVG/ArrowDown";
+import HistorySvg from "../../SVG/HistorySVG";
+import LogoutSVG from "../../SVG/LogoutSVG";
 
 const Header = () => {
 
+    const {Auth} = useContext(Context)
     const {Favorites} = useContext(Context)
     const {Basket} = useContext(Context)
 
     const navigate = useNavigate()
+
+
+    const [isOpen, setOpen] = useState(false)
 
     return (
         <>
@@ -38,9 +46,50 @@ const Header = () => {
                             {/*<Link to='/basket'><span>Корзина</span></Link>*/}
 
                         </div>
-                        <div className={cl.contact}>
-                            <span>Тел: </span>
-                            <a href='tel:+996000000000'>+996 000 00 00 00</a>
+                        <div className={cl.rightSide}>
+                            <div className={cl.contact} onClick={() => Auth.logout()}>
+                                <span>Тел: </span>
+                                <a href='tel:+996000000000'>+996 000 00 00 00</a>
+                            </div>
+                            <div className={cl.userWrap}>
+                                {Auth.isAuth ?
+                                    <>
+                                        <div
+                                            onClick={() => setOpen(bool => !bool)}
+                                            className={cl.user}
+                                        >
+                                            {Auth.user.name} <ArrowDown/>
+                                        </div>
+                                            {isOpen ?
+                                                <div className={cl.popup}>
+                                                    <div className={cl.item}>
+                                                        <HistorySvg/>
+                                                        История покупок
+                                                    </div>
+                                                    <div className={cl.separatorItem}></div>
+                                                    <div
+                                                        onClick={() => {
+                                                            setOpen(false)
+                                                            Auth.logout()
+                                                            Favorites.init(Auth.db)
+                                                        }}
+                                                        className={cl.item}
+                                                    >
+                                                        <LogoutSVG/>
+                                                        Выйти
+                                                    </div>
+                                                </div>
+                                                :
+                                                null
+                                            }
+                                    </>
+                                    :
+                                    <button className={cl.auth} onClick={async () => {
+                                        await Auth.login()
+                                        Favorites.init(Auth.db)
+                                    }}>Войти<LoginSVG/></button>
+                                }
+                            </div>
                         </div>
                     </div>
                 </div>

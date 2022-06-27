@@ -1,16 +1,19 @@
-import React, {useContext, useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import cl from "./CartСlothes.module.scss";
 import img from "../../../assets/img/Products/Rectangle 491-2.png";
 import LoveSVG from "../../SVG/LoveSVG";
 import {Context} from "../../../index";
 import LoveFillSVG from "../../SVG/LoveFillSVG";
 import {useNavigate} from "react-router-dom";
+import {observer} from "mobx-react-lite";
+import {toJS} from "mobx";
 
 const CardClothes = ({product, ...props}) => {
 
     const {Favorites} = useContext(Context)
+    const {Auth} = useContext(Context)
 
-    const initValue = Boolean(Favorites.products.find((item) => item.id === product.id))
+    let initValue = Boolean(Favorites.products.find((item) => item.id === product.id))
 
     const [isFavorite, setFavorite] = useState(initValue)
 
@@ -18,13 +21,16 @@ const CardClothes = ({product, ...props}) => {
 
     const [images, setImages] = useState(product.product_colors)
     const [currentImage, setCurrentImage] = useState(0)
+    
+    useEffect(() => {
+        setFavorite(Boolean(Favorites.products.find((item) => item.id === product.id)))
+    }, [Favorites.products])
 
     return (
         <div
             className={cl.cart}
             onClick={() => navigate(`/products/${product.id}`)}
             onMouseOut={() => {
-                console.log('BBB')
                 setCurrentImage(0)
             }}
         >
@@ -32,7 +38,6 @@ const CardClothes = ({product, ...props}) => {
                 <div className={cl.images} style={{gridTemplateColumns: `repeat(${product.product_colors.length}, 1fr)`}}>
                     {product.product_colors.map((color, index) =>
                         <div onMouseOver={() => {
-                            console.log('Ee')
                             setCurrentImage(index)
                         }} key={color.id} className={cl.imageWrap}>
                             <div className={cl.indicator}></div>
@@ -55,7 +60,7 @@ const CardClothes = ({product, ...props}) => {
                 <div
                     onClick={(e) => {
                         e.stopPropagation()
-                        Favorites.delete(product)
+                        Favorites.delete(Auth.db, product)
                         setFavorite(false)
                     }}
                     className={cl.icon}
@@ -66,7 +71,7 @@ const CardClothes = ({product, ...props}) => {
                 <div
                     onClick={(e) => {
                         e.stopPropagation()
-                        Favorites.add(product)
+                        Favorites.add(Auth.db, product, Auth.user.uid)
                         setFavorite(true)
                     }}
                     className={cl.icon}
@@ -93,4 +98,4 @@ const CardClothes = ({product, ...props}) => {
     );
 };
 
-export default CardClothes;
+export default observer(CardClothes);

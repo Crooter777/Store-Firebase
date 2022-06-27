@@ -11,8 +11,13 @@ import Help from "./pages/Help";
 import SearchResult from "./pages/Search";
 import Favorites from "./pages/Favorites";
 import Basket from "./pages/Basket";
+import {observer} from "mobx-react-lite";
+import {useContext, useEffect} from "react";
+import {Context} from "./index";
 
 function App() {
+
+
   return (
       <BrowserRouter>
           <Routes>
@@ -32,4 +37,4 @@ function App() {
   );
 }
 
-export default App;
+export default observer(App);

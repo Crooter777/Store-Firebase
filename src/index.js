@@ -2,6 +2,8 @@ import React, {createContext} from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.scss';
 import App from './App';
+import { initializeApp } from 'firebase/app';
+
 import StoreBestsellers from "./store/storeBestsellers";
 import StoreNovelties from "./store/storeNovelties";
 import StoreMainCollections from "./store/storeMainCollections";
@@ -13,7 +15,7 @@ import StoreQuestions from "./store/storeQuestions"
 import StoreStates from "./store/storeSearch"
 import StoreFavorites from "./store/storeFavorites"
 import StoreBasket from "./store/storeBasket"
-
+import StoreAuth from "./store/storeAuth"
 
 const Bestsellers = new StoreBestsellers()
 const Novelties = new StoreNovelties()
@@ -24,8 +26,10 @@ const ProductDetail = new StoreProductDetail()
 const News = new StoreNews()
 const Questions = new StoreQuestions()
 const States = new StoreStates()
+const Search = new StoreStates()
 const Favorites = new StoreFavorites()
 const Basket = new StoreBasket()
+const Auth = new StoreAuth()
 
 export const Context = createContext({
     Bestsellers,
@@ -39,26 +43,28 @@ export const Context = createContext({
     States,
     Favorites,
     Basket,
+    Search,
+    Auth,
 })
 
-Favorites.init()
-Basket.init()
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-    <Context.Provider value={{
-        Bestsellers,
-        Novelties,
-        CollectionsMain,
-        CollectionsPage,
-        CollectionsDetail,
-        ProductDetail,
-        News,
-        Questions,
-        States,
-        Favorites,
-        Basket,
-    }}>
-    <App/>
-    </Context.Provider>
+        <Context.Provider value={{
+            Bestsellers,
+            Novelties,
+            CollectionsMain,
+            CollectionsPage,
+            CollectionsDetail,
+            ProductDetail,
+            News,
+            Questions,
+            States,
+            Favorites,
+            Basket,
+            Search,
+            Auth,
+        }}>
+        <App/>
+        </Context.Provider>
 );

@@ -1,12 +1,14 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import cl from './searchDesktop.module.scss'
 import SearchSVG from "../../SVG/SearchSVG";
 import {observer} from "mobx-react-lite";
 import useSearch from "../../../hooks/search";
+import {Context} from "../../../index";
 
 const SearchDesktop = () => {
 
-    const {States, navigate, handlePress, location } = useSearch()
+    const {States, navigate, handlePress} = useSearch()
+    const {Search} = useContext(Context)
 
     return (
         <div
@@ -31,18 +33,7 @@ const SearchDesktop = () => {
                 <div
                     className={cl.iconWrapper}
                     onClick={() => {
-                        if (location.pathname === '/search/') {
-                            States.products_page = States.products_page_input
-                            States.searchValue_page = States.searchValue_page_input
-                            if (States.searchValue_page_input === '') {
-                                States.products_page = []
-                            }
-                        } else {
-                            States.products_page = States.products
-                            States.searchValue_page = States.searchValue
-                            States.products_page_input = States.products
-                            States.searchValue_page_input = States.searchValue
-                        }
+                        Search.initSearch(States.searchValue)
                         navigate(`/search/?search=${States.searchValue}`)
                     }}
                 >

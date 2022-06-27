@@ -8,9 +8,11 @@ import SliderProducts from "../components/sliders/sliderProducts/SliderProducts"
 import { useSearchParams } from "react-router-dom";
 import Pagination from "../components/pagination/Pagination";
 import SliderMaybe from "../components/sliders/sliderMaybe/SliderMaybe";
+import StoreSearch from "../store/storeSearch";
 
 const Search = () => {
 
+    const {Search} = useContext(Context)
     const {States} = useContext(Context)
     const {Bestsellers} = useContext(Context)
 
@@ -27,22 +29,22 @@ const Search = () => {
             {page: 'Главная', path: '/'},
             {page: 'Результаты поиска'},
         ]}>
-            <h1 className={cl.title}>Результаты поиска по запросу: {States.searchValue_page}</h1>
+            <h1 className={cl.title}>Результаты поиска по запросу: {Search.searchValue}</h1>
             <div className={cl.grid}>
-                {States.products_page.length !== 0 ?
-                    States.products_page.map((product)=>
+                {Search.products.length !== 0 ?
+                    Search.products.map((product)=>
                         <CardClothes product={product} key={product.id}/>
                     )
                     :
                     null
                 }
             </div>
-            {States.products_page.length !== 0 ?
-                <Pagination store={States}/>
+            {Search.products.length !== 0 ?
+                <Pagination store={Search}/>
                 :
                 null
             }
-            {States.products_page.length === 0?
+            {Search.products.length === 0?
                 <>
                     <div className={cl.notFound}>По вашему запросу ничего не найдено</div>
                     {/*<h1 className={cl.notFound}>Введите запрос</h1>*/}

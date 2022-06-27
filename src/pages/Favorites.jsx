@@ -17,7 +17,6 @@ const Favorites = () => {
         Bestsellers.getProducts()
     }, [])
 
-
     return (
         <Template path={[
             {page: 'Главная', path: '/'},

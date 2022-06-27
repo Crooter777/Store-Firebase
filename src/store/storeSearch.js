@@ -5,43 +5,35 @@ import axios from "axios";
 
 export default class StoreSearch {
 
-    modalMobileBack = false
-    modalMobile = false
-
-    modalSearch = false
-    isSearchPage = null
-
-    searchValue = ''
-    searchValue_page = ''
-    searchValue_page_input = ''
-
     products = []
-    products_page = []
-    products_page_input = []
-
-    collection_name = ''
-
-    cancelToken
+    searchValue = ''
 
     limit= 8
     offset = 0
 
     count = null
-    pagesArray = null
     pages_quantity = null
     current_page = 1
+    pagesArray = null
 
+    modalSearch = false
+    modalSearchMobile = false
+    modalSearchMobileBack = false
+
+    searchCancelToken
+
+    collection_name = ''
 
     constructor() {
         makeAutoObservable(this)
     }
 
     setModalMobile(bool) {
-        this.modalMobile = bool
+        this.modalSearchMobile = bool
     }
 
     setModalMobileBack(bool) {
-        this.modalMobileBack = bool
+        this.modalSearchMobileBack = bool
     }
 
     setModalSearch(bool) {
@@ -52,6 +44,10 @@ export default class StoreSearch {
         this.searchValue = e.target.value
     }
 
+    initSearchValue(value) {
+        this.searchValue = value
+    }
+
     clearSearchValue() {
         this.searchValue = ''
     }
@@ -60,31 +56,29 @@ export default class StoreSearch {
         this.products = []
     }
 
+
+
     async searchProducts() {
         let response
         try {
             const value = this.searchValue
             if (value.replace(/\s/g, '')) {
 
-                if (typeof this.cancelToken !== typeof undefined) {
-                    this.cancelToken.cancel()
+                if (typeof this.searchCancelToken !== typeof undefined) {
+                    this.searchCancelToken.cancel()
                 }
 
-                this.cancelToken = axios.CancelToken.source()
+                this.searchCancelToken = axios.CancelToken.source()
 
-                response = await Products.search(value, this.cancelToken, this.limit, this.offset)
+                response = await Products.search(value, this.searchCancelToken, this.limit, this.offset)
                 if (response.data.results.length === 0) {
                     this.clearProducts()
                 }
 
             } else {
-                this.cancelToken.cancel()
+                this.searchCancelToken.cancel()
                 this.clearProducts()
             }
-            if (this.isSearchPage) {
-                this.searchValue_page_input = this.searchValue
-            }
-
         } catch (e) {
             console.log(e)
         }
@@ -99,9 +93,6 @@ export default class StoreSearch {
             this.pages_quantity = Math.ceil(response.data.count / this.limit)
             this.pagesArray = pagination(this.pages_quantity, this.current_page)
             this.products = await response.data.results
-            if (this.isSearchPage) {
-                this.products_page_input = response.data.results
-            }
         } catch (e) {
             console.log(e)
         }
@@ -112,9 +103,6 @@ export default class StoreSearch {
             this.offset = this.offset + 8
             const response = await this.searchProducts()
             this.products = response.data.results
-            if (this.isSearchPage) {
-                this.products_page = response.data.results
-            }
             this.pagesArray = pagination(this.pages_quantity, this.current_page + 1, this.current_page - 1)
             this.current_page += 1
         }
@@ -124,9 +112,6 @@ export default class StoreSearch {
             this.offset = this.offset - 8
             const response = await this.searchProducts()
             this.products = response.data.results
-            if (this.isSearchPage) {
-                this.products_page = response.data.results
-            }
             this.pagesArray = pagination(this.pages_quantity, this.current_page -1, this.current_page + 1)
             this.current_page -= 1
         }
@@ -143,8 +128,10 @@ export default class StoreSearch {
     async getPage() {
         const response = await this.searchProducts()
         this.products = response.data.results
-        if (this.isSearchPage) {
-            this.products_page = response.data.results
-        }
+    }
+
+    initSearch(value) {
+        this.initSearchValue(value)
+        this.getProducts()
     }
 }

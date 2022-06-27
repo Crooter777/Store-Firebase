@@ -69,6 +69,10 @@ const ProductDetail = () => {
         load()
     }, [])
 
+    useEffect(() => {
+        setColor(Basket.products.find((item)=>item.id === ProductDetail.product.id && item.product_color.id === ProductDetail.product.product_color.id))
+    }, [Basket.products])
+
     return (
         <Template path={[
             {page: 'Главная', path: '/'},
@@ -194,7 +198,7 @@ const ProductDetail = () => {
                                     <div className={cl.iconWrap}
                                          onClick={() => {
                                              if (Auth.isAuth) {
-                                                 Favorites.add(ProductDetail.product)
+                                                 Favorites.add(Auth.db, ProductDetail.product, Auth.user.uid)
                                                  setFavorite(true)
                                              } else {
                                                  Auth.login()

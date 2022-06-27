@@ -5,6 +5,7 @@ import LoveSVG from "../../SVG/LoveSVG";
 import {Context} from "../../../index";
 import LoveFillSVG from "../../SVG/LoveFillSVG";
 import {useNavigate} from "react-router-dom";
+import {observer} from "mobx-react-lite";
 
 const CartOffer = ({product, ...props}) => {
 
@@ -91,4 +92,4 @@ const CartOffer = ({product, ...props}) => {
     );
 };
 
-export default CartOffer;
+export default observer(CartOffer);

@@ -54,6 +54,11 @@ const Basket = () => {
                 </div>
                 :
                 <>
+                    {accessModal ?
+                        <ModalCallAccess setModal={setAccessModal}/>
+                        :
+                        null
+                    }
                     <h1 className={cl.title}>Корзина</h1>
                     <div className={cl.count}>
                         <h4 className={cl.notFound}>

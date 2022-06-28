@@ -56,7 +56,7 @@ const Main = () => {
             <SliderOffers/>
             <div className={cl.contactsWrap}>
                 <div className={cl.contact}>
-                    <VectorChatSVG onClick={() => window.scrollTo(0, 0)}/>
+                    <a href="#header"><VectorChatSVG/></a>
                     {isActive ?
                         <>
                         <ChatCloseVectorSVG onClick={() => setActive(false)}/>

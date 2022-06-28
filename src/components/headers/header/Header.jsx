@@ -29,7 +29,7 @@ const Header = () => {
 
     return (
         <>
-            <div className={cl.header}>
+            <div className={cl.header} id='header'>
                 <div className={cl.topHeader}>
                     <div className={cl.topHeaderInner}>
                         <div className={cl.pages}>

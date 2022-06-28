@@ -50,6 +50,13 @@ export default class StoreBasket {
         // this.setToLocalStorage()
     }
 
+    async deleteAll(db) {
+        for (let i of this.products) {
+            deleteDoc(doc(db, "basket", i.document_id))
+        }
+        this.products = []
+    }
+
     parseFromLocalStorage() {
         let basket = JSON.parse(localStorage.getItem('basket'))
         if (basket) {return basket} else {return []}
@@ -90,7 +97,7 @@ export default class StoreBasket {
     get totalSum() {
         let count = 0
         for (let i of this.products) {
-            count += i.price * (i.countForBuy * 5)
+            count += i.price * (i.countForBuy)
         }
         return count
     }
@@ -98,7 +105,7 @@ export default class StoreBasket {
     get totalDiscount() {
         let count = 0
         for (let i of this.products) {
-            count += (i.price * (i.discount / 100)) * (i.countForBuy * 5)
+            count += (i.price * (i.discount / 100)) * (i.countForBuy)
         }
         return count
     }
@@ -106,11 +113,11 @@ export default class StoreBasket {
     get totalAmount() {
         let totalPrice = 0
         for (let i of this.products) {
-            totalPrice += i.price * (i.countForBuy * 5)
+            totalPrice += i.price * i.countForBuy
         }
         let totalDiscount = 0
         for (let i of this.products) {
-            totalDiscount += (i.price * (i.discount / 100)) * (i.countForBuy * 5)
+            totalDiscount += (i.price * (i.discount / 100)) * (i.countForBuy)
         }
         return totalPrice - totalDiscount
     }

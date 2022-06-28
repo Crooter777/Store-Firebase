@@ -63,6 +63,7 @@ const BasketModal = ({isOpen, accessModal, setOpen}) => {
                             accessModal(true)
                             console.log(values)
                             History.add(Auth.db, values, Auth.user.uid)
+                            Basket.deleteAll(Auth.db)
                         }}
                     >
                         {formik => (

@@ -203,6 +203,8 @@
     color: #FFFFFF;
     height: 44px;
 
+    text-wrap: none;
+
     & svg {
         margin-right: 12px;
     }
@@ -300,6 +302,10 @@
 
     .sumOld {
         font-weight: 500;
+        font-size: 14px;
+    }
+
+    .addCart {
         font-size: 14px;
     }
 }

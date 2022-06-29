@@ -83,7 +83,11 @@ export default class StoreBasket {
 
 
     get totalLines() {
-        return this.products.length
+        let count = 0
+        for (let i of this.products) {
+            count += i.countForBuy
+        }
+        return count
     }
 
     get totalProducts() {

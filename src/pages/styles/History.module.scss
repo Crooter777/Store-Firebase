@@ -1,6 +1,4 @@
 .historyWrap {
-  background-color: #fff;
-  padding: 5px;
   margin-bottom: 30px;
   overflow-x: auto;
 }
@@ -24,14 +22,21 @@
   }
 }
 
+.tableWrap {
+  background-color: #fff;
+
+  padding: 10px;
+  box-shadow: 0 2px 3px 0 rgba(101, 101, 101, 0.04);
+  margin-bottom: 10px;
+  border-radius: 2px;
+}
+
 
 .table {
   border-collapse: collapse;
   width: 100%;
 
   overflow-x: auto;
-
-  margin-bottom: 20px;
 
   & th, & td {
     text-align: left;

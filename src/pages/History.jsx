@@ -16,22 +16,24 @@ const History = () => {
             <h1 className={cl.title}>История покупок</h1>
             <div className={cl.historyWrap}>
                 {History.products.map((purchase) =>
-                    <table className={cl.table}>
-                        <tr>
-                            <th>Артикул</th>
-                            <th>Количество</th>
-                            <th>Цвет</th>
-                            <th>Сумма</th>
-                        </tr>
-                        {purchase.products.map((product) =>
+                    <div className={cl.tableWrap}>
+                        <table className={cl.table}>
                             <tr>
-                                <td>{product.article}</td>
-                                <td>{product.countForBuy * 5}</td>
-                                <td>{product.product_color.name}</td>
-                                <td>{(product.price * (product.discount / 100)) * (product.countForBuy)}</td>
+                                <th>Артикул</th>
+                                <th>Количество</th>
+                                <th>Цвет</th>
+                                <th>Сумма</th>
                             </tr>
-                        )}
-                    </table>
+                            {purchase.products.map((product) =>
+                                <tr>
+                                    <td>{product.article}</td>
+                                    <td>{product.countForBuy * 5}</td>
+                                    <td>{product.product_color.name}</td>
+                                    <td>{(product.price * (product.discount / 100)) * (product.countForBuy)}</td>
+                                </tr>
+                            )}
+                        </table>
+                    </div>
                 )}
             </div>
         </Template>
